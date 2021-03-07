@@ -24,7 +24,7 @@ Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora?
 - Meets MVC Folder Structure Paradigm Standards
 
 ## Contributors
--- in no particular order...
+This project would not have been possible without the help of everyone on this team. In no particular order:
 
 ### [![](https://github.com/alzcheng.png?size=50)](https://github.com/alzcheng)             Albert Z Cheng
 
