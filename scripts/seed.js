@@ -2,8 +2,11 @@ const mongoose = require("mongoose");
 const db = require("../models");
 
 mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/hall_of_whispers"
+  process.env.MONGODB_URI || "mongodb://localhost/hall_of_whispers", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }
 );
 
 const testSeed = [
