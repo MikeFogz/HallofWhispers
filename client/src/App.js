@@ -14,16 +14,16 @@ function App() {
         <Nav />
         <Router>
           <Switch>
-            <Route>
-              <Character path="/character" component={Character} />
+            <Route exact path="/character" >
+              <Character />
             </Route>
-            <Route>
-              <Home path="/home" component={Home} />
+            <Route exact path="/home">
+              <Home />
             </Route>
-            <Route>
-              <Login path="/login" component={Login} />
+            <Route exact path="/login">
+              <Login />
             </Route>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
           </Switch>
         </Router>
       </Wrapper>

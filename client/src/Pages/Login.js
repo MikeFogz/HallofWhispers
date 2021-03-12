@@ -1,5 +1,5 @@
 import React from "react";
-
+// import image from "http://placekitten.com/250/50"
 const Login = () => {
   const styles = {
     imageStyles: {
@@ -20,7 +20,7 @@ const Login = () => {
         <img
           className="responsive-img"
           style={styles.imageStyles}
-          src="http://placekitten.com/250/50"
+          alt="book"
         />
         <div className="section"></div>
 
