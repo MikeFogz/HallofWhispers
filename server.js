@@ -11,6 +11,14 @@ if(process.env.NODE_ENV === "production"){
     app.use(express.static("client/build"));
 };
 
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/hall_of_whispers", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    }
+);
+
 // This has "/api" because all routes from this route are implied to contain /api/
 app.use("/api", require("./routes/api-Routes"))
 
