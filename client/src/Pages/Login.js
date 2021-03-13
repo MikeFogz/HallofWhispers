@@ -1,89 +1,62 @@
 import React from "react";
-// import image from "http://placekitten.com/250/50"
+import "./Login.css";
+
+// NOTES/TODO: Rather than oj background color on 
+//  card container make it parchment/textured
+
+// Refactor into component for register & login. Container can stay the same,
+// just add one more input field
+
+// TODO page needs to be 100% of height of page.
+
 const Login = () => {
-  const styles = {
-    imageStyles: {
-      width: "250px",
-    },
-    formStyles: {
-      display: "inline-block",
-      padding: "32px 48px 0px 48px", 
-      border: "1px solid #EEE",
-    },
-    passwordStyles: {
-      float: "right",
-    },
-  }
+
   return (
-    <div>
-      <center>
-        <img
-          className="responsive-img"
-          style={styles.imageStyles}
-          alt="book"
-        />
-        <div className="section"></div>
+    <>
+      <div className="page_container">
+        <div className="d-flex justify-content-center h-100">
 
-        <h5 className="indigo-text">Please, login into your account</h5>
-        <div className="section"></div>
-
-        <div className="container">
-          <div
-            className="z-depth-1 grey lighten-4 row custom-style"
-            style={styles.formStyles}
-          >
-            <form className="col s12" method="post">
-              <div className="row">
-                <div className="col s12"></div>
+          {/* start card container */}
+          <div className="user_card">
+            {/* start card logo container */}
+            <div className="d-flex justify-content-center">
+              <div className="brand_logo_container">
+                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
               </div>
+            </div>
+            {/* end card logo container */}
+            <div className="d-flex justify-content-center form_container">
 
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    className="validate"
-                    type="email"
-                    name="email"
-                    id="email"
-                  />
-                  <label for="email">Enter your email</label>
+              {/* form start */}
+              <form>
+                <div className="input-group mb-3">
+                  <div className="input-group-append">
+                    <span className="input-group-text"><i className="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" name="" className="form-control input_user" value="" placeholder="username" />
                 </div>
-              </div>
+                <div className="input-group mb-2">
+                  <div className="input-group-append">
+                    <span className="input-group-text"><i className="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" name="" className="form-control input_pass" value="" placeholder="password" />
+                </div>
+                <div className="d-flex justify-content-center mt-3 login_container">
+                  <button type="button" name="button" className="btn login_btn">Login</button>
+                </div>
+                <div className="d-flex mt-3 justify-content-center links">
+                  <a href="#">Register Here</a>
+                </div>
+              </form>
+              {/* form end */}
+            </div>
 
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    className="validate"
-                    type="password"
-                    name="password"
-                    id="password"
-                  />
-                  <label for="password">Enter your password</label>
-                </div>
-                <label style={styles.formStyles}>
-                  <a className="pink-text" href="#!">
-                    <b>Forgot Password?</b>
-                  </a>
-                </label>
-              </div>
-
-              <br />
-              <center>
-                <div className="row">
-                  <button
-                    type="submit"
-                    name="btn_login"
-                    className="col s12 btn btn-large waves-effect indigo"
-                  >
-                    Login
-                  </button>
-                </div>
-              </center>
-            </form>
           </div>
+          {/* end card container */}
         </div>
-        <a href="#!">Create account</a>
-      </center>
-    </div>
+      </div>
+    </>
+    // end jsx
   );
 };
 
