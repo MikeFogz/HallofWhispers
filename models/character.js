@@ -6,9 +6,10 @@ const characterSchema = new Schema({
   chrName: { type: String, trim: true, required: true },
   chrClass: { type: String, trim: true, required: true },
   chrRace: { type: String, trim: true, required: true },
+  // An array of stats, all must be a numeric value between 1 and 2.
   chrStats: {
       statList: [{
-          stat: { type: Number, maxLength: 2, trim: true, required: true },
+          stat: { type: Number, minLength: 1, maxLength: 2, trim: true, required: true },
       }],
   },
   date: { type: Date, default: Date.now }
