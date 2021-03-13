@@ -1,5 +1,6 @@
 const connection = require("./connection");
 
 module.exports = {
-  Post: require("./Post"),
-};
+    Account: require("./account"),
+    Post: require("./Post"),
+  };  
