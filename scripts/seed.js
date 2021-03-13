@@ -11,15 +11,21 @@ mongoose.connect(
 
 const characterSeed = [
   {
-    accountName: "forbloops280",
-    password: "1234password",
+    chrName: "Valiant Rindis",
+    chrClass: "Cleric",
+    chrRace: "Human",
+    chrStats: {
+      chrStr: 14,
+      chrDex: 9,
+      chrCon: 15,
+      chrInt: 11,
+      chrWis: 16,
+      chrCha: 13,
+      charAc: 9,
+      charHp: 10,
+    },
     date: new Date(Date.now())
   },
-  {
-    accountName: "fudgeRuckers",
-    password: "booSully",
-    date: new Date(Date.now())
-  }
 ];
 
 db.Character

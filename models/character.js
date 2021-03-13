@@ -18,6 +18,6 @@ const characterSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-const Character = mongoose.model("Account", characterSchema);
+const Character = mongoose.model("Character", characterSchema);
 
 module.exports = Character;
