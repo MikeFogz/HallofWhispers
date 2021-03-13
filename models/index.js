@@ -1,3 +1,4 @@
 module.exports = {
-    Account: require("./account")
+    Account: require("./account"),
+    Character: require("./character")
   };  
