@@ -5,43 +5,30 @@ import Container from "../Components/Container/Container";
 import Row from "../Components/Row/Row";
 import StatCard from "../Components/StatCard/StatCard";
 import Wrapper from "../Components/Wrapper/Wrapper";
+import { PostList, PostListItem } from "../Components/PostList/PostList"
 import API from "../utils/API";
 import "./Home.css";
 
 const Home = () => {
   // Setting initial state
-  const [posts, setPosts] = useState([]);
-  const [form, setForm] = useState({});
+  const [posts, setPosts] = useState("")
+  const [postMessage, setPostMessage] = useState("")
 
-  // loads all posts and stores them with setPosts
-  useEffect(() => {
-    loadPosts();
-  }, []);
-
-  // loads all posts an sets them to post
-  function loadPosts() {
-    API.getPosts()
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.log(err));
-  }
-
-  // handles the changes to input post
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  };
-
-  // form submittal
-  function onSubmit(e) {
-    console.log("submit");
-    e.preventDefault();
-
-    API.savePost({
-      post: form.post,
-    })
-      .then((res) => loadPosts())
-      .catch((err) => console.log(err));
+    const { value } = e.target;
+    setPostMessage(value)
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("testing submit");
+
+    API.createPost(postMessage)
+      .then(res => setPosts(res.data))
+      .catch(err => console.log(err))
+  }
+
+
   return (
     <div>
       <Wrapper>
@@ -60,12 +47,13 @@ const Home = () => {
             </Col>
             <Col size="md-8">
               <Row>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div>
                     <input
                       onChange={handleInputChange}
                       type="text"
                       name="message"
+                      value={postMessage}
                       className="form-control"
                       placeholder="Enter your post here"
                       aria-label="post-message"
@@ -75,7 +63,6 @@ const Home = () => {
                       className="btn btn-success"
                       type="submit"
                       id="button-addon2"
-                      value="post"
                     >
                       Post
                     </button>
@@ -83,7 +70,19 @@ const Home = () => {
                 </form>
               </Row>
               <Row>
-                <Card />
+                <Card>
+                  <PostList>
+                    {posts.map((post, index) => {
+                      return (
+                        <PostListItem 
+                          key={index}
+                          // name={post.name}
+                          message={post.message}
+                        />
+                      )
+                    })}
+                  </PostList>
+                </Card>
               </Row>
             </Col>
           </Row>

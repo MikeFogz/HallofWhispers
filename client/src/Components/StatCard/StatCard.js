@@ -2,7 +2,7 @@ import React from "react";
 import "./StatCard.css";
 const styles = {
   cardStyle: {
-    width: "18rem",
+    width: "100%",
     // height: "100vh"
   },
 };

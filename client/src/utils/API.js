@@ -6,7 +6,7 @@ export default {
     return axios.get("/api/posts")
   },
   // saves post
-  savePost: function(postData) {
+  createPost: function(postData) {
     return axios.post("/api/posts", postData)
   }
 }
