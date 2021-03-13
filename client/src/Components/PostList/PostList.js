@@ -11,12 +11,11 @@ export function PostListItem({ message }) {
     <li className="list-group-item">
       <Container>
         <Row>
-          <div className="card" style={{ width: "100%" }}>
-            <div className="card-body">
-              {/* <h5>{name}</h5> */}
+          {/* <div className="card" style={{ width: "100%" }}>
+            <div className="card-body"> */}
               <p>{message}</p>
-            </div>
-          </div>
+            {/* </div>
+          </div> */}
         </Row>
       </Container>
     </li>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Components/Card/Card";
 import Col from "../Components/Col/Col";
 import Container from "../Components/Container/Container";
@@ -6,7 +6,6 @@ import Row from "../Components/Row/Row";
 import StatCard from "../Components/StatCard/StatCard";
 import Wrapper from "../Components/Wrapper/Wrapper";
 import { PostList, PostListItem } from "../Components/PostList/PostList";
-import API from "../utils/API";
 import "./Home.css";
 import axios from "axios";
 
@@ -25,18 +24,22 @@ const Home = () => {
 
     axios.post("/api/posts", { message: postMessage }).then((res) => {
       console.log(res);
-      const data = res.data
-      console.log(data.message)
-      setPosts(data.message)
-     
+      const data = res.data;
+      console.log(data);
+      setPosts([...posts, data]);
     });
-    // API.createPost({ message: postMessage })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     setPosts(res.data);
-    //   })
-    //   .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
+  function loadPosts() {
+    axios.get("/api/posts").then((res) => {
+      console.log(res.data);
+      setPosts(res.data);
+    });
+  }
 
   return (
     <div>
@@ -84,10 +87,7 @@ const Home = () => {
                   <PostList>
                     {posts.map((post, index) => {
                       return (
-                        <PostListItem
-                          key={index}
-                          message={post.message}
-                        />
+                        <PostListItem key={index} message={post.message} />
                       );
                     })}
                   </PostList>

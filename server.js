@@ -13,15 +13,20 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/hall_of_whispers", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    }
+  process.env.MONGODB_URI || "mongodb://localhost/hall_of_whispers",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  },
+  (err) => {
+    if (err) throw err;
+    console.log("connected to mongodb");
+  }
 );
 
 // This has "/api" because all routes from this route are implied to contain /api/
-app.use("/api", require("./routes/api-routes"))
+app.use("/api", require("./routes/api-routes"));
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
