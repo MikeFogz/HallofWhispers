@@ -9,7 +9,7 @@ mongoose.connect(
   }
 );
 
-const testSeed = [
+const characterSeed = [
   {
     accountName: "forbloops280",
     password: "1234password",
@@ -22,9 +22,9 @@ const testSeed = [
   }
 ];
 
-db.Account
+db.Character
   .deleteMany({})
-  .then(() => db.Account.collection.insertMany(testSeed))
+  .then(() => db.Character.collection.insertMany(characterSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
