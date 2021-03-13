@@ -12,5 +12,6 @@ if (process.env.NODE_ENV === "production") {
 
 // This has "/api" because all routes from this route are implied to contain /api/
 app.use("/api", require("./routes/apiRoutes"))
+app.use("/api/posts", require("./routes/homeRoutes"))
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
