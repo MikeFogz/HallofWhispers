@@ -2,18 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const characterSchema = new Schema({
-  chrName: { type: String, required: true },
-  chrClass: { type: String, required: true },
-  chrRace: { type: String, required: true },
+    // If we make the account name, the character name, then this will need to change.
+  chrName: { type: String, trim: true, required: true },
+  chrClass: { type: String, trim: true, required: true },
+  chrRace: { type: String, trim: true, required: true },
   chrStats: {
-    chrStr: { type: Number, required: true },
-    chrDex: { type: Number, required: true },
-    chrCon: { type: Number, required: true },
-    chrInt: { type: Number, required: true },
-    chrWis: { type: Number, required: true },
-    chrCha: { type: Number, required: true },
-    charAc: { type: Number, required: true },
-    charHp: { type: Number, required: true },
+      statList: [{
+          stat: { type: Number, maxLength: 2, trim: true, required: true },
+      }],
   },
   date: { type: Date, default: Date.now }
 });
