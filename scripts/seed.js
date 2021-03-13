@@ -3,10 +3,10 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/hall_of_whispers", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  }
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+}
 );
 
 const characterSeed = [

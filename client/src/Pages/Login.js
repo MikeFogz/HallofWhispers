@@ -1,5 +1,8 @@
-import React from "react";
 import "./Login.css";
+import React, { useState, useContext, useEffect } from 'react';
+import axios from "axios";
+// import UserContext from "../Context/UserContext";
+import { useHistory } from "react-router-dom";
 
 // NOTES/TODO: Rather than oj background color on 
 //  card container make it parchment/textured
@@ -10,6 +13,35 @@ import "./Login.css";
 // TODO page needs to be 100% of height of page.
 
 const Login = () => {
+  const [form, setForm] = useState();
+
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+  const submitLoginForm = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(form);
+      const { data } = await axios.post("/api/login", form);
+      console.log(data);
+      //Setting the global user data here
+      // setUserData({
+      //   token: data.token,
+      //   user: data.user
+      // });
+
+      //Saving the token to local storage.  This token expires in 24 hours.
+      localStorage.setItem("auth-token", data.token);
+      // history.push("/")
+
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
+
+  useEffect(() => {
+    setForm({});
+  }, [])
 
   return (
     <>
@@ -28,21 +60,21 @@ const Login = () => {
             <div className="d-flex justify-content-center form_container">
 
               {/* form start */}
-              <form>
+              <form onSubmit={submitLoginForm} >
                 <div className="input-group mb-3">
                   <div className="input-group-append">
                     <span className="input-group-text"><i className="fas fa-user"></i></span>
                   </div>
-                  <input type="text" name="" className="form-control input_user" value="" placeholder="username" />
+                  <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
                 </div>
                 <div className="input-group mb-2">
                   <div className="input-group-append">
                     <span className="input-group-text"><i className="fas fa-key"></i></span>
                   </div>
-                  <input type="password" name="" className="form-control input_pass" value="" placeholder="password" />
+                  <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
                 </div>
                 <div className="d-flex justify-content-center mt-3 login_container">
-                  <button type="button" name="button" className="btn login_btn">Login</button>
+                  <button type="submit" name="button" className="btn login_btn">Login</button>
                 </div>
                 <div className="d-flex mt-3 justify-content-center links">
                   <a href="#">Register Here</a>
