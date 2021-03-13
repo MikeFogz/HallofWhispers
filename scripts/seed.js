@@ -3,20 +3,22 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/hall_of_whispers", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  }
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+}
 );
 
 const testSeed = [
   {
     accountName: "forbloops280",
+    email: "test@test.com",
     password: "1234password",
     date: new Date(Date.now())
   },
   {
     accountName: "fudgeRuckers",
+    email: "test@test2.com",
     password: "booSully",
     date: new Date(Date.now())
   }
