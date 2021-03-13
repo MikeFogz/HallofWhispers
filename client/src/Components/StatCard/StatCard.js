@@ -3,7 +3,7 @@ import "./StatCard.css";
 const styles = {
   cardStyle: {
     width: "100%",
-    // height: "100vh"
+    height: "72vh",
   },
 };
 const StatCard = () => {
@@ -16,7 +16,7 @@ const StatCard = () => {
             Dunno what to put here
           </h6>
           <div className="row">
-            <div className="col-6">
+            <div className="col-4">
               <div className="card">
                 <h6 className="card-text text-center">Strength</h6>
                 <p className="text-center numbers">10</p>
@@ -27,6 +27,8 @@ const StatCard = () => {
                 <p className="text-center numbers">10</p>
                 <p className="text-center">5</p>
               </div>
+            </div>
+            <div className="col-md-4">
               <div className="card">
                 <h6 className="card-text text-center">Constitution</h6>
                 <p className="text-center numbers">10</p>
@@ -37,6 +39,8 @@ const StatCard = () => {
                 <p className="text-center numbers">10</p>
                 <p className="text-center">5</p>
               </div>
+            </div>
+            <div className="col-md-4">
               <div className="card">
                 <h6 className="card-text text-center">Wisdom</h6>
                 <p className="text-center numbers">10</p>
@@ -48,21 +52,26 @@ const StatCard = () => {
                 <p className="text-center">5</p>
               </div>
             </div>
-            <div className="col-6">
-              <br/>
-              <div className="card armor">
+          </div>
+          <div className="row">
+            <div className="col-md-4">
+              <div className="card">
                 <h6 className="card-text text-center">Armor</h6>
                 <p className="text-center numbers">10</p>
               </div>
-              <div className="card max">
-                <h6 className="card-text text-center">Max</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center">Hit Points</p>
-              </div>
+            </div>
+            <div className="col-md-4">
               <div className="card">
-                <h6 className="card-text text-center">Current</h6>
+                <h6 className="card-text text-center">Max Hit Points</h6>
                 <p className="text-center numbers">10</p>
-                <p className="text-center">Hit Points</p>
+                {/* <p className="text-center">Hit Points</p> */}
+              </div>
+            </div>
+            <div className="col-md-4">
+            <div className="card">
+                <h6 className="card-text text-center">Current Hit Points</h6>
+                <p className="text-center numbers">10</p>
+                {/* <p className="text-center">Hit Points</p> */}
               </div>
             </div>
           </div>

@@ -14,11 +14,13 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [postMessage, setPostMessage] = useState("");
 
+  // handles the input change for posting a message to the postboard
   const handleInputChange = (e) => {
     const { value } = e.target;
     setPostMessage(value);
   };
 
+  // sumbits the post
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -30,10 +32,12 @@ const Home = () => {
     });
   };
 
+  // loads all the posts
   useEffect(() => {
     loadPosts();
   }, []);
 
+  // grabbing all the posts from the database
   function loadPosts() {
     axios.get("/api/posts").then((res) => {
       console.log(res.data);
@@ -54,10 +58,10 @@ const Home = () => {
             </Col>
           </Row>
           <Row>
-            <Col size="md-4">
+            <Col size="md-6">
               <StatCard />
             </Col>
-            <Col size="md-8">
+            <Col size="md-6">
               <Row>
                 <form onSubmit={handleSubmit}>
                   <div>

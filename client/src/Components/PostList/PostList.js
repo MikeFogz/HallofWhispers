@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import Container from "../Container/Container";
 import Row from "../Row/Row";
 
@@ -7,6 +7,15 @@ export function PostList({ children }) {
 }
 
 export function PostListItem({ message }) {
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth"})
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  })
   return (
     <li className="list-group-item">
       <Container>
@@ -14,6 +23,7 @@ export function PostListItem({ message }) {
           {/* <div className="card" style={{ width: "100%" }}>
             <div className="card-body"> */}
               <p>{message}</p>
+              <div ref={messagesEndRef}></div>
             {/* </div>
           </div> */}
         </Row>
