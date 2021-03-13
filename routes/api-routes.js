@@ -1,5 +1,6 @@
 const router = require("express").Router();
 // Deconstructing the test function from the controller's object.
+
 const {
   test,
   getPosts,
@@ -11,5 +12,16 @@ router.get("/test", test);
 router.get("/posts", getPosts);
 
 router.post("/posts", createPost);
+
+// Authentication function s
+const { register, login } = require("../controllers/userAuthControllers");
+
+//User authenication routes 
+
+router.post("/register", register);
+
+router.post("/login", login);
+
+// router.get("/", auth, getUser);
 
 module.exports = router;

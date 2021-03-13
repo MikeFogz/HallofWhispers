@@ -6,6 +6,7 @@ import Wrapper from "./Components/Wrapper/Wrapper";
 import Character from "./Pages/Character";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import Register from "./Pages/TestPages/Register";
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         <Nav />
         <Router>
           <Switch>
+            <Route exact path="/register" >
+              <Register />
+            </Route>
             <Route exact path="/character" >
               <Character />
             </Route>
