@@ -28,6 +28,24 @@ const characterSeed = [
     },
     date: new Date(Date.now())
   },
+  {
+    chrName: "Nott",
+    chrClass: "Rogue",
+    chrRace: "Goblin",
+    chrStats: {
+      statlist: {
+        chrStr: 9,
+        chrDex: 18,
+        chrCon: 8,
+        chrInt: 11,
+        chrWis: 11,
+        chrCha: 7,
+        charAc: 11,
+        charHp: 12,
+      },
+    },
+    date: new Date(Date.now())
+  },
 ];
 
 db.Character
