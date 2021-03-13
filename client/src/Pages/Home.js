@@ -1,33 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Card from "../Components/Card/Card";
 import Col from "../Components/Col/Col";
 import Container from "../Components/Container/Container";
 import Row from "../Components/Row/Row";
 import StatCard from "../Components/StatCard/StatCard";
 import Wrapper from "../Components/Wrapper/Wrapper";
-import { PostList, PostListItem } from "../Components/PostList/PostList"
+import { PostList, PostListItem } from "../Components/PostList/PostList";
 import API from "../utils/API";
 import "./Home.css";
+import axios from "axios";
 
 const Home = () => {
   // Setting initial state
-  const [posts, setPosts] = useState("")
-  const [postMessage, setPostMessage] = useState("")
+  const [posts, setPosts] = useState([]);
+  const [postMessage, setPostMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { value } = e.target;
-    setPostMessage(value)
-  }
+    setPostMessage(value);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("testing submit");
+    e.preventDefault();
 
-    API.createPost(postMessage)
-      .then(res => setPosts(res.data))
-      .catch(err => console.log(err))
-  }
-
+    axios.post("/api/posts", { message: postMessage }).then((res) => {
+      console.log(res);
+      const data = res.data
+      console.log(data.message)
+      setPosts(data.message)
+     
+    });
+    // API.createPost({ message: postMessage })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setPosts(res.data);
+    //   })
+    //   .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -35,7 +44,7 @@ const Home = () => {
         <Container>
           <Row>
             <Col size="md-4">
-              <h1>Valiant Rundis</h1>
+              <h5>Valiant Rundis</h5>
               <strong>Class Level: </strong>
               <br />
               <strong>Race: </strong>
@@ -52,6 +61,7 @@ const Home = () => {
                     <input
                       onChange={handleInputChange}
                       type="text"
+                      style={{ marginTop: "10px" }}
                       name="message"
                       value={postMessage}
                       className="form-control"
@@ -74,12 +84,11 @@ const Home = () => {
                   <PostList>
                     {posts.map((post, index) => {
                       return (
-                        <PostListItem 
+                        <PostListItem
                           key={index}
-                          // name={post.name}
                           message={post.message}
                         />
-                      )
+                      );
                     })}
                   </PostList>
                 </Card>
