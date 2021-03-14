@@ -22,7 +22,9 @@ const Home = () => {
 
   // sumbits the post
   const handleSubmit = (e) => {
+    // prevents page from refreshing
     e.preventDefault();
+    // clears the input field after submitting
     setPostMessage("");
     axios.post("/api/posts", { message: postMessage }).then((res) => {
       console.log(res);
