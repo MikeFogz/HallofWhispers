@@ -23,7 +23,7 @@ const Home = () => {
   // sumbits the post
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setPostMessage("");
     axios.post("/api/posts", { message: postMessage }).then((res) => {
       console.log(res);
       const data = res.data;
@@ -50,7 +50,7 @@ const Home = () => {
       <Wrapper>
         <Container>
           <Row>
-            <Col size="md-4">
+            <Col size="md-6">
               <h5>Valiant Rundis</h5>
               <strong>Class Level: </strong>
               <br />
@@ -75,6 +75,7 @@ const Home = () => {
                       placeholder="Enter your post here"
                       aria-label="post-message"
                       aria-describedby="button-addon2"
+                      id="myInput"
                     />
                     <button
                       className="btn btn-success"
