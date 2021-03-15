@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import Container from "../Container/Container";
-import DateTime from "../DateTime/DateTime";
-// const reactTimestamp = require("react-timestamp")
-// import Timestamp from "react-timestamp"
 import Row from "../Row/Row";
-// import Time from "../Time/Time";
+
 
 export function PostList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
-export function PostListItem({ message }) {
+export function PostListItem({ message, date }) {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -26,9 +23,10 @@ export function PostListItem({ message }) {
         <Row>
           <p>{message}</p>
           <div ref={messagesEndRef}>
-            <DateTime />
-            {/* <Timestamp date={Date} style={{float: "right"}}/> */}
-            {/* <Time /> */}
+            <div style={{float: "right"}}>
+              Message Posted: {date} 
+              {/* instead of "Message" we can put the Username there */}
+            </div>
           </div>
         </Row>
       </Container>

@@ -67,10 +67,10 @@ const Home = () => {
               <Row>
                 <form onSubmit={handleSubmit}>
                   <div>
-                    <input
+                    <textarea
                       onChange={handleInputChange}
                       type="text"
-                      style={{ marginTop: "10px" }}
+                      style={{ marginTop: "10px"}}
                       name="message"
                       value={postMessage}
                       className="form-control"
@@ -94,7 +94,12 @@ const Home = () => {
                   <PostList>
                     {posts.map((post, index) => {
                       return (
-                        <PostListItem key={index} message={post.message} />
+                        <PostListItem
+                          // style={{border: "0"}}
+                          key={index}
+                          date={post.date}
+                          message={post.message}
+                        />
                       );
                     })}
                   </PostList>
