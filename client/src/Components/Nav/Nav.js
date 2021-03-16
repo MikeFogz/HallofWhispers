@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Nav.css"
 const Nav = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,13 +26,15 @@ const Nav = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/login">
-                Login
-              </a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link" href="/character">
                 Character
+              </a>
+            </li>
+          </ul>
+          <ul className="navbar-nav mb-2 mb-lg-0">
+          <li className="nav-item login">
+              <a className="nav-link" href="/login">
+                Login
               </a>
             </li>
           </ul>
