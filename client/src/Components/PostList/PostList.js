@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Container from "../Container/Container";
 import Row from "../Row/Row";
+import moment from "moment"
 
 
 export function PostList({ children }) {
@@ -14,9 +15,15 @@ export function PostListItem({ message, date }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // newDate = moment.utc(date).local().format("LLL")
+  // console.log(newDate)
+
+
   useEffect(() => {
     scrollToBottom();
   });
+
+
   return (
     <li className="list-group-item">
       <Container>

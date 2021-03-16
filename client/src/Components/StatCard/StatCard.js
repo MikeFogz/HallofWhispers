@@ -1,76 +1,43 @@
 import React from "react";
+import PowerStats from "../PowerStats/PowerStats";
+import Col from "../Col/Col";
+import Row from "../Row/Row";
 import "./StatCard.css";
 
 const StatCard = () => {
   return (
     <div>
-      <div className="card" style={{width:"100%", height: "76vh"}}>
+      <div className="card" style={{ width: "100%", height: "76vh" }}>
         <div className="card-body">
           <h5 className="card-title">Power Stats</h5>
           <h6 className="card-subtitle mb-2 text-muted">
             Dunno what to put here
           </h6>
-          <div className="row">
-            <div className="col-4">
-              <div className="card card-border image" style={{height: "17vh"}}>
-                <h6 className="card-text text-center power-title">Strength</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center bottom-number">5</p>
-              </div>
-
-              <div className="card card-border image" style={{height: "17vh"}}>
-                <h6 className="card-text text-center power-title">Dexterity</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center bottom-number">5</p>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="card card-border image" style={{height: "17vh"}}>
-                <h6 className="card-text text-center power-title">Constitution</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center bottom-number">5</p>
-              </div>
-              <div className="card card-border image" style={{height: "17vh"}}>
-                <h6 className="card-text text-center power-title">Intelligence</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center bottom-number">5</p>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="card card-border image" style={{height: "17vh"}}>
-                <h6 className="card-text text-center power-title">Wisdom</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center bottom-number">5</p>
-              </div>
-              <div className="card card-border image" style={{height: "17vh"}}>
-                <h6 className="card-text text-center power-title">Charisma</h6>
-                <p className="text-center numbers">10</p>
-                <p className="text-center bottom-number">5</p>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4 container">
-              <div className="card card-border armor-image" style={{height: "12vh"}}>
-                <h6 className="card-text text-center armor-title">Armor</h6>
-                <p className="text-center numbers">10</p>
-              </div>
-            </div>
-            <div className="col-4 container">
-              <div className="card card-border hit-points-image" style={{height: "12vh"}}>
-                <h6 className="card-text text-center power-title">Max Hit Points</h6>
-                <p className="text-center numbers">10</p>
-                {/* <p className="text-center">Hit Points</p> */}
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="card card-border hit-points-image" style={{height: "12vh"}}>
-                <h6 className="card-text text-center power-title">Current Hit Points</h6>
-                <p className="text-center numbers">10</p>
-                {/* <p className="text-center">Hit Points</p> */}
-              </div>
-            </div>
-          </div>
+          <Row className="row">
+            <Col size="md-4 s-4 xs-4">
+              <PowerStats title="Strength" number={10} bottomNumber={5} />
+              <PowerStats title="Dexterity" number={10} bottomNumber={5} />
+            </Col>
+            <Col size="md-4 s-4 xs-4">
+              <PowerStats title="Constitution" number={10} bottomNumber={5} />
+              <PowerStats title="Intelligence" number={10} bottomNumber={5} />
+            </Col>
+            <Col size="md-4 s-4 xs-4">
+              <PowerStats title="Wisdom" number={10} bottomNumber={5} />
+              <PowerStats title="Charimsa" number={10} bottomNumber={5} />
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-4 s-4 xs-4">
+              <PowerStats title="Armor" number={10} />
+            </Col>
+            <Col size="md-4 s-4 xs-4">
+              <PowerStats title="Max Hit Points" number={10} />
+            </Col>
+            <Col size="md-4 s-4 xs-4">
+              <PowerStats title="Current Hit Points" number={10} />
+            </Col>
+          </Row>
         </div>
       </div>
     </div>
