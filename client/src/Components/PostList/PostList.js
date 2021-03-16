@@ -8,7 +8,7 @@ export function PostList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
-export function PostListItem({ message, date }) {
+export function PostListItem({ message, date, newDate}) {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -31,7 +31,7 @@ export function PostListItem({ message, date }) {
           <p>{message}</p>
           <div ref={messagesEndRef}>
             <div style={{float: "right"}}>
-              Message Posted: {date} 
+              Message Posted: {moment.utc(date).local().format("LLL")}
               {/* instead of "Message" we can put the Username there */}
             </div>
           </div>
