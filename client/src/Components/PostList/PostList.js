@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Container from "../Container/Container";
 import Row from "../Row/Row";
+
 import moment from "moment"
 
 
@@ -8,7 +9,9 @@ export function PostList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
-export function PostListItem({ message, date, newDate}) {
+
+export function PostListItem({ message, date, myAccount}) {
+
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -25,7 +28,7 @@ export function PostListItem({ message, date, newDate}) {
 
 
   return (
-    <li className="list-group-item">
+    <li className={`list-group-item ${(myAccount === "true") ? "my-account" : "not-my-account"}`}>
       <Container>
         <Row>
           <p>{message}</p>

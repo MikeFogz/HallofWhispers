@@ -1,8 +1,10 @@
 import "./Login.css";
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, } from 'react';
 import axios from "axios";
-// import UserContext from "../Context/UserContext";
+import AccountContext from "../Context/AccountContext";
 import { useHistory } from "react-router-dom";
+//Using useEffect for jumping between pages when logged in and not
+//import React, { useState, useContext, useEffect } from 'react';
 
 // NOTES/TODO: Rather than oj background color on 
 //  card container make it parchment/textured
@@ -14,6 +16,8 @@ import { useHistory } from "react-router-dom";
 
 const Login = () => {
   const [form, setForm] = useState();
+  const { userData, setUserData } = useContext(AccountContext);
+  const history = useHistory();
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -25,24 +29,30 @@ const Login = () => {
       const { data } = await axios.post("/api/login", form);
       console.log(data);
       //Setting the global user data here
-      // setUserData({
-      //   token: data.token,
-      //   user: data.user
-      // });
+      setUserData({
+        token: data.token,
+        account: data.account
+      });
 
       //Saving the token to local storage.  This token expires in 24 hours.
       localStorage.setItem("auth-token", data.token);
-      // history.push("/")
+      history.push("/");
 
     } catch (error) {
       console.log(error.response);
     }
   }
 
-  useEffect(() => {
-    setForm({});
-  }, [])
+  //--------------------------------------------
+  //Activate this block of code when appropriate
+  //Function:  If the user is logged in, will go
+  //straight to the home page.
 
+  // useEffect(() => {
+  //   if (userData.account) history.goBack();
+  // }, [userData.account, history])
+
+  //-----------------------------------------------
   return (
     <>
       <div className="page_container">
