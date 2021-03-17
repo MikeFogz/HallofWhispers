@@ -5,12 +5,13 @@ import DateTime from "../DateTime/DateTime";
 // import Timestamp from "react-timestamp"
 import Row from "../Row/Row";
 // import Time from "../Time/Time";
+import "./PostList.css";
 
 export function PostList({ children }) {
   return <ul className="list-group">{children}</ul>;
 }
 
-export function PostListItem({ message }) {
+export function PostListItem({ message, myAccount }) {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -21,7 +22,7 @@ export function PostListItem({ message }) {
     scrollToBottom();
   });
   return (
-    <li className="list-group-item">
+    <li className={`list-group-item ${(myAccount === "true") ? "my-account" : "not-my-account"}`}>
       <Container>
         <Row>
           <p>{message}</p>

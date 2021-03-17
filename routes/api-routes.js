@@ -1,5 +1,6 @@
 const router = require("express").Router();
 // Deconstructing the test function from the controller's object.
+const auth = require("../middleware/auth");
 
 const {
   test,
@@ -9,12 +10,12 @@ const {
 // Running the test function from our controller when this route is hit.
 router.get("/test", test);
 
-router.get("/posts", getPosts);
+router.get("/posts", auth, getPosts);
 
-router.post("/posts", createPost);
+router.post("/posts", auth, createPost);
 
 // Authentication function s
-const { register, login } = require("../controllers/userAuthControllers");
+const { register, login, getAccount } = require("../controllers/userAuthControllers");
 
 //User authenication routes 
 
@@ -22,6 +23,6 @@ router.post("/register", register);
 
 router.post("/login", login);
 
-// router.get("/", auth, getUser);
+router.get("/accounts", auth, getAccount);
 
 module.exports = router;
