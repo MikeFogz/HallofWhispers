@@ -75,10 +75,22 @@ module.exports = {
 
       res.json({
         token,
-        user: { id: myAccount._id, displayName: myAccount.displayName },
+        account: { id: myAccount._id, displayName: myAccount.displayName },
       })
     } catch (error) {
       res.status(500).json({ msg: error });
+    }
+  },
+
+  getAccount: async (req, res) => {
+    try {
+      const account = await Account.findById(req.account);
+      res.json({
+        displayName: account.displayName,
+        id: account._id,
+      })
+    } catch (error) {
+      res.send(err.response);
     }
   }
 

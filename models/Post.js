@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -7,6 +8,15 @@ const PostSchema = new Schema({
     trim: true,
     required: "message required",
   },
+
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  accountId: {
+    type: String,
+    required: true,
+  }
 });
 
 const Post = mongoose.model("Post", PostSchema);

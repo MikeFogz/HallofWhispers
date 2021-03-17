@@ -1,6 +1,8 @@
 import React from "react";
 import "./Nav.css"
-const Nav = () => {
+
+const Nav = ({ children }) => {
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -32,10 +34,11 @@ const Nav = () => {
             </li>
           </ul>
           <ul className="navbar-nav mb-2 mb-lg-0">
-          <li className="nav-item login">
+            <li className="nav-item login">
               <a className="nav-link" href="/login">
                 Login
               </a>
+              {children}
             </li>
           </ul>
         </div>

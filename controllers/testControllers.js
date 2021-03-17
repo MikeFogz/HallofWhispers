@@ -23,6 +23,8 @@ module.exports = {
       const newPost = new Post({
         // name: req.body.name,
         message: req.body.message,
+        date: req.body.date,
+        accountId: req.account,
       });
 
       res.json(await newPost.save());
