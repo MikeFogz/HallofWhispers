@@ -1,3 +1,5 @@
+
+/* custom import */
 @font-face {
   font-family: "Roboto";
   src: local("Roboto"),
@@ -5,7 +7,14 @@
   font-weight: normal;
 }
 
-
+/* 
+--------------------------------
+where we refer to import font... first is roboto, our custom font
+fallbacks included as well
+think about woff rather than ttf for better optimization,
+but will still need ttf for fallback for non-ultra-modern browsers.
+--------------------------------
+*/
 body {
   margin: 0;
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,7 +25,6 @@ body {
 }
 
 
-/* think about a custom font family */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
