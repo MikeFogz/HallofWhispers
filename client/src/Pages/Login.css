@@ -60,7 +60,7 @@
 		.form_container {
 			margin-top: 100px;
 		}
-		.login_btn {
+		/* .login_btn {
 			width: 100%;
 			background: #c0392b !important;
 			color: white !important;
@@ -94,4 +94,4 @@
         }
 		.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
 			background-color: #c0392b !important;
-		}
+		} */
