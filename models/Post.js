@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -7,7 +8,11 @@ const PostSchema = new Schema({
     trim: true,
     required: "message required",
   },
-  //Added accountId to Vince's code
+
+  date: {
+    type: Date,
+    default: Date.now,
+  },
   accountId: {
     type: String,
     required: true,
