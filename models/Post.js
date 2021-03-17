@@ -7,6 +7,11 @@ const PostSchema = new Schema({
     trim: true,
     required: "message required",
   },
+  //Added accountId to Vince's code
+  accountId: {
+    type: String,
+    required: true,
+  }
 });
 
 const Post = mongoose.model("Post", PostSchema);
