@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Container from "../Container/Container";
 import Row from "../Row/Row";
-
+import "./PostList.css"
 import moment from "moment"
 
 
