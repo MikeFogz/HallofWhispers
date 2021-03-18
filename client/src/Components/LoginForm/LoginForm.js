@@ -27,7 +27,11 @@ const LoginForm = () => {
 
             //Saving the token to local storage.  This token expires in 24 hours.
             localStorage.setItem("auth-token", data.token);
-            history.push("/");
+            if (data.account.charCreated) {
+                history.push("/");
+            } else {
+                history.push("/character");
+            }
 
         } catch (error) {
             console.log(error.response);
@@ -62,14 +66,14 @@ const LoginForm = () => {
                     <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
                 </div>
 
-                    <div className="d-flex justify-content-center mt-3 login_container">
-                        <button type="submit" name="button" className="btn login_btn">Login</button>
-                    </div>
-                    <div className="d-flex mt-3 justify-content-center links">
-                        <a href="#">Register Here</a>
-                    </div>
+                <div className="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" name="button" className="btn login_btn">Login</button>
+                </div>
+                <div className="d-flex mt-3 justify-content-center links">
+                    <a href="#">Register Here</a>
+                </div>
             </form >
-                {/* form end */}
+            {/* form end */}
         </>
     )
 }

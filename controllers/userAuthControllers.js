@@ -33,7 +33,8 @@ module.exports = {
         email,
         password: passwordHash,
         accountName: displayName,
-        date: new Date(Date.now())
+        date: new Date(Date.now()),
+        charCreated: false
       })
       console.log(newAccount);
       const savedAccount = await newAccount.save();
@@ -75,7 +76,7 @@ module.exports = {
 
       res.json({
         token,
-        account: { id: myAccount._id, displayName: myAccount.displayName },
+        account: { id: myAccount._id, displayName: myAccount.displayName, charCreated: myAccount.charCreated },
       })
     } catch (error) {
       res.status(500).json({ msg: error });
@@ -90,7 +91,23 @@ module.exports = {
         id: account._id,
       })
     } catch (error) {
-      res.send(err.response);
+      res.send(error.response);
+    }
+  },
+
+  charCreatedAccount: async (req, res) => {
+
+    try {
+      await Account.findByIdAndUpdate({ _id: req.account }, { charCreated: true }, (err, user) => {
+        if (err) {
+          return res
+            .status(500)
+            .send({ error: "unsuccessful" })
+        };
+        res.send({ success: "success" });
+      })
+    } catch (error) {
+      res.send(error.response);
     }
   }
 
