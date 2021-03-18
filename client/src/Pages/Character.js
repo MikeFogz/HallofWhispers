@@ -10,6 +10,7 @@ const Character = () => {
 
   const history = useHistory();
 
+  // This function is used to change 
   const onClick = async (e) => {
     e.preventDefault();
     let token = localStorage.getItem("auth-token");
@@ -43,6 +44,7 @@ const Character = () => {
 
   return (
     <div>
+      {/* This button is a placeholder for when create character is created */}
       <button onClick={onClick}>Create Character</button>
       <h3>Who are you?</h3>
       <CharacterInfo />
