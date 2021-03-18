@@ -1,11 +1,29 @@
 //import React, { useContext, useEffect } from 'react'
 import React from 'react';
 import CharacterInfo from '../Components/CharacterInfo/CharacterInfo'
-import CharacterStats from '../Components/CharacterStats/CharacterStats'
+import CharacterStats from '../Components/CharacterStats/CharacterStats';
+import axios from 'axios';
 // import AccountContext from "../Context/AccountContext";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Character = () => {
+
+  const history = useHistory();
+
+  const onClick = async (e) => {
+    e.preventDefault();
+    let token = localStorage.getItem("auth-token");
+    try {
+      const accountRes = await axios.post("/api/characterCreation", {}, {
+        headers: { "x-auth-token": token },
+      });
+      console.log(accountRes);
+
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
   //--------------------------------------------
   //Activate this block of code when appropriate
@@ -25,6 +43,7 @@ const Character = () => {
 
   return (
     <div>
+      <button onClick={onClick}>Create Character</button>
       <h3>Who are you?</h3>
       <CharacterInfo />
       <h3>Your Story</h3>

@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const auth = (req, res, next) => {
   try {
+    console.log("I'm in auth middleware");
     const token = req.header("x-auth-token");
     if (!token) {
       return res.status(401).json({ msg: "No authentication token passed" });
