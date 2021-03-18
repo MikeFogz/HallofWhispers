@@ -26,14 +26,16 @@ const Register = () => {
     }
   }
 
-  const Toggle = () => {
-    const queryPass = document.getElementById("password-reveal");
-    if (queryPass.type === "password") {
-      queryPass.type = "text";
-    } else {
-      queryPass.type = "password";
-    }
-  };
+
+  // need a hook for password reveal, vanilla js doesn't work
+  // const Toggle = () => {
+  //   const queryPass = document.getElementById("password-reveal");
+  //   if (queryPass.type === "password") {
+  //     queryPass.type = "text";
+  //   } else {
+  //     queryPass.type = "password";
+  //   }
+  // };
 
   return (
     <div>
@@ -78,20 +80,22 @@ const Register = () => {
           <div className="input-group-append">
             <span className="input-group-text"><i className="fas fa-key"></i></span>
           </div>
-          <input onChange={onChange} type="password" name="password" id="password-reveal" className="form-control input_pass" placeholder="password" />
+          <input onChange={onChange} type="password" name="password" className="form-control input_pass" placeholder="password" />
         </div>
         {/* password end */}
 
-        {/* password start */}
+        {/* password check start */}
 
-        {/* TODO: manipulate password reveal */}
+        {/* TODO: manipulate password reveal
+            removed unnecessary password ID in input 
+        */}
         <div className="input-group mb-2">
           <div className="input-group-append">
             <span className="input-group-text"><i className="fas fa-key"></i></span>
           </div>
-          <input onChange={onChange} type="password" name="passwordCheck" id="password-reveal" className="form-control input_pass" placeholder="retype password" />
+          <input onChange={onChange} type="password" name="passwordCheck" className="form-control input_pass" placeholder="retype password" />
         </div>
-        {/* password end */}
+        {/* password check end */}
 
 
         {/*   --- original check password start
@@ -100,24 +104,37 @@ const Register = () => {
           check password end
         */}
 
+
+
+
         {/* show password checkbox start */}
-        <div class="form-group">
+        {/* <div class="form-group">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="customControlInline" onClick="Toggle"/>
             <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
           </div>
-        </div>
+        </div> */}
         {/* show password checkbox end */}
         
+
+
+
+
 
         {/* original display name
         
         <label >Display Name</label>
         <input onChange={onChange} type="text" name="displayName" />
+
+        button starts below
         <input type="submit" /> 
         ----------------------
         */}
-
+        {/* button start */}
+        <div className="d-flex justify-content-center mt-3 login_container">
+          <button type="submit" name="button" className="btn login_btn">Register</button>
+        </div>
+        {/* button end */}
         
       </form>
     </div>
