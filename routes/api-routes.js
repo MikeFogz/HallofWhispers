@@ -15,7 +15,7 @@ router.get("/posts", auth, getPosts);
 router.post("/posts", auth, createPost);
 
 // Authentication function s
-const { register, login, getAccount } = require("../controllers/userAuthControllers");
+const { register, login, getAccount, charCreatedAccount } = require("../controllers/userAuthControllers");
 
 //User authenication routes 
 
@@ -24,5 +24,7 @@ router.post("/register", register);
 router.post("/login", login);
 
 router.get("/accounts", auth, getAccount);
+
+router.post("/characterCreation", auth, charCreatedAccount);
 
 module.exports = router;
