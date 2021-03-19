@@ -27,7 +27,11 @@ const LoginForm = () => {
 
             //Saving the token to local storage.  This token expires in 24 hours.
             localStorage.setItem("auth-token", data.token);
-            history.push("/");
+            if (data.account.charCreated) {
+                history.push("/");
+            } else {
+                history.push("/character");
+            }
 
         } catch (error) {
             console.log(error.response);
@@ -44,32 +48,39 @@ const LoginForm = () => {
     // }, [userData.account, history])
 
     //-----------------------------------------------
-
+        
     return (
         <>
             {/* form start */}
             < form onSubmit={submitLoginForm} >
+                {/* email start */}
                 <div className="input-group mb-3">
                     <div className="input-group-append">
                         <span className="input-group-text"><i className="fas fa-user"></i></span>
                     </div>
                     <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
                 </div>
+                {/* email end */}
+                {/* password start */}
                 <div className="input-group mb-2">
                     <div className="input-group-append">
                         <span className="input-group-text"><i className="fas fa-key"></i></span>
                     </div>
                     <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
                 </div>
+                {/* password end */}
 
-                    <div className="d-flex justify-content-center mt-3 login_container">
-                        <button type="submit" name="button" className="btn login_btn">Login</button>
-                    </div>
-                    <div className="d-flex mt-3 justify-content-center links">
-                        <a href="#">Register Here</a>
-                    </div>
+                {/* button start */}
+                <div className="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" name="button" className="btn login_btn">Login</button>
+                </div>
+                {/* button end */}
+
+                <div className="d-flex mt-3 justify-content-center links">
+                    <a href="">Register Here</a>
+                </div>
             </form >
-                {/* form end */}
+            {/* form end */}
         </>
     )
 }
