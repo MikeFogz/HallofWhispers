@@ -1,4 +1,4 @@
-import "./Register.css"
+import "./RegisterForm.css"
 import React, { useState } from 'react';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -137,12 +137,13 @@ const Register = () => {
         {/* button end */}
         
         <div className="d-flex mt-3 justify-content-center links">
-          <a href="/login">Login Here</a>
+          <a href="/register">Register Here</a>
         </div>
+
 
       </form>
     </div>
   )
 }
 
-export default Register
+export default RegisterForm

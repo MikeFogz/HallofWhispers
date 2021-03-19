@@ -77,7 +77,7 @@ const LoginForm = () => {
                 {/* button end */}
 
                 <div className="d-flex mt-3 justify-content-center links">
-                    <a href="">Register Here</a>
+                    <a href="/register">Register Here</a>
                 </div>
             </form >
             {/* form end */}
