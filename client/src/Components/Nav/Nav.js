@@ -1,7 +1,16 @@
-import React from "react";
-import "./Nav.css"
+import React, { useContext, useEffect } from "react";
+import "./Nav.css";
+import AccountContext from "../../Context/AccountContext";
 
 const Nav = ({ children }) => {
+
+
+  const { userData } = useContext(AccountContext);
+
+  // let token = localStorage.getItem("auth-token");
+  // //this is to hide the Characters page in Nav Bar
+  // let loggedIn = (token !== "");
+  // console.log("I am logged in: ", loggedIn);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,12 +32,12 @@ const Nav = ({ children }) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/home">
+              <a className="nav-link active" aria-current="page" href="/home" hidden={!userData.account?.charCreated}>
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/character">
+              <a className="nav-link" href="/character" hidden={!userData.account?.loggedIn}>
                 Character
               </a>
             </li>
