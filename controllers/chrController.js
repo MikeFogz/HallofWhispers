@@ -1,14 +1,11 @@
-const db = require("../models");
+const { Character } = require("../models");
 
-// Defining methods for the booksController
 module.exports = {
   findAll: async (req, res) => {
     try {
-        db.Character.find({}, (res) => {
-            console.log(res);
-        });
-    } catch (error) {
-        res.send(err);
+      res.json(await Character.find())
+    } catch (err) {
+      res.send(err);
     };
   },
 };

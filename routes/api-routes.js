@@ -27,4 +27,8 @@ router.get("/accounts", auth, getAccount);
 
 router.post("/characterCreation", auth, charCreatedAccount);
 
+const { findAll } = require("../controllers/chrController");
+
+router.get("/characters", findAll);
+
 module.exports = router;
