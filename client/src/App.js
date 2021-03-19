@@ -22,11 +22,19 @@ function App() {
       localStorage.setItem("auth-token", "");
     } else {
       try {
-        console.log("need to code get user info")
-        const accountRes = await axios.get("/api/accounts", {
+        const { data } = await axios.get("/api/accounts", {
           headers: { "x-auth-token": token },
         });
-        setUserData({ token, account: accountRes.data });
+        console.log(data);
+
+        //Setting up account data for state
+        const accountData = {
+          accountName: data.accountName,
+          id: data._id,
+          charCreated: data.charCreated,
+          loggedIn: true
+        }
+        setUserData({ token, account: accountData });
       } catch (err) {
         console.log("User must login");
       }
@@ -35,7 +43,7 @@ function App() {
 
   const onClick = (e) => {
     e.preventDefault();
-    setUserData({ token: undefined, account: undefined });
+    setUserData({ token: undefined, account: { loggedIn: false } });
     localStorage.setItem("auth-token", "");
     //better way of doing this? 
     window.location = "/login"
@@ -49,11 +57,12 @@ function App() {
   return (
     <div className="App">
       <Wrapper>
-        <Nav>
-          <button onClick={onClick}>Logout</button>
-        </Nav>
-        <Router>
-          <AccountContext.Provider value={{ userData, setUserData }}>
+        <AccountContext.Provider value={{ userData, setUserData }}>
+          <Nav>
+            <button onClick={onClick}>Logout</button>
+          </Nav>
+          <Router>
+
             <Switch>
               <Route exact path="/register" >
                 <Register />
@@ -69,8 +78,8 @@ function App() {
               </Route>
               <Route exact path="/" component={Home} />
             </Switch>
-          </AccountContext.Provider>
-        </Router>
+          </Router>
+        </AccountContext.Provider>
       </Wrapper>
     </div>
   );
