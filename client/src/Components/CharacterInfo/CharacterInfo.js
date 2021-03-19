@@ -4,21 +4,21 @@ function CharacterInfo() {
     return (
         <form>
         <div className="form-row row">
-          <div className="col-md-4 mb-3">
+          <div className="col-sm-4 mb-3">
             <label for="validationServer01">First name</label>
             <input type="text" className="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required/>
             <div className="valid-feedback">
               Looks good!
             </div>
           </div>
-          <div className="col-md-4 mb-3">
+          <div className="col-sm-4 mb-3">
             <label for="validationServer02">Last name</label>
             <input type="text" className="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required/>
             <div className="valid-feedback">
               Looks good!
             </div>
           </div>
-          <div className="col-md-4 mb-3">
+          <div className="col-sm-4 mb-3">
             <label for="validationServerUsername">Username</label>
             <div className="input-group">
               <div className="input-group-prepend">
@@ -32,14 +32,14 @@ function CharacterInfo() {
           </div>
         </div>
         <div className="form-row row">
-          <div className="col-md-3 mb-3">
+          <div className="col-sm-3 mb-3">
             <label for="validationServer03">Class</label>
             <input type="text" className="form-control is-invalid" id="validationServer03" placeholder="Class" required/>
             <div className="invalid-feedback">
               Please provide a Class or Subclass.
             </div>
           </div>
-          <div className="col-md-3 mb-3 form-group">
+          <div className="col-sm-3 mb-3 form-group">
             <label for="validationServer04">Race</label>
             <select className="form-control" id="exampleFormControlSelect1">
               <option>Dwarf</option>
@@ -52,7 +52,7 @@ function CharacterInfo() {
               Please select a Race.
             </div>
           </div>
-          <div className="col-md-3 mb-3">
+          <div className="col-sm-3 mb-3">
             <label for="validationServer05">Alignment</label>
             <select className="form-control" id="exampleFormControlSelect1">
               <option>Lawful Good</option>

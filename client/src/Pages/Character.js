@@ -46,6 +46,8 @@ const Character = () => {
     <div>
       {/* This button is a placeholder for when create character is created */}
       <button onClick={onClick}>Create Character</button>
+      <h1>Hall of Whisper's Almanac of Heroes</h1>
+      <p>Mark your place in the records.</p>
       <h3>Who are you?</h3>
       <CharacterInfo />
       <h3>Your Story</h3>
@@ -54,6 +56,7 @@ const Character = () => {
         <button className="btn btn-primary" type="submit">Save Story</button>
       </div>
       <CharacterStats />
+      <button className="btn btn-primary" type="submit">Submit to Hall Records</button>
     </div>
   )
 }
