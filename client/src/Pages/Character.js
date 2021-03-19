@@ -48,13 +48,7 @@ const Character = () => {
       <button onClick={onClick}>Create Character</button>
       <h1>Hall of Whisper's Almanac of Heroes</h1>
       <p>Mark your place in the records.</p>
-      <h3>Who are you?</h3>
       <CharacterInfo />
-      <h3>Your Story</h3>
-      <div className="input-group col-md-3 mb-3">
-        <textarea className="form-control" aria-label="With textarea"></textarea>
-        <button className="btn btn-primary" type="submit">Save Story</button>
-      </div>
       <CharacterStats />
       <button className="btn btn-primary" type="submit">Submit to Hall Records</button>
     </div>
