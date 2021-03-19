@@ -1,13 +1,13 @@
-//import React, { useContext, useEffect } from 'react'
-import React from 'react';
+import React, { useContext, useEffect } from 'react'
+//import React from 'react';
 import CharacterInfo from '../Components/CharacterInfo/CharacterInfo'
 import CharacterStats from '../Components/CharacterStats/CharacterStats';
 import axios from 'axios';
-// import AccountContext from "../Context/AccountContext";
+import AccountContext from "../Context/AccountContext";
 import { useHistory } from "react-router-dom";
 
 const Character = () => {
-
+  const { userData, setUserData } = useContext(AccountContext);
   const history = useHistory();
 
   // This function is used to change 
@@ -15,10 +15,21 @@ const Character = () => {
     e.preventDefault();
     let token = localStorage.getItem("auth-token");
     try {
-      const accountRes = await axios.post("/api/characterCreation", {}, {
+      //changing character creation in database
+      const { data } = await axios.post("/api/characterCreation", {}, {
         headers: { "x-auth-token": token },
       });
-      console.log(accountRes);
+      //Update the global user data here
+      console.log(data);
+      const updatedAccount = {
+        id: data._id,
+        displayName: data.displayName,
+        charCreated: data.charCreated,
+        loggedIn: true
+      }
+      setUserData({ ...userData, account: updatedAccount });
+
+      history.push("/");
 
     } catch (error) {
       console.log(error)
