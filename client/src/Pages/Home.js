@@ -12,6 +12,7 @@ import axios from "axios";
 // import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
+import background from "../assets/images/black_thread.png"
 
 const Home = () => {
 
@@ -77,7 +78,7 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
           <Row>
