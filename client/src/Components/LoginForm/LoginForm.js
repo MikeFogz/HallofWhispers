@@ -9,6 +9,7 @@ const LoginForm = () => {
     const [form, setForm] = useState();
     const { userData, setUserData } = useContext(AccountContext);
     const history = useHistory();
+    const [passwordToggle, setPasswordToggle] = useState("password");
 
     const onChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -59,6 +60,17 @@ const LoginForm = () => {
 
     //-----------------------------------------------
 
+    const togglePassword = () => {
+        if (passwordToggle === "password") {
+            setPasswordToggle("text")
+
+        }
+        else {
+            setPasswordToggle("password")
+        }
+    };
+
+
     return (
         <>
             <div className="page_container">
@@ -90,15 +102,25 @@ const LoginForm = () => {
                                     <div className="input-group-append">
                                         <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
-                                    <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
+                                    <input onChange={onChange} type={passwordToggle} name="password" className="form-control input_pass" placeholder="password" />
                                 </div>
                                 {/* password end */}
+
+                                {/* show password checkbox start */}
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customControlInline" onClick={togglePassword} />
+                                        <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
+                                    </div>
+                                </div>
+                                {/* show password checkbox end */}
 
                                 {/* button start */}
                                 <div className="d-flex justify-content-center mt-3 login_container">
                                     <button type="submit" name="button" className="btn login_btn">Login</button>
                                 </div>
                                 {/* button end */}
+
 
                             </form >
                             {/* form end */}
