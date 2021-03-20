@@ -13,8 +13,8 @@ const Nav = ({ children }) => {
   // console.log("I am logged in: ", loggedIn);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg navbar-light background">
+      <div className="container-fluid background">
         <a className="navbar-brand" href="/">
           Hall of Whispers
         </a>

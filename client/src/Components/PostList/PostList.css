@@ -1,9 +1,9 @@
 .my-account {
-  background-color: green;
+  background-color: rgb(173, 231, 173);
 }
 
 .not-my-account {
-  background-color: red;
+  background-color: rgb(201, 201, 201);
 }
 
 /* Add Right and Left justifications */
