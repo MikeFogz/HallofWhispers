@@ -34,7 +34,7 @@ export function PostListItem({ message, date, myAccount}) {
           <p>{message}</p>
           <div ref={messagesEndRef}>
             <div style={{float: "right"}}>
-              Message Posted: {moment.utc(date).local().format("LLL")}
+              <p className="timestamp">Message Posted: {moment.utc(date).local().format("LLL")}</p>
               {/* instead of "Message" we can put the Username there */}
             </div>
           </div>
