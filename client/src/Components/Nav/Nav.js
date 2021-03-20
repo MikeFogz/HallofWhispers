@@ -15,6 +15,7 @@ const Nav = ({ children }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light background">
       <div className="container-fluid background">
+        <img className="nav-logo" src="https://i.imgur.com/BGhAyqD.png"></img>
         <a className="navbar-brand" href="/">
           Hall of Whispers
         </a>

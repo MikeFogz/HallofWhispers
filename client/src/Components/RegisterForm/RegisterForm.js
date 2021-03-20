@@ -47,7 +47,7 @@ const RegisterForm = () => {
             {/* start card logo container */}
             <div className="d-flex justify-content-center">
               <div className="brand_logo_container">
-                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
+                <img src="https://i.imgur.com/BGhAyqD.png" className="brand_logo" alt="logo" />
               </div>
             </div>
             {/* end card logo container */}

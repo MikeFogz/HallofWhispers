@@ -81,7 +81,7 @@ const LoginForm = () => {
                         {/* start card logo container */}
                         <div className="d-flex justify-content-center">
                             <div className="brand_logo_container">
-                                <img src="../../src/assets/images/HoW_Skull_vector.png" className="brand_logo" alt="HallofWhispersLogo" />
+                                <img src="https://i.imgur.com/BGhAyqD.png" className="brand_logo" alt="HallofWhispersLogo" />
                             </div>
                         </div>
                         {/* end card logo container */}
