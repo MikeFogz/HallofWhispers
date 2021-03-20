@@ -19,15 +19,25 @@ const LoginForm = () => {
             console.log(form);
             const { data } = await axios.post("/api/login", form);
             console.log(data);
+
+            //Setting up my account data for state
+            const myAccountData = {
+                id: data.myAccount._id,
+                accountName: data.myAccount.accountName,
+                charCreated: data.myAccount.charCreated,
+                loggedIn: true
+            };
+
+
             //Setting the global user data here
             setUserData({
                 token: data.token,
-                account: data.account
+                account: myAccountData
             });
 
             //Saving the token to local storage.  This token expires in 24 hours.
             localStorage.setItem("auth-token", data.token);
-            if (data.account.charCreated) {
+            if (data.myAccount.charCreated) {
                 history.push("/");
             } else {
                 history.push("/character");
@@ -48,9 +58,6 @@ const LoginForm = () => {
     // }, [userData.account, history])
 
     //-----------------------------------------------
-
-
-
 
     return (
         <>
@@ -93,9 +100,6 @@ const LoginForm = () => {
                                 </div>
                                 {/* button end */}
 
-                                <div className="d-flex mt-3 justify-content-center links">
-                                    <a href="/Register">Register Here</a>
-                                </div>
                             </form >
                             {/* form end */}
                         </div>

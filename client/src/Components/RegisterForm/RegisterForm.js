@@ -104,10 +104,6 @@ const RegisterForm = () => {
         </div>
         {/* button end */}
         
-        <div className="d-flex mt-3 justify-content-center links">
-          <a href="/register">Register Here</a>
-        </div>
-
       </form>
     
           </div>
