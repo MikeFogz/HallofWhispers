@@ -1,6 +1,7 @@
 const { Character } = require("../models");
 
 module.exports = {
+
   findAll: async (req, res) => {
     try {
       res.json(await Character.find())
@@ -23,6 +24,7 @@ module.exports = {
         chrName: req.body.chrName,
         chrClass: req.body.chrClass,
         chrRace: req.body.chrRace,
+        // This will create an array within our Character containing stat objects.
         chrStats: [ 
           { name: "strength", value: req.body.chrStr }, 
           { name: "dexterity", value: req.body.chrDex }, 
@@ -47,4 +49,5 @@ module.exports = {
       res.send(err);
     };
   },
+
 };
