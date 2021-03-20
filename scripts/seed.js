@@ -14,37 +14,16 @@ const characterSeed = [
     chrName: "Valiant Rindis",
     chrClass: "Cleric",
     chrRace: "Human",
-    chrStats: {
-      statlist: {
-        chrStr: 14,
-        chrDex: 9,
-        chrCon: 15,
-        chrInt: 11,
-        chrWis: 16,
-        chrCha: 13,
-        charAc: 9,
-        charHp: 10,
-      },
-    },
-    date: new Date(Date.now())
-  },
-  {
-    chrName: "Nott",
-    chrClass: "Rogue",
-    chrRace: "Goblin",
-    chrStats: {
-      statlist: {
-        chrStr: 9,
-        chrDex: 18,
-        chrCon: 8,
-        chrInt: 11,
-        chrWis: 11,
-        chrCha: 7,
-        charAc: 11,
-        charHp: 12,
-      },
-    },
-    date: new Date(Date.now())
+    chrStats: [
+      { "strength": 14 }, 
+      { "dexterity": 9 }, 
+      { "constitution": 15 }, 
+      { "intelligence": 11 }, 
+      { "wisdom": 16 }, 
+      { "charisma": 13 }, 
+      { "armor class": 9 }, 
+      { "hit points": 10 }, 
+    ]
   },
 ];
 
