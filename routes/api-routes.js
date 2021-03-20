@@ -27,10 +27,14 @@ router.get("/accounts", auth, getAccount);
 
 router.post("/characterCreation", auth, charCreatedAccount);
 
-const { findAll, createChr } = require("../controllers/chrController");
+const { findAll, findChr, createChr, deleteChr } = require("../controllers/chrController");
 
 router.get("/characters", findAll);
 
+router.get("/characters/:id", findChr);
+
 router.post("/characters", createChr);
+
+router.get("/characters/:id", deleteChr);
 
 module.exports = router;

@@ -1,9 +1,18 @@
 const { Character } = require("../models");
 
 module.exports = {
+
   findAll: async (req, res) => {
     try {
       res.json(await Character.find())
+    } catch (err) {
+      res.send(err);
+    };
+  },
+
+  findChr: async (req, res) => {
+    try {
+      res.json(await Character.findById(req.params.id));
     } catch (err) {
       res.send(err);
     };
@@ -15,6 +24,7 @@ module.exports = {
         chrName: req.body.chrName,
         chrClass: req.body.chrClass,
         chrRace: req.body.chrRace,
+        // This will create an array within our Character containing stat objects.
         chrStats: [ 
           { name: "strength", value: req.body.chrStr }, 
           { name: "dexterity", value: req.body.chrDex }, 
@@ -26,10 +36,18 @@ module.exports = {
           { name: "hit points", value: req.body.chrHp }, 
         ]
       })
-
       res.json(await newChr.save());
     } catch (err) {
       res.send(err);
     };
   },
+
+  deleteChr: async (req, res) => {
+    try {
+      res.json(await Character.findByIdAndDelete(req.params.id));
+    } catch (err) {
+      res.send(err);
+    };
+  },
+
 };
