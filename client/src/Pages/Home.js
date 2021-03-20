@@ -9,7 +9,7 @@ import { PostList, PostListItem } from "../Components/PostList/PostList";
 import "./Home.css";
 import axios from "axios";
 // --- For authentication, allows you to stay logged in --- //
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
 import image from "../Components/images/post-background.png";
@@ -132,13 +132,13 @@ const Home = () => {
   //Function:  If the user is not logged in, will go
   //back to the login page.
 
-  // const history = useHistory();
+  const history = useHistory();
 
-  // useEffect(() => {
-  //   if (!userData.account) {
-  //     history.push("/login");
-  //   }
-  // }, [userData.account, history])
+  useEffect(() => {
+    if (!userData.account) {
+      history.push("/login");
+    }
+  }, [userData.account, history])
 
   //--------------------------------------------
   return (
