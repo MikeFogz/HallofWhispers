@@ -39,4 +39,12 @@ module.exports = {
       res.send(err);
     };
   },
+
+  deleteChr: async (req, res) => {
+    try {
+      res.json(await Character.findByIdAndDelete(req.params.id));
+    } catch (err) {
+      res.send(err);
+    };
+  },
 };
