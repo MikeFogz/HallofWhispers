@@ -19,15 +19,25 @@ const LoginForm = () => {
             console.log(form);
             const { data } = await axios.post("/api/login", form);
             console.log(data);
+
+            //Setting up my account data for state
+            const myAccountData = {
+                id: data.myAccount._id,
+                accountName: data.myAccount.accountName,
+                charCreated: data.myAccount.charCreated,
+                loggedIn: true
+            };
+
+
             //Setting the global user data here
             setUserData({
                 token: data.token,
-                account: data.account
+                account: myAccountData
             });
 
             //Saving the token to local storage.  This token expires in 24 hours.
             localStorage.setItem("auth-token", data.token);
-            if (data.account.charCreated) {
+            if (data.myAccount.charCreated) {
                 history.push("/");
             } else {
                 history.push("/character");
@@ -53,24 +63,31 @@ const LoginForm = () => {
         <>
             {/* form start */}
             < form onSubmit={submitLoginForm} >
+                {/* email start */}
                 <div className="input-group mb-3">
                     <div className="input-group-append">
                         <span className="input-group-text"><i className="fas fa-user"></i></span>
                     </div>
                     <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
                 </div>
+                {/* email end */}
+                {/* password start */}
                 <div className="input-group mb-2">
                     <div className="input-group-append">
                         <span className="input-group-text"><i className="fas fa-key"></i></span>
                     </div>
                     <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
                 </div>
+                {/* password end */}
 
+                {/* button start */}
                 <div className="d-flex justify-content-center mt-3 login_container">
                     <button type="submit" name="button" className="btn login_btn">Login</button>
                 </div>
+                {/* button end */}
+
                 <div className="d-flex mt-3 justify-content-center links">
-                    <a href="#">Register Here</a>
+                    <a href="/register">Register Here</a>
                 </div>
             </form >
             {/* form end */}

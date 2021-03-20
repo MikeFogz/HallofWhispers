@@ -17,6 +17,19 @@ Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora?
 
 ### How to launch on Local Host:
 
+1. Clone from this repo.
+
+2. Next: Installing root dependencies and seed.
+  - From the root directory of this project run `npm i` to install dependencies.
+  - Then `npm run seed` for all seed data from MongoDB.
+
+3. Navigate to `/client` directory in another terminal. This is one of the first subdirectories.
+  - run `npm i` in terminal for all client dependencies.
+
+4.  In root directory run `npm run dev` for backend server.
+
+5.  In `/client` directory run `npm run start` to launch the local host application and display.
+
 ## Technologies
 
 ## Standards
@@ -39,5 +52,7 @@ This project would not have been possible without the help of everyone on this t
 
 
 ## License
+
+GNU General Public License v3.0
 
 ## Links

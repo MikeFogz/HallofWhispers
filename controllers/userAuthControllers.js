@@ -53,7 +53,6 @@ module.exports = {
       }
 
       const myAccount = await Account.findOne({ email: email });
-      console.log("this is my account", myAccount)
 
       if (!myAccount) {
         res.status(400).json({ msg: "User doesn't exist" });
@@ -74,10 +73,12 @@ module.exports = {
         expiresIn: "24h",
       });
 
+      //return both the token and my account info
       res.json({
         token,
-        account: { id: myAccount._id, displayName: myAccount.displayName, charCreated: myAccount.charCreated },
+        myAccount
       })
+
     } catch (error) {
       res.status(500).json({ msg: error });
     }
@@ -86,10 +87,7 @@ module.exports = {
   getAccount: async (req, res) => {
     try {
       const account = await Account.findById(req.account);
-      res.json({
-        displayName: account.displayName,
-        id: account._id,
-      })
+      res.json(account);
     } catch (error) {
       res.send(error.response);
     }
@@ -98,14 +96,14 @@ module.exports = {
   charCreatedAccount: async (req, res) => {
 
     try {
-      await Account.findByIdAndUpdate({ _id: req.account }, { charCreated: true }, (err, user) => {
+      const updatedAccount = await Account.findByIdAndUpdate({ _id: req.account }, { charCreated: true }, (err, user) => {
         if (err) {
           return res
             .status(500)
             .send({ error: "unsuccessful" })
         };
-        res.send({ success: "success" });
-      })
+      });
+      res.json(updatedAccount);
     } catch (error) {
       res.send(error.response);
     }
