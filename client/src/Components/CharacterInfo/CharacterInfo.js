@@ -8,21 +8,21 @@ function CharacterInfo() {
                 <h3>Who are you?</h3>
                     <div className="col-sm">
                         <label for="validationServer01">Name</label>
-                        <input type="text" className="form-control is-valid" id="validationServer01" placeholder="Full Name, Title" value="" required/>
-                        <div className="valid-feedback">
+                        <input type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
+                        {/* <div className="valid-feedback">
                         Looks good!
-                        </div>
+                        </div> */}
                     </div>
                     </div>
                     <div className="form-row row">
-                        <div className="col-sm-3 mb-3">
+                        <div className="col-sm-4 mb-4">
                             <label for="validationServer03">Class</label>
-                            <input type="text" className="form-control is-invalid" id="validationServer03" placeholder="Class" required/>
-                            <div className="invalid-feedback">
+                            <input type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
+                            {/* <div className="invalid-feedback">
                             Please provide a Class or Subclass.
-                            </div>
+                            </div> */}
                         </div>
-                        <div className="col-sm-3 mb-3 form-group">
+                        <div className="col-sm-4 mb-4 form-group">
                             <label for="validationServer04">Race</label>
                             <select className="form-control" id="raceselect">
                             <option id="dwarf">Dwarf</option>
@@ -35,11 +35,11 @@ function CharacterInfo() {
                             <option id="tiefling">Tiefling</option>
                             <option id="warforged">Warforged</option>
                             </select>
-                            <div className="invalid-feedback">
+                            {/* <div className="invalid-feedback">
                             Please select a Race.
-                            </div>
+                            </div> */}
                         </div>
-                        <div className="col-sm-3 mb-3">
+                        <div className="col-sm-4 mb-4">
                         <label for="validationServer05">Alignment</label>
                         <select className="form-control" id="alignment">
                         <option id="lg">Lawful Good</option>
@@ -52,9 +52,9 @@ function CharacterInfo() {
                         <option id="ne">Neutral Evil</option>
                         <option id="ce">Chaotic Evil</option>
                         </select>
-                            <div className="invalid-feedback">
+                            {/* <div className="invalid-feedback">
                             Please select an Alignment.
-                            </div>
+                            </div> */}
                         </div>
                     <div className="form-row row">
                         <h3>Your Story</h3>
