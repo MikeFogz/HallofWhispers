@@ -11,31 +11,31 @@ const Character = () => {
   const history = useHistory();
 
   // This function is used to change 
-  const onClick = async (e) => {
-    e.preventDefault();
-    let token = localStorage.getItem("auth-token");
-    try {
-      //changing character creation in database
-      const { data } = await axios.post("/api/characterCreation", {}, {
-        headers: { "x-auth-token": token },
-      });
-      //Update the global user data here
-      console.log(data);
-      const updatedAccount = {
-        id: data._id,
-        displayName: data.displayName,
-        charCreated: data.charCreated,
-        loggedIn: true
-      }
-      setUserData({ ...userData, account: updatedAccount });
+  // const onClick = async (e) => {
+  //   e.preventDefault();
+  //   let token = localStorage.getItem("auth-token");
+  //   try {
+  //     //changing character creation in database
+  //     const { data } = await axios.post("/api/characterCreation", {}, {
+  //       headers: { "x-auth-token": token },
+  //     });
+  //     //Update the global user data here
+  //     console.log(data);
+  //     const updatedAccount = {
+  //       id: data._id,
+  //       displayName: data.displayName,
+  //       charCreated: data.charCreated,
+  //       loggedIn: true
+  //     }
+  //     setUserData({ ...userData, account: updatedAccount });
 
-      history.push("/");
+  //     history.push("/");
 
-    } catch (error) {
-      console.log(error)
-    }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
 
-  }
+  // }
 
   //--------------------------------------------
   //Activate this block of code when appropriate
@@ -56,12 +56,16 @@ const Character = () => {
   return (
     <div>
       {/* This button is a placeholder for when create character is created */}
-      <button onClick={onClick}>Create Character</button>
-      <h1>Hall of Whisper's Almanac of Heroes</h1>
-      <p>Mark your place in the records.</p>
-      <CharacterInfo />
-      <CharacterStats />
-      <button className="btn btn-primary" type="submit">Submit to Hall Records</button>
+      {/* <button onClick={onClick}>Create Character</button> */}
+      <div class="container">
+        <button className="btn btn-danger" type="submit">Submit to Hall Records</button>
+        <h1>Hall of Whisper's Almanac of Heroes</h1>
+        <p>Mark your place in the records.</p>
+        <CharacterInfo />
+        <CharacterStats />
+      </div>
+
+
     </div>
   )
 }
