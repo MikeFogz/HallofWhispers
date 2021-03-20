@@ -14,11 +14,16 @@ import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
 import image from "../Components/images/post-background.png";
 import Dice from "react-dice-roll";
+import socketIOClient from "socket.io-client"
 
 const Home = () => {
-  // Setting initial state
+  // Setting initial state for posts
   const [posts, setPosts] = useState([]);
   const [postMessage, setPostMessage] = useState("");
+  // Setting inital state for chat messages
+  const [messages, setMessages] = useState("");
+  const [arr, setArr] = useState([]);
+  const [id, setId] = useState("");
 
   // handles the input change for posting a message to the postboard
   const handleInputChange = (e) => {
@@ -56,6 +61,46 @@ const Home = () => {
   useEffect(() => {
     loadPosts();
   }, []);
+
+  // connects messages
+  useEffect(() => {
+    const socket = socketIOClient("http://localhost:5000", { transports: ["websocket"]});
+    // connects user and sets id
+    socket.on("connect", () => {
+      console.log(socket.id);
+      setId(socket.id);
+    });
+    // disconnects user
+    socket.on("disconnected", () => {
+      console.log("disconnected user");
+    });
+    // sets chat messages
+    socket.on("message", (data) => {
+      // console.log(data);
+      setArr((arr) => [...arr, data]);
+    });
+  }, [])
+
+  // sends a message
+  const sendMessage = (e) => {
+    e.preventDefault();
+
+    const socket = socketIOClient("http://localhost:5000", {
+      transports: ["websocket"]
+    });
+    socket.emit(
+      "newMessage",
+      {
+        message: messages,
+        id: id,
+      },
+      (data) => {
+        // alert(data)
+      }
+    );
+    // clears input field
+    setMessages("");
+  };
 
   // grabbing all the posts from the database
   function loadPosts() {
@@ -162,25 +207,27 @@ const Home = () => {
             </Col>
             <Col size="md-4">
               <div>
-                <Card />
-                <form action="">
-                  <div class="input-group mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="send message"
-                      aria-label="send message"
-                      aria-describedby="button-addon2"
-                    />
-                    <button
-                      class="btn btn-primary"
-                      type="button"
-                      id="button-addon2"
-                    >
-                      Send
-                    </button>
+                <Card>
+                  <div>
+                    {arr.map((chat, index) => (
+                      <p key={index}>
+                        {chat.id}: {chat.message}
+                      </p>
+                    ))}
                   </div>
-                </form>
+                </Card>
+                <Container>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your message here"
+                    value={messages}
+                    onChange={(e) => {
+                      setMessages(e.target.value);
+                    }}
+                  />
+                  <button className="btn btn-primary" onClick={(e) => sendMessage(e)}>send</button>
+                </Container>
               </div>
               <br />
               <Dice onRoll={(value) => console.log(value)} size={50} />
