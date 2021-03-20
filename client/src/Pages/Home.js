@@ -12,9 +12,10 @@ import axios from "axios";
 // import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
+import image from "../Components/images/post-background.png";
+import Dice from "react-dice-roll";
 
 const Home = () => {
-
   // Setting initial state
   const [posts, setPosts] = useState([]);
   const [postMessage, setPostMessage] = useState("");
@@ -34,12 +35,18 @@ const Home = () => {
     // clears the input field after submitting
     setPostMessage("");
 
-    axios.post("/api/posts", { message: postMessage }, { headers: { "x-auth-token": token } }).then((res) => {
-      console.log(res);
-      const data = res.data;
-      console.log(data);
-      setPosts([...posts, data]);
-    });
+    axios
+      .post(
+        "/api/posts",
+        { message: postMessage },
+        { headers: { "x-auth-token": token } }
+      )
+      .then((res) => {
+        console.log(res);
+        const data = res.data;
+        console.log(data);
+        setPosts([...posts, data]);
+      });
 
     // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
     // console.log(data);
@@ -50,14 +57,15 @@ const Home = () => {
     loadPosts();
   }, []);
 
-
   // grabbing all the posts from the database
   function loadPosts() {
     let token = localStorage.getItem("auth-token");
-    axios.get("/api/posts", { headers: { "x-auth-token": token } }).then((res) => {
-      console.log(res.data);
-      setPosts(res.data);
-    });
+    axios
+      .get("/api/posts", { headers: { "x-auth-token": token } })
+      .then((res) => {
+        console.log(res.data);
+        setPosts(res.data);
+      });
   }
 
   const { userData } = useContext(AccountContext);
@@ -77,29 +85,41 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        position: "relative",
+      }}
+    >
       <Wrapper>
         <Container>
           <Row>
             <Col size="md-6">
-              <h5>Valiant Rundis</h5>
-              <strong>Class Level: </strong>
+              <h5 style={{ textShadow: "4px 4px 8px black" }}>
+                Valiant Rundis
+              </h5>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>
+                Class Level:{" "}
+              </strong>
               <br />
-              <strong>Race: </strong>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
             </Col>
           </Row>
           <Row>
-            <Col size="md-6">
+            <Col size="md-4">
               <StatCard />
             </Col>
-            <Col size="md-6">
+            <Col size="md-4">
               <Row>
                 <form onSubmit={handleSubmit}>
                   <div>
                     <textarea
                       onChange={handleInputChange}
                       type="text"
-                      style={{ marginTop: "10px"}}
+                      style={{ marginTop: "10px" }}
                       name="message"
                       value={postMessage}
                       className="form-control"
@@ -123,19 +143,50 @@ const Home = () => {
                   <PostList>
                     {posts.map((post, index) => {
                       return (
-
                         <PostListItem
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
                           message={post.message}
-                          myAccount={(post.accountId === userData.account?.id) ? "true" : "false"}
+                          myAccount={
+                            post.accountId === userData.account?.id
+                              ? "true"
+                              : "false"
+                          }
                         />
                       );
                     })}
                   </PostList>
                 </Card>
               </Row>
+            </Col>
+            <Col size="md-4">
+              <div>
+                <Card />
+                <form action="">
+                  <div class="input-group mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="send message"
+                      aria-label="send message"
+                      aria-describedby="button-addon2"
+                    />
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                      id="button-addon2"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <br />
+              <Dice onRoll={(value) => console.log(value)} size={50} />
+              <div className="container">
+                <div id="dice-roll-simulator"></div>
+              </div>
             </Col>
           </Row>
         </Container>
