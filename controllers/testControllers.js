@@ -10,7 +10,7 @@ module.exports = {
     // res.send({msg: "success from getPosts"})
     try {
       const allPosts = await Post.find();
-      console.log(allPosts);
+      // console.log(allPosts);
       res.json(allPosts);
     } catch (error) {
       console.log("error with getPosts:", error);

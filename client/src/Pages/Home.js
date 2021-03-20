@@ -14,13 +14,14 @@ import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
 import image from "../Components/images/post-background.png";
 import Dice from "react-dice-roll";
-import socketIOClient from "socket.io-client"
+import socketIOClient from "socket.io-client";
 
 const Home = () => {
   // Setting initial state for posts
   const [posts, setPosts] = useState([]);
   const [postMessage, setPostMessage] = useState("");
   // Setting inital state for chat messages
+  const [welcome, setWelcome] = useState("");
   const [messages, setMessages] = useState("");
   const [arr, setArr] = useState([]);
   const [id, setId] = useState("");
@@ -47,9 +48,9 @@ const Home = () => {
         { headers: { "x-auth-token": token } }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const data = res.data;
-        console.log(data);
+        // console.log(data);
         setPosts([...posts, data]);
       });
 
@@ -62,13 +63,35 @@ const Home = () => {
     loadPosts();
   }, []);
 
+  // grabbing all the posts from the database
+  function loadPosts() {
+    let token = localStorage.getItem("auth-token");
+    axios
+      .get("/api/posts", { headers: { "x-auth-token": token } })
+      .then((res) => {
+        // console.log(res.data);
+        setPosts(res.data);
+      });
+  }
+
   // connects messages
   useEffect(() => {
-    const socket = socketIOClient("http://localhost:5000", { transports: ["websocket"]});
+    const socket = socketIOClient("http://localhost:5000", {
+      transports: ["websocket"],
+    });
     // connects user and sets id
     socket.on("connect", () => {
       console.log(socket.id);
       setId(socket.id);
+    });
+
+    socket.on("new", (data) => {
+      console.log(data);
+      setWelcome(data.message);
+    });
+
+    socket.on("newUser", (data) => {
+      console.log(data);
     });
     // disconnects user
     socket.on("disconnected", () => {
@@ -79,14 +102,14 @@ const Home = () => {
       // console.log(data);
       setArr((arr) => [...arr, data]);
     });
-  }, [])
+  }, []);
 
   // sends a message
   const sendMessage = (e) => {
     e.preventDefault();
 
     const socket = socketIOClient("http://localhost:5000", {
-      transports: ["websocket"]
+      transports: ["websocket"],
     });
     socket.emit(
       "newMessage",
@@ -101,17 +124,6 @@ const Home = () => {
     // clears input field
     setMessages("");
   };
-
-  // grabbing all the posts from the database
-  function loadPosts() {
-    let token = localStorage.getItem("auth-token");
-    axios
-      .get("/api/posts", { headers: { "x-auth-token": token } })
-      .then((res) => {
-        console.log(res.data);
-        setPosts(res.data);
-      });
-  }
 
   const { userData } = useContext(AccountContext);
 
@@ -208,6 +220,7 @@ const Home = () => {
             <Col size="md-4">
               <div>
                 <Card>
+                  <p className="text-center">{welcome}</p>
                   <div>
                     {arr.map((chat, index) => (
                       <p key={index}>
@@ -217,16 +230,23 @@ const Home = () => {
                   </div>
                 </Card>
                 <Container>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter your message here"
-                    value={messages}
-                    onChange={(e) => {
-                      setMessages(e.target.value);
-                    }}
-                  />
-                  <button className="btn btn-primary" onClick={(e) => sendMessage(e)}>send</button>
+                  <div className="d-flex">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter your message here"
+                      value={messages}
+                      onChange={(e) => {
+                        setMessages(e.target.value);
+                      }}
+                    />
+                    <button
+                      className="btn btn-primary"
+                      onClick={(e) => sendMessage(e)}
+                    >
+                      send
+                    </button>
+                  </div>
                 </Container>
               </div>
               <br />
