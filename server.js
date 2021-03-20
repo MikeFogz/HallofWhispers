@@ -42,9 +42,9 @@ io.on("connection", (socket) => {
   })
 })
 
-app.get("/", (req, res) => {
-  res.send("hello from chat server")
-})
+// app.get("/", (req, res) => {
+//   res.send("hello from chat server")
+// })
 // After you run it, creates index.html file inside the "Build" folder.
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
