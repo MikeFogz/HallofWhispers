@@ -61,36 +61,53 @@ const LoginForm = () => {
 
     return (
         <>
-            {/* form start */}
-            < form onSubmit={submitLoginForm} >
-                {/* email start */}
-                <div className="input-group mb-3">
-                    <div className="input-group-append">
-                        <span className="input-group-text"><i className="fas fa-user"></i></span>
-                    </div>
-                    <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
-                </div>
-                {/* email end */}
-                {/* password start */}
-                <div className="input-group mb-2">
-                    <div className="input-group-append">
-                        <span className="input-group-text"><i className="fas fa-key"></i></span>
-                    </div>
-                    <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
-                </div>
-                {/* password end */}
+            <div className="page_container">
+                <div className="d-flex justify-content-center h-100">
 
-                {/* button start */}
-                <div className="d-flex justify-content-center mt-3 login_container">
-                    <button type="submit" name="button" className="btn login_btn">Login</button>
-                </div>
-                {/* button end */}
+                    {/* start card container */}
+                    <div className="user_card">
+                        {/* start card logo container */}
+                        <div className="d-flex justify-content-center">
+                            <div className="brand_logo_container">
+                                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
+                            </div>
+                        </div>
+                        {/* end card logo container */}
+                        <div className="d-flex justify-content-center form_container">
 
-                <div className="d-flex mt-3 justify-content-center links">
-                    <a href="/register">Register Here</a>
+                            {/* form start */}
+                            < form onSubmit={submitLoginForm} >
+                                {/* email start */}
+                                <div className="input-group mb-3">
+                                    <div className="input-group-append">
+                                        <span className="input-group-text"><i className="fas fa-user"></i></span>
+                                    </div>
+                                    <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
+                                </div>
+                                {/* email end */}
+                                {/* password start */}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-append">
+                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
+                                    </div>
+                                    <input onChange={onChange} type="text" name="password" className="form-control input_pass" placeholder="password" />
+                                </div>
+                                {/* password end */}
+
+                                {/* button start */}
+                                <div className="d-flex justify-content-center mt-3 login_container">
+                                    <button type="submit" name="button" className="btn login_btn">Login</button>
+                                </div>
+                                {/* button end */}
+
+                            </form >
+                            {/* form end */}
+                        </div>
+
+                    </div>
+                    {/* end card container */}
                 </div>
-            </form >
-            {/* form end */}
+            </div>
         </>
     )
 }

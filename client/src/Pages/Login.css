@@ -23,6 +23,8 @@
             padding-bottom: 5vh;
 			height: 100%;
 			background: #bdc3c7 !important;
+			min-height: 100vh;
+
 		}
 		.user_card {
 			height: 400px;
