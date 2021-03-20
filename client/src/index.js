@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // where we import font for index.css
-import "./fonts/Roboto/Roboto-Regular.ttf";
+// import "./fonts/Roboto/Roboto-Regular.ttf";
 
 ReactDOM.render(
   <React.StrictMode>
