@@ -9,6 +9,14 @@ module.exports = {
     };
   },
 
+  findChr: async (req, res) => {
+    try {
+      res.json(await Character.findById(req.params.id));
+    } catch (err) {
+      res.send(err);
+    };
+  },
+
   createChr: async (req, res) => {
     try {
       const newChr = new Character({
@@ -26,7 +34,6 @@ module.exports = {
           { name: "hit points", value: req.body.chrHp }, 
         ]
       })
-
       res.json(await newChr.save());
     } catch (err) {
       res.send(err);
