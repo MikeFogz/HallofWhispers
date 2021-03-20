@@ -69,7 +69,7 @@ const LoginForm = () => {
                         {/* start card logo container */}
                         <div className="d-flex justify-content-center">
                             <div className="brand_logo_container">
-                                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
+                                <img src="../../src/assets/images/HoW_Skull_vector.png" className="brand_logo" alt="HallofWhispersLogo" />
                             </div>
                         </div>
                         {/* end card logo container */}
