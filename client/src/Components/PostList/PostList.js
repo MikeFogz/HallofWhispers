@@ -10,7 +10,7 @@ export function PostList({ children }) {
 }
 
 
-export function PostListItem({ message, date, myAccount}) {
+export function PostListItem({ message, date, myAccount, displayName}) {
 
   const messagesEndRef = useRef(null);
 

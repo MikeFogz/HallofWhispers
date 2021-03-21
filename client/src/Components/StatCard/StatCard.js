@@ -7,10 +7,10 @@ import "./StatCard.css";
 const StatCard = () => {
   return (
     <div>
-      <div className="card" style={{ width: "100%", height: "76vh" }}>
+      <div className="card card-border"  style={{backgroundColor: "transparent",   textShadow: "4px 4px 8px black"}}>
         <div className="card-body">
-          <h5 className="card-title">Power Stats</h5>
-          <h6 className="card-subtitle mb-2 text-muted">
+          <h5 className="card-title text-white">Power Stats</h5>
+          <h6 className="card-subtitle mb-2 text-white">
             Dunno what to put here
           </h6>
           <Row className="row">
@@ -24,7 +24,7 @@ const StatCard = () => {
             </Col>
             <Col size="md-4 s-4 xs-4">
               <PowerStats title="Wisdom" number={10} bottomNumber={5} />
-              <PowerStats title="Charimsa" number={10} bottomNumber={5} />
+              <PowerStats title="Charisma" number={10} bottomNumber={5} />
             </Col>
           </Row>
           <Row>
@@ -32,10 +32,10 @@ const StatCard = () => {
               <PowerStats title="Armor" number={10} />
             </Col>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Max Hit Points" number={10} />
+              <PowerStats title="Max HP" number={10} />
             </Col>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Current Hit Points" number={10} />
+              <PowerStats title="Current HP" number={10} />
             </Col>
           </Row>
         </div>
