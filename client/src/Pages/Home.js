@@ -8,8 +8,7 @@ import Wrapper from "../Components/Wrapper/Wrapper";
 import { PostList, PostListItem } from "../Components/PostList/PostList";
 import "./Home.css";
 import axios from "axios";
-// --- For authentication, allows you to stay logged in --- //
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
 
@@ -41,8 +40,6 @@ const Home = () => {
       setPosts([...posts, data]);
     });
 
-    // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
-    // console.log(data);
   };
 
   // loads all the posts
@@ -61,19 +58,17 @@ const Home = () => {
   }
 
   const { userData } = useContext(AccountContext);
+  const history = useHistory();
 
-  //--------------------------------------------
-  //Activate this block of code when appropriate
-  //Function:  If the user is not logged in, will go
-  //back to the login page.
-
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   if (!userData.account) {
-  //     history.push("/login");
-  //   }
-  // }, [userData.account, history])
+  //If you are not loggedin - go back to the log-in page
+  useEffect(() => {
+    if (!userData.pending && !userData.account) {
+      history.push("/login");
+    }
+    if (!userData.pending && !userData.account?.charCreated) {
+      history.push("/character");
+    }
+  }, [userData.pending, userData.account, history])
 
   //--------------------------------------------
   return (
@@ -99,7 +94,7 @@ const Home = () => {
                     <textarea
                       onChange={handleInputChange}
                       type="text"
-                      style={{ marginTop: "10px"}}
+                      style={{ marginTop: "10px" }}
                       name="message"
                       value={postMessage}
                       className="form-control"

@@ -14,37 +14,32 @@ function App() {
   const [userData, setUserData] = useState({
     account: undefined,
     token: undefined,
+    pending: true,
   });
+
 
   const checkLoggedIn = async () => {
     let token = localStorage.getItem("auth-token");
-    if (token === null) {
+    if (!token) {
+      setUserData({ ...userData, pending: false });
       localStorage.setItem("auth-token", "");
     } else {
       try {
         const { data } = await axios.get("/api/accounts", {
           headers: { "x-auth-token": token },
         });
-        console.log(data);
-
-        //Setting up account data for state
-        const accountData = {
-          accountName: data.accountName,
-          id: data._id,
-          charCreated: data.charCreated,
-          loggedIn: true
-        }
-        setUserData({ token, account: accountData });
+        setUserData({ token, account: data, pending: false });
       } catch (err) {
         console.log("User must login");
       }
     }
   }
 
+  //Logout function
   const onClick = (e) => {
     e.preventDefault();
-    setUserData({ token: undefined, account: { loggedIn: false } });
-    localStorage.setItem("auth-token", "");
+    setUserData({ token: undefined, account: undefined, pending: false });
+    localStorage.removeItem("auth-token");
     //better way of doing this? 
     window.location = "/login"
   }
@@ -62,7 +57,6 @@ function App() {
             <button onClick={onClick}>Logout</button>
           </Nav>
           <Router>
-
             <Switch>
               <Route exact path="/register" >
                 <Register />

@@ -19,37 +19,20 @@ const Character = () => {
       const { data } = await axios.post("/api/characterCreation", {}, {
         headers: { "x-auth-token": token },
       });
-      //Update the global user data here
-      console.log(data);
-      const updatedAccount = {
-        id: data._id,
-        displayName: data.displayName,
-        charCreated: data.charCreated,
-        loggedIn: true
-      }
-      setUserData({ ...userData, account: updatedAccount });
-
+      setUserData({ ...userData, account: data });
       history.push("/");
-
     } catch (error) {
       console.log(error)
     }
 
   }
 
-  //--------------------------------------------
-  //Activate this block of code when appropriate
-  //Function:  If the user is not logged in, will go
-  //back to the login page.
-
-  // const { userData } = useContext(AccountContext);
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   if (!userData.account) {
-  //     history.push("/login");
-  //   }
-  // }, [userData.account, history])
+  //If it is not logged in, then go back to login
+  useEffect(() => {
+    if (!userData.pending && !userData.account) {
+      history.push("/login");
+    }
+  }, [userData.pending, userData.account, history])
 
   //--------------------------------------------
 
