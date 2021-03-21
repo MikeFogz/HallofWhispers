@@ -55,53 +55,44 @@ const Character = () => {
   //--------------------------------------------
 
   const createCharacter = async (e) => {
-    // When the Submit to Hall Records button is clicked, it creates a character.
+    // When the Submit to Hall Records button is clicked, it creates a character with the below params.
     API.createChr({
       chrName: formObject.Name,
       chrClass: formObject.Class,
       chrRace: formObject.Race,
       chrAlign: formObject.Alignment,
       chrStory: formObject.Story,
-      chrStats: [
-        { value: formObject.Strength },
-        { value: formObject.Dexterity },
-        { value: formObject.Constitution },
-        { value: formObject.Intelligence },
-        { value: formObject.Wisdom },
-        { value: formObject.Charisma },
-      ],
-      chrArmor: [
-        { value: formObject.ArmorClass },
-        { value: formObject.Speed },
-        { value: formObject.Initiative },
-        { value: formObject.Proficiency },
-      ],
-      chrHealth: [
-        { value: formObject.MaxHitPoints },
-        { value: formObject.CurrentHitPoints },
-      ],
-      chrStats: [
-        { value: formObject.Acrobatics },
-        { value: formObject.AnimalHandling },
-        { value: formObject.Arcana },
-        { value: formObject.Athletics },
-        { value: formObject.Deception },
-        { value: formObject.History },
-        { value: formObject.Insight },
-        { value: formObject.Intimidation },
-        { value: formObject.Investigation },
-        { value: formObject.Medicine },
-        { value: formObject.Nature },
-        { value: formObject.Perception },
-        { value: formObject.Persuasion },
-        { value: formObject.Religion },
-        { value: formObject.SleightOfHand },
-        { value: formObject.Stealth },
-        { value: formObject.Survival },
-      ],
-    })
-      .catch(err => console.log(err));
-    // API.findAll().then(res => console.log(res.data));
+      chrStr: formObject.Strength,
+      chrDex: formObject.Dexterity,
+      chrCon: formObject.Constitution, 
+      chrInt: formObject.Intelligence,
+      chrWis: formObject.Wisdom,
+      chrCha: formObject.Charisma,
+      chrAc: formObject.ArmorClass,
+      chrSpeed: formObject.Speed,
+      chrIni: formObject.Initiative,
+      chrProf: formObject.Proficiency,
+      chrMaxHp: formObject.MaxHitPoints,
+      chrCurrHp: formObject.CurrentHitPoints,
+      chrAcr: formObject.Acrobatics,
+      chrAnHa: formObject.AnimalHandling,
+      chrArc: formObject.Arcana,
+      chrAth: formObject.Athletics,
+      chrDec: formObject.Deception,
+      chrHis: formObject.History,
+      chrIns: formObject.Insight,
+      chrIntim: formObject.Intimidation,
+      chrInv: formObject.Investigation,
+      chrMed: formObject.Medicine,
+      chrNat: formObject.Nature,
+      chrPerc: formObject.Perception,
+      chrPers: formObject.Persuasion,
+      chrRel: formObject.Religion,
+      chrSoh: formObject.SleightOfHand,
+      chrSte: formObject.Stealth,
+      chrSur: formObject.Survival,
+    }).catch(err => console.log(err));
+    API.findAll().then(res => console.log(res.data));
   };
 
   const [formObject, setFormObject] = React.useState({});
