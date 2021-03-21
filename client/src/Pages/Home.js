@@ -11,12 +11,20 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
+import Dice from "react-dice-roll";
+import socketIOClient from "socket.io-client";
+import background from "../assets/images/vintage-concrete.png"
+const moment = require("moment")
 
 const Home = () => {
-
-  // Setting initial state
+  // Setting initial state for posts
   const [posts, setPosts] = useState([]);
   const [postMessage, setPostMessage] = useState("");
+  // Setting inital state for chat messages
+  const [welcome, setWelcome] = useState("");
+  const [messages, setMessages] = useState("");
+  const [arr, setArr] = useState([]);
+  const [id, setId] = useState("");
 
   // handles the input change for posting a message to the postboard
   const handleInputChange = (e) => {
@@ -33,12 +41,18 @@ const Home = () => {
     // clears the input field after submitting
     setPostMessage("");
 
-    axios.post("/api/posts", { message: postMessage }, { headers: { "x-auth-token": token } }).then((res) => {
-      console.log(res);
-      const data = res.data;
-      console.log(data);
-      setPosts([...posts, data]);
-    });
+    axios
+      .post(
+        "/api/posts",
+        { message: postMessage },
+        { headers: { "x-auth-token": token } }
+      )
+      .then((res) => {
+        // console.log(res);
+        const data = res.data;
+        // console.log(data);
+        setPosts([...posts, data]);
+      });
 
   };
 
@@ -47,15 +61,63 @@ const Home = () => {
     loadPosts();
   }, []);
 
-
   // grabbing all the posts from the database
   function loadPosts() {
     let token = localStorage.getItem("auth-token");
-    axios.get("/api/posts", { headers: { "x-auth-token": token } }).then((res) => {
-      console.log(res.data);
-      setPosts(res.data);
-    });
+    axios
+      .get("/api/posts", { headers: { "x-auth-token": token } })
+      .then((res) => {
+        // console.log(res.data);
+        setPosts(res.data);
+      });
   }
+
+  // connects messages
+  useEffect(() => {
+    const socket = socketIOClient("http://localhost:5000", {
+      transports: ["websocket"],
+    });
+    // connects every user
+    socket.on("connect", () => {
+      console.log(socket.id);
+      setId(socket.id);
+    });
+    // connects title and shows on screen
+    socket.on("new", (data) => {
+      // console.log(data)
+      setWelcome(data.message);
+    });
+    socket.on("newUser", (data) => {
+      console.log(data);
+    });
+    socket.on("disconnect", () => {
+      console.log("disconnected homie");
+    });
+    socket.on("message", (data) => {
+      // console.log(data);
+      setArr((arr) => [...arr, data]);
+    });
+  }, []);
+
+  // sends a message
+  const sendMessage = (e) => {
+    e.preventDefault();
+    const socket = socketIOClient("http://localhost:5000", {
+      transports: ["websocket"],
+    });
+    socket.emit(
+      "newMessage",
+      {
+        message: messages,
+        id: id,
+      },
+      (data) => {
+        // alert(data)
+      }
+    );
+    // clears input field
+    setMessages("");
+  };
 
   const { userData } = useContext(AccountContext);
   const history = useHistory();
@@ -72,22 +134,27 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div>
+
+    <div style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
           <Row>
             <Col size="md-6">
-              <h5>Valiant Rundis</h5>
-              <strong>Class Level: </strong>
+              <h5 style={{ textShadow: "4px 4px 8px black" }}>
+                Valiant Rundis
+              </h5>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>
+                Class Level:{" "}
+              </strong>
               <br />
-              <strong>Race: </strong>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
             </Col>
           </Row>
           <Row>
-            <Col size="md-6">
+            <Col size="md-4">
               <StatCard />
             </Col>
-            <Col size="md-6">
+            <Col size="md-4">
               <Row>
                 <form onSubmit={handleSubmit}>
                   <div>
@@ -118,19 +185,68 @@ const Home = () => {
                   <PostList>
                     {posts.map((post, index) => {
                       return (
-
                         <PostListItem
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
+                          accountId={post.accountId}
+                          accountName={post.accountName}
                           message={post.message}
-                          myAccount={(post.accountId === userData.account?.id) ? "true" : "false"}
+                          myAccount={
+                            post.accountId === userData.account?.id
+                              ? "true"
+                              : "false"
+                          }
                         />
                       );
                     })}
                   </PostList>
                 </Card>
               </Row>
+            </Col>
+            <Col size="md-4">
+              <div>
+                <Card>
+                  <p className="text-center">{welcome}</p>
+                  <div>
+                    {arr.map((chat, userData, post, index) => (
+                      <div key={index}>
+                      <p >
+                        {chat.message} 
+                      </p>
+                      <p>
+                        {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
+                      </p>
+                
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+                <Container>
+                  <div className="d-flex">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter your message here"
+                      value={messages}
+                      onChange={(e) => {
+                        setMessages(e.target.value);
+                      }}
+                    />
+                    <button
+                      className="btn btn-primary"
+                      onClick={(e) => sendMessage(e)}
+                    >
+                      send
+                    </button>
+                  </div>
+                </Container>
+              </div>
+              <br />
+              <Dice onRoll={(value) => console.log(value)} size={50} />
+              {/* <div className="container">
+                <div id="dice-roll-simulator"></div>
+              </div> */}
             </Col>
           </Row>
         </Container>
