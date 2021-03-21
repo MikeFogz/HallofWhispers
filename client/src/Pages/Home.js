@@ -14,8 +14,8 @@ import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
-import background from "../assets/images/vintage-concrete.png"
-const moment = require("moment")
+import background from "../assets/images/vintage-concrete.png";
+const moment = require("moment");
 
 const Home = () => {
   // Setting initial state for posts
@@ -139,7 +139,6 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-
     <div style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
@@ -194,8 +193,7 @@ const Home = () => {
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
-                          accountId={post.accountId}
-                          accountName={post.accountName}
+                          accountName={userData.account.accountName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -214,15 +212,14 @@ const Home = () => {
                 <Card>
                   <p className="text-center">{welcome}</p>
                   <div>
-                    {arr.map((chat, userData, post, index) => (
+                    {arr.map((chat, index) => (
                       <div key={index}>
-                      <p >
-                        {chat.message} 
-                      </p>
-                      <p>
-                        {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
-                      </p>
-                
+                        <p>
+                          {chat.message}
+                        </p>
+                        <p>
+                          {userData.account.accountName} sent at: {moment().format("h:mm a")}
+                        </p>
                       </div>
                     ))}
                   </div>
