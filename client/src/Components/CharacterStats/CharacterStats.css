@@ -1,3 +1,5 @@
 .stat-list {
-  padding-left: 10px;
+  margin-left: 30px;
+  max-width: 50px;
+  align-content: right;
 }

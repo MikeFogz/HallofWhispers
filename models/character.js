@@ -6,8 +6,48 @@ const characterSchema = new Schema({
   chrName: { type: String, trim: true, required: true },
   chrClass: { type: String, trim: true, required: true },
   chrRace: { type: String, trim: true, required: true },
+  chrAlign: { type: String, trim: true, required: true },
+  chrStory: { type: String },
+  // TODO: Pair account ID auth to character creation.
+  // acctId: { type: Number, required: true },
   // An array of stat objects, all must be a numeric value between 1 and 2.
   chrStats : [{ 
+      name: { 
+          type : String, 
+          trim: true 
+        }, 
+      value : { 
+          type: Number, 
+          trim: true, 
+          minLength: 1, 
+          maxLength: 2 
+        },
+    }],
+    chrArmor : [{ 
+      name: { 
+          type : String, 
+          trim: true 
+        }, 
+      value : { 
+          type: Number, 
+          trim: true, 
+          minLength: 1, 
+          maxLength: 2 
+        },
+    }],
+    chrHealth : [{ 
+      name: { 
+          type : String, 
+          trim: true 
+        }, 
+      value : { 
+          type: Number, 
+          trim: true, 
+          minLength: 1, 
+          maxLength: 2 
+        },
+    }],
+    chrSkills : [{ 
       name: { 
           type : String, 
           trim: true 
