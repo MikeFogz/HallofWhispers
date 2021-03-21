@@ -8,14 +8,13 @@ import Wrapper from "../Components/Wrapper/Wrapper";
 import { PostList, PostListItem } from "../Components/PostList/PostList";
 import "./Home.css";
 import axios from "axios";
-// --- For authentication, allows you to stay logged in --- //
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
-import image from "../Components/images/post-background.png";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
 import background from "../assets/images/vintage-concrete.png"
+const moment = require("moment")
 
 const Home = () => {
   // Setting initial state for posts
@@ -55,8 +54,6 @@ const Home = () => {
         setPosts([...posts, data]);
       });
 
-    // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
-    // console.log(data);
   };
 
   // loads all the posts
@@ -77,28 +74,25 @@ const Home = () => {
 
   // connects messages
   useEffect(() => {
-    const socket = socketIOClient("https://localhost:5000", {
+    const socket = socketIOClient("http://localhost:5000", {
       transports: ["websocket"],
     });
-    // connects user and sets id
+    // connects every user
     socket.on("connect", () => {
       console.log(socket.id);
       setId(socket.id);
     });
-
+    // connects title and shows on screen
     socket.on("new", (data) => {
-      console.log(data);
+      // console.log(data)
       setWelcome(data.message);
     });
-
     socket.on("newUser", (data) => {
       console.log(data);
     });
-    // disconnects user
-    socket.on("disconnected", () => {
-      console.log("disconnected user");
+    socket.on("disconnect", () => {
+      console.log("disconnected homie");
     });
-    // sets chat messages
     socket.on("message", (data) => {
       // console.log(data);
       setArr((arr) => [...arr, data]);
@@ -108,8 +102,7 @@ const Home = () => {
   // sends a message
   const sendMessage = (e) => {
     e.preventDefault();
-
-    const socket = socketIOClient("https://localhost:5000", {
+    const socket = socketIOClient("http://localhost:5000", {
       transports: ["websocket"],
     });
     socket.emit(
@@ -127,19 +120,17 @@ const Home = () => {
   };
 
   const { userData } = useContext(AccountContext);
+  const history = useHistory();
 
-  //--------------------------------------------
-  //Activate this block of code when appropriate
-  //Function:  If the user is not logged in, will go
-  //back to the login page.
-
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   if (!userData.account) {
-  //     history.push("/login");
-  //   }
-  // }, [userData.account, history])
+  //If you are not loggedin - go back to the log-in page
+  useEffect(() => {
+    if (!userData.pending && !userData.account) {
+      history.push("/login");
+    }
+    if (!userData.pending && !userData.account?.charCreated) {
+      history.push("/character");
+    }
+  }, [userData.pending, userData.account, history])
 
   //--------------------------------------------
   return (
@@ -198,6 +189,8 @@ const Home = () => {
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
+                          accountId={post.accountId}
+                          accountName={post.accountName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -216,10 +209,16 @@ const Home = () => {
                 <Card>
                   <p className="text-center">{welcome}</p>
                   <div>
-                    {arr.map((chat, index) => (
-                      <p key={index}>
-                        {chat.id}: {chat.message}
+                    {arr.map((chat, userData, post, index) => (
+                      <div key={index}>
+                      <p >
+                        {chat.message} 
                       </p>
+                      <p>
+                        {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
+                      </p>
+                
+                      </div>
                     ))}
                   </div>
                 </Card>

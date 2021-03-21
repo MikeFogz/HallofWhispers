@@ -76,7 +76,11 @@ module.exports = {
       //return both the token and my account info
       res.json({
         token,
-        myAccount
+        account: {
+          id: myAccount._id,
+          accountName: myAccount.accountName,
+          charCreated: myAccount.charCreated
+        }
       })
 
     } catch (error) {
@@ -87,7 +91,11 @@ module.exports = {
   getAccount: async (req, res) => {
     try {
       const account = await Account.findById(req.account);
-      res.json(account);
+      res.json({
+        id: account._id,
+        accountName: account.accountName,
+        charCreated: account.charCreated,
+      });
     } catch (error) {
       res.send(error.response);
     }
@@ -103,7 +111,12 @@ module.exports = {
             .send({ error: "unsuccessful" })
         };
       });
-      res.json(updatedAccount);
+      res.json(
+        {
+          id: updatedAccount._id,
+          accountName: updatedAccount.accountName,
+          charCreated: updatedAccount.charCreated
+        });
     } catch (error) {
       res.send(error.response);
     }

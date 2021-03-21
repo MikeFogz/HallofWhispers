@@ -1,7 +1,6 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   // get all posts
+  // get all posts
 //   getPosts: function () {
 //     return axios.get("/api/posts");
 //   },
@@ -9,4 +8,20 @@
 //   createPost: function (postData) {
 //     return axios.post("/api/posts", postData);
 //   },
-//};
+
+const findAll = () => {
+    return axios.get("/api/characters");
+};
+
+const createChr = (characterData) => {
+    return axios.post("/api/characters", characterData);
+};
+
+
+const routes = {
+    findAll,
+    createChr,
+};
+
+
+export default routes;
