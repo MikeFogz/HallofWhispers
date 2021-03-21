@@ -10,7 +10,11 @@ export default {
 //     return axios.post("/api/posts", postData);
 //   },
 
-    chrCreate: () => {
-        return axios.post("/api/characters/")
+    findAll: () => {
+        return axios.get("/api/characters")
+    },
+
+    createChr: (characterData) => {
+        return axios.post("/api/characters", characterData)
     },
 };
