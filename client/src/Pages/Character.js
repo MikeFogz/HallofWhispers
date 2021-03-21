@@ -103,7 +103,7 @@ const Character = () => {
   const createCharacter = async () => {
     // When the Submit to Hall Records button is clicked, it creates a character with the below params.
     API.createChr( characterData ).catch(err => console.log(err));
-    API.findAll().then(res => console.log(res.data));
+    // API.findAll().then(res => console.log(res.data));
   };
 
   return (
