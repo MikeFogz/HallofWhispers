@@ -3,7 +3,7 @@ import React from 'react'
 function CharacterInfo(props) {
 
     const handleChange = (e) => {
-        // const { name, value } = e.target;
+        // Whenever a form with this function changes, it will run the parent function to save state.
         props.onChange( e.target );
     };
 
@@ -31,7 +31,7 @@ function CharacterInfo(props) {
                         </div>
                         <div className="col-sm-4 mb-4 form-group">
                             <label for="validationServer04">Race</label>
-                            <select className="form-control" id="raceselect">
+                            <select onChange={handleChange} name="Race" className="form-control" id="raceselect">
                             <option id="dwarf">Dwarf</option>
                             <option id="elf">Elf</option>
                             <option id="human">Human</option>
@@ -48,7 +48,7 @@ function CharacterInfo(props) {
                         </div>
                         <div className="col-sm-4 mb-4">
                         <label for="validationServer05">Alignment</label>
-                        <select className="form-control" id="alignment">
+                        <select onChange={handleChange} name="Alignment" className="form-control" id="alignment">
                         <option id="lg">Lawful Good</option>
                         <option id="ng">Neutral Good</option>
                         <option id="cg">Chaotic Good</option>
@@ -66,7 +66,7 @@ function CharacterInfo(props) {
                     <div className="form-row row">
                         <h3>Your Story</h3>
                         <div className="input-group col-md-3 mb-3">
-                            <textarea className="form-control" aria-label="With textarea" id="characterstory"></textarea>
+                            <textarea onChange={handleChange} name="Story" className="form-control" aria-label="With textarea" id="characterstory"></textarea>
                         </div>
                     </div>
                 </div>

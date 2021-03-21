@@ -55,13 +55,14 @@ const Character = () => {
   //--------------------------------------------
 
   const createCharacter = async (e) => {
-    console.log(e)
+    console.log(formObject.Class)
   };
 
   const [formObject, setFormObject] = React.useState({});
 
   const handleChange = (e) => {
     // console.log(e.target)
+    // When a child component sends us an event with data, we save it in an object state.
     setFormObject({ ...formObject, [e.name]: e.value });
   };
 
@@ -74,7 +75,7 @@ const Character = () => {
         <h1>Hall of Whisper's Almanac of Heroes</h1>
         <p>Mark your place in the records.</p>
         <CharacterInfo onChange={handleChange}/>
-        <CharacterStats />
+        <CharacterStats onChange={handleChange}/>
       </div>
 
 
