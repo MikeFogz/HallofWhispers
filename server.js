@@ -1,52 +1,51 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const socketIO = require("socket.io")
-const cors = require("cors")
+const socketIO = require("socket.io");
+const cors = require("cors");
 const app = express();
-const http = require("http")
+const http = require("http");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 
-app.use(cors())
+app.use(cors());
 
-const server = http.createServer(app)
+const server = http.createServer(app);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
-const io = socketIO(server)
+const io = socketIO(server);
 
 io.on("connection", (socket) => {
   console.log("new user connected");
 
   socket.emit("new", {
     from: "Admin",
-    message: "Welcome the DND App"
-  })
+    message: "Welcome the DND App",
+  });
 
   socket.broadcast.emit("newUser", {
     from: "Admin",
-    message: "New user connected"
-  })
+    message: "New user connected",
+  });
 
   socket.on("newMessage", (data, callback) => {
-    console.log(data)
+    console.log(data);
     io.emit("message", {
       message: data.message,
-      id: data.id
-    })
-    callback("Message Send From Server")
-  })
+      id: data.id,
+    });
+    callback("Message Send From Server");
+  });
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
-  })
-})
+  });
+});
 
 app.get("/", (req, res) => {
-  res.send("hello from chat server")
+  res.send("hello from chat server");
   // res.json(res.data)
-})
+});
 // After you run it, creates index.html file inside the "Build" folder.
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
@@ -75,5 +74,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-
-app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
+server.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));

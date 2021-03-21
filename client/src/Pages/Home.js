@@ -12,7 +12,6 @@ import axios from "axios";
 // import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext } from "react";
-import image from "../Components/images/post-background.png";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
 import background from "../assets/images/vintage-concrete.png"
@@ -77,28 +76,24 @@ const Home = () => {
 
   // connects messages
   useEffect(() => {
-    const socket = socketIOClient("https://localhost:5000", {
+    const socket = socketIOClient("http://localhost:5000", {
       transports: ["websocket"],
     });
-    // connects user and sets id
+    // connects every user
     socket.on("connect", () => {
       console.log(socket.id);
       setId(socket.id);
     });
-
     socket.on("new", (data) => {
-      console.log(data);
+      // console.log(data)
       setWelcome(data.message);
     });
-
     socket.on("newUser", (data) => {
       console.log(data);
     });
-    // disconnects user
     socket.on("disconnected", () => {
-      console.log("disconnected user");
+      console.log("disconnected homie");
     });
-    // sets chat messages
     socket.on("message", (data) => {
       // console.log(data);
       setArr((arr) => [...arr, data]);
@@ -108,8 +103,7 @@ const Home = () => {
   // sends a message
   const sendMessage = (e) => {
     e.preventDefault();
-
-    const socket = socketIOClient("https://localhost:5000", {
+    const socket = socketIOClient("http://localhost:5000", {
       transports: ["websocket"],
     });
     socket.emit(
@@ -122,7 +116,6 @@ const Home = () => {
         // alert(data)
       }
     );
-    // clears input field
     setMessages("");
   };
 
@@ -198,6 +191,8 @@ const Home = () => {
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
+                          accountId={post.accountId}
+                          accountName={post.accountName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
