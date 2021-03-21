@@ -5,6 +5,7 @@ import CharacterStats from '../Components/CharacterStats/CharacterStats';
 import axios from 'axios';
 import AccountContext from "../Context/AccountContext";
 import { useHistory } from "react-router-dom";
+import API from "../utils/API";
 
 const Character = () => {
   const { userData, setUserData } = useContext(AccountContext);
@@ -53,15 +54,26 @@ const Character = () => {
 
   //--------------------------------------------
 
+  const createCharacter = async (e) => {
+    console.log(e)
+  };
+
+  const [formObject, setFormObject] = React.useState({});
+
+  const handleChange = (e) => {
+    // console.log(e.target)
+    setFormObject({ ...formObject, [e.name]: e.value });
+  };
+
   return (
     <div>
       {/* This button is a placeholder for when create character is created */}
       {/* <button onClick={onClick}>Create Character</button> */}
       <div class="container">
-        <button className="btn btn-danger" type="submit">Submit to Hall Records</button>
+        <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
         <h1>Hall of Whisper's Almanac of Heroes</h1>
         <p>Mark your place in the records.</p>
-        <CharacterInfo />
+        <CharacterInfo onChange={handleChange}/>
         <CharacterStats />
       </div>
 

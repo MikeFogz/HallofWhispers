@@ -1,6 +1,13 @@
 import React from 'react'
 
-function CharacterInfo() {
+function CharacterInfo(props) {
+
+    const handleChange = (e) => {
+        // const { name, value } = e.target;
+        props.onChange( e.target );
+    };
+
+
     return (
         <div className="container-sm">
             <form>
@@ -8,7 +15,7 @@ function CharacterInfo() {
                 <h3>Who are you?</h3>
                     <div className="col-sm">
                         <label for="validationServer01">Name</label>
-                        <input type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
+                        <input onChange={handleChange} name="Name"  type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
                         {/* <div className="valid-feedback">
                         Looks good!
                         </div> */}
@@ -17,7 +24,7 @@ function CharacterInfo() {
                     <div className="form-row row">
                         <div className="col-sm-4 mb-4">
                             <label for="validationServer03">Class</label>
-                            <input type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
+                            <input onChange={handleChange} name="Class" type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
                             {/* <div className="invalid-feedback">
                             Please provide a Class or Subclass.
                             </div> */}

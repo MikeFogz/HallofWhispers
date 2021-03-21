@@ -1,7 +1,7 @@
-// import axios from "axios";
+import axios from "axios";
 
-// export default {
-//   // get all posts
+export default {
+  // get all posts
 //   getPosts: function () {
 //     return axios.get("/api/posts");
 //   },
@@ -9,4 +9,8 @@
 //   createPost: function (postData) {
 //     return axios.post("/api/posts", postData);
 //   },
-//};
+
+    chrCreate: () => {
+        return axios.post("/api/characters/")
+    },
+};
