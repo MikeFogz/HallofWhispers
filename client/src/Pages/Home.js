@@ -82,7 +82,7 @@ const Home = () => {
     });
     // connects every user
     socket.on("connect", () => {
-      // console.log(socket.id);
+      console.log(socket.id);
       setId(socket.id);
     });
     // connects title and shows on screen
@@ -113,8 +113,6 @@ const Home = () => {
       {
         message: messages,
         id: id,
-        accountName: userData.account.accountName,
-        time: Date.now()
       },
       (data) => {
         // alert(data)
@@ -189,13 +187,13 @@ const Home = () => {
               <Row>
                 <Card>
                   <PostList>
-                    {posts.map((post, account, index) => {
+                    {posts.map((post, index) => {
                       return (
                         <PostListItem
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
-                          accountName={account.accountName}
+                          accountName={post.accountId}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -214,40 +212,41 @@ const Home = () => {
                 <Card>
                   <p className="text-center">{welcome}</p>
                   <div>
-                    {arr.map((chat, accounts, index) => (
+                    {arr.map((chat, index) => (
                       <div key={index}>
+                        <p>{chat.message}</p>
                         <p>
-                          {chat.message}
-                        </p>
-                        <p>
-                          {accounts.accountName} sent at: {moment().format("h:mm a")}
+                          {userData.account.accountName} sent at:
+                          {moment().format("hh:mm a")}
                         </p>
                       </div>
                     ))}
                   </div>
                 </Card>
-                <div>
-                  <div className="d-flex">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter your message here"
-                      value={messages}
-                      onChange={(e) => {
-                        setMessages(e.target.value);
-                      }}
-                    />
-                    <button
-                      className="btn btn-primary"
-                      onClick={(e) => sendMessage(e)}
-                    >
-                      send
-                    </button>
-                  </div>
+                >
+                <div className="d-flex">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your message here"
+                    value={messages}
+                    onChange={(e) => {
+                      setMessages(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary"
+                    onClick={(e) => sendMessage(e)}
+                  >
+                    send
+                  </button>
                 </div>
               </div>
               <br />
               <Dice onRoll={(value) => console.log(value)} size={50} />
+              {/* <div className="container">
+                <div id="dice-roll-simulator"></div>
+              </div> */}
             </Col>
           </Row>
         </Container>

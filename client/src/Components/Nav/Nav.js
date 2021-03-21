@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import "./Nav.css";
 import AccountContext from "../../Context/AccountContext";
 
@@ -15,7 +15,7 @@ const Nav = ({ children }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light background">
       <div className="container-fluid background">
-        <img className="nav-logo" src="https://i.imgur.com/BGhAyqD.png"></img>
+        <img className="nav-logo" src="https://i.imgur.com/BGhAyqD.png" alt="logo"></img>
         <a className="navbar-brand" href="/">
           Hall of Whispers
         </a>
