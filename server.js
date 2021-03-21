@@ -7,11 +7,12 @@ const http = require("http")
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(cors())
 
 const server = http.createServer(app)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 const io = socketIO(server)
 
@@ -42,9 +43,10 @@ io.on("connection", (socket) => {
   })
 })
 
-// app.get("/", (req, res) => {
-//   res.send("hello from chat server")
-// })
+app.get("/", (req, res) => {
+  res.send("hello from chat server")
+  // res.json(res.data)
+})
 // After you run it, creates index.html file inside the "Build" folder.
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
