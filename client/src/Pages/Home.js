@@ -15,6 +15,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
 import background from "../assets/images/vintage-concrete.png"
+const moment = require("moment")
 
 const Home = () => {
   // Setting initial state for posts
@@ -84,6 +85,7 @@ const Home = () => {
       console.log(socket.id);
       setId(socket.id);
     });
+    // connects title and shows on screen
     socket.on("new", (data) => {
       // console.log(data)
       setWelcome(data.message);
@@ -91,7 +93,7 @@ const Home = () => {
     socket.on("newUser", (data) => {
       console.log(data);
     });
-    socket.on("disconnected", () => {
+    socket.on("disconnect", () => {
       console.log("disconnected homie");
     });
     socket.on("message", (data) => {
@@ -116,6 +118,7 @@ const Home = () => {
         // alert(data)
       }
     );
+    // clears input field
     setMessages("");
   };
 
@@ -211,10 +214,16 @@ const Home = () => {
                 <Card>
                   <p className="text-center">{welcome}</p>
                   <div>
-                    {arr.map((chat, index) => (
-                      <p key={index}>
-                        {chat.id}: {chat.message}
+                    {arr.map((chat, userData, post, index) => (
+                      <div key={index}>
+                      <p >
+                        {chat.message} 
                       </p>
+                      <p>
+                        {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
+                      </p>
+                
+                      </div>
                     ))}
                   </div>
                 </Card>

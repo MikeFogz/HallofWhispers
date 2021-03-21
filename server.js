@@ -15,30 +15,35 @@ app.use(express.json());
 
 const io = socketIO(server);
 
+// runs when client connects
 io.on("connection", (socket) => {
   console.log("new user connected");
-
+  // title of the chat app
+  //socket.emit only seen by user
   socket.emit("new", {
     from: "Admin",
     message: "Welcome the DND App",
   });
-
+  // broadcast message when a user connects to all clients but user doesn't see message
   socket.broadcast.emit("newUser", {
     from: "Admin",
     message: "New user connected",
   });
-
+  // listen for newMessage
   socket.on("newMessage", (data, callback) => {
     console.log(data);
+    //io.emit informs all users
     io.emit("message", {
       message: data.message,
       id: data.id,
     });
     callback("Message Send From Server");
   });
-
+  // runs when client disconnects
   socket.on("disconnect", () => {
-    console.log("user disconnected");
+    // console.log("user disconnected");
+    //io.emit informs all users
+    io.emit("message", "User has left the chat.")
   });
 });
 
