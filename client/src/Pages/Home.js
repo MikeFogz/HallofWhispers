@@ -82,7 +82,7 @@ const Home = () => {
     });
     // connects every user
     socket.on("connect", () => {
-      console.log(socket.id);
+      // console.log(socket.id);
       setId(socket.id);
     });
     // connects title and shows on screen
@@ -113,6 +113,8 @@ const Home = () => {
       {
         message: messages,
         id: id,
+        accountName: userData.account.accountName,
+        time: Date.now()
       },
       (data) => {
         // alert(data)
@@ -187,13 +189,13 @@ const Home = () => {
               <Row>
                 <Card>
                   <PostList>
-                    {posts.map((post, index) => {
+                    {posts.map((post, account, index) => {
                       return (
                         <PostListItem
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
-                          accountName={userData.account.accountName}
+                          accountName={account.accountName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -212,19 +214,19 @@ const Home = () => {
                 <Card>
                   <p className="text-center">{welcome}</p>
                   <div>
-                    {arr.map((chat, index) => (
+                    {arr.map((chat, accounts, index) => (
                       <div key={index}>
                         <p>
                           {chat.message}
                         </p>
                         <p>
-                          {userData.account.accountName} sent at: {moment().format("h:mm a")}
+                          {accounts.accountName} sent at: {moment().format("h:mm a")}
                         </p>
                       </div>
                     ))}
                   </div>
                 </Card>
-                <Container>
+                <div>
                   <div className="d-flex">
                     <input
                       type="text"
@@ -242,13 +244,10 @@ const Home = () => {
                       send
                     </button>
                   </div>
-                </Container>
+                </div>
               </div>
               <br />
               <Dice onRoll={(value) => console.log(value)} size={50} />
-              {/* <div className="container">
-                <div id="dice-roll-simulator"></div>
-              </div> */}
             </Col>
           </Row>
         </Container>

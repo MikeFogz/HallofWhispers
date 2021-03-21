@@ -17,6 +17,10 @@ const PostSchema = new Schema({
     type: String,
     required: true,
   },
+  accountName: {
+    type: String,
+    trim: true,
+  }
 });
 
 const Post = mongoose.model("Post", PostSchema);

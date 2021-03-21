@@ -36,6 +36,8 @@ io.on("connection", (socket) => {
     io.emit("message", {
       message: data.message,
       id: data.id,
+      accountName: data.accountName,
+      time: Date.now()
     });
     callback("Message Send From Server");
   });
