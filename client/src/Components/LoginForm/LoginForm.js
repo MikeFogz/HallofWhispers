@@ -1,5 +1,5 @@
 import "./LoginForm.css";
-import React, { useState, useContext, } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
 import AccountContext from "../../Context/AccountContext";
 import { useHistory } from "react-router-dom";
@@ -17,46 +17,36 @@ const LoginForm = () => {
     const submitLoginForm = async (e) => {
         e.preventDefault();
         try {
-            console.log(form);
             const { data } = await axios.post("/api/login", form);
-            console.log(data);
-
-            //Setting up my account data for state
-            const myAccountData = {
-                id: data.myAccount._id,
-                accountName: data.myAccount.accountName,
-                charCreated: data.myAccount.charCreated,
-                loggedIn: true
-            };
-
 
             //Setting the global user data here
             setUserData({
                 token: data.token,
-                account: myAccountData
+                account: data.account
             });
 
+            console.log(data.account.charCreated);
             //Saving the token to local storage.  This token expires in 24 hours.
             localStorage.setItem("auth-token", data.token);
-            if (data.myAccount.charCreated) {
+            if (data.account.charCreated) {
                 history.push("/");
             } else {
+                // console.log("does it go into character?")
                 history.push("/character");
             }
 
         } catch (error) {
-            console.log(error.response);
+            console.log("there was an error", error.response);
         }
     }
 
-    //--------------------------------------------
-    //Activate this block of code when appropriate
-    //Function:  If the user is logged in, will go
-    //straight to the home page.
 
-    // useEffect(() => {
-    //   if (userData.account) history.goBack();
-    // }, [userData.account, history])
+    useEffect(() => {
+        //If user is already loggedin and the user wanted to access login
+        //send them to the Home page.  If a character is not created, Home 
+        //will send them back to the character page
+        if (userData.account) history.push("/");
+    }, [userData.account, history])
 
     //-----------------------------------------------
 
