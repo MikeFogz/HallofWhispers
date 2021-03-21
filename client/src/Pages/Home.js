@@ -15,6 +15,7 @@ import React, { useState, useEffect, useContext } from "react";
 import image from "../Components/images/post-background.png";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
+import background from "../assets/images/vintage-concrete.png"
 
 const Home = () => {
   // Setting initial state for posts
@@ -142,15 +143,8 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        position: "relative",
-      }}
-    >
+
+    <div style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
           <Row>

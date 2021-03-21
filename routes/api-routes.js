@@ -15,7 +15,7 @@ router.get("/posts", auth, getPosts);
 router.post("/posts", auth, createPost);
 
 // Authentication function s
-const { register, login, getAccount } = require("../controllers/userAuthControllers");
+const { register, login, getAccount, charCreatedAccount } = require("../controllers/userAuthControllers");
 
 //User authenication routes 
 
@@ -24,5 +24,17 @@ router.post("/register", register);
 router.post("/login", login);
 
 router.get("/accounts", auth, getAccount);
+
+router.post("/characterCreation", auth, charCreatedAccount);
+
+const { findAll, findChr, createChr, deleteChr } = require("../controllers/chrController");
+
+router.get("/characters", findAll);
+
+router.get("/characters/:id", findChr);
+
+router.post("/characters", createChr);
+
+router.get("/characters/:id", deleteChr);
 
 module.exports = router;

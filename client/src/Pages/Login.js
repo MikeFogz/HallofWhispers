@@ -6,43 +6,12 @@ import React from 'react';
 import LoginForm from "../Components/LoginForm/LoginForm"
 //Using useEffect for jumping between pages when logged in and not
 //import React, { useState, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
+import RegisterForm from "../Components/RegisterForm/RegisterForm"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// NOTES/TODO: Rather than oj background color on 
-//  card container make it parchment/textured
-
-// Refactor into component for register & login. Container can stay the same,
-// just add one more input field
-
-// TODO page needs to be 100% of height of page.
 
 const Login = () => {
-  // const [form, setForm] = useState();
-  // const { userData, setUserData } = useContext(AccountContext);
-  // const history = useHistory();
-
-  // const onChange = (e) => {
-  //   setForm({ ...form, [e.target.name]: e.target.value });
-  // }
-  // const submitLoginForm = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     console.log(form);
-  //     const { data } = await axios.post("/api/login", form);
-  //     console.log(data);
-  //     //Setting the global user data here
-  //     setUserData({
-  //       token: data.token,
-  //       account: data.account
-  //     });
-
-  //     //Saving the token to local storage.  This token expires in 24 hours.
-  //     localStorage.setItem("auth-token", data.token);
-  //     history.push("/");
-
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // }
 
   //--------------------------------------------
   //Activate this block of code when appropriate
@@ -54,6 +23,21 @@ const Login = () => {
   // }, [userData.account, history])
 
   //-----------------------------------------------
+
+  // function RegisterView() {
+  //   const location = useLocation();
+  //   console.log(location.pathname);
+  //   return location.pathname;
+  // }
+
+  // RegisterView();
+
+  
+
+  //  Classname in state. 
+  // if this is active then show
+  // if the login isclicked than active
+
   return (
     <>
       <div className="page_container">
@@ -64,12 +48,18 @@ const Login = () => {
             {/* start card logo container */}
             <div className="d-flex justify-content-center">
               <div className="brand_logo_container">
-                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
+                <img src="https://i.imgur.com/BGhAyqD.png" className="brand_logo" alt="HallofWhispersLogo" />
               </div>
             </div>
             {/* end card logo container */}
             <div className="d-flex justify-content-center form_container">
 
+              {/* {RegisterView() === "/login" ? 
+                (<LoginForm />)
+                :
+                (<RegisterForm />)
+            } */}
+              
               <LoginForm />
             </div>
 

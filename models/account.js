@@ -20,6 +20,11 @@ const accountSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  charCreated: {
+    type: Boolean,
+    required: true,
+    default: false
   }
 });
 
