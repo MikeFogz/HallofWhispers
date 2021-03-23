@@ -87,6 +87,10 @@ const Character = () => {
   const createCharacter = async () => {
     // When the Submit to Hall Records button is clicked, it creates a character with the below params.
     API.createChr( characterData ).catch(err => console.log(err));
+    // TODO: Alert to notify user of failure. 
+    // TODO: Sends user to Home when completed.
+    // TODO: Needs to change to updateChr instead of create per account flag.
+    // TODO: Alert when update successful.
     // API.findAll().then(res => console.log(res.data));
   };
 

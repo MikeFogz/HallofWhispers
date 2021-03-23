@@ -73,6 +73,16 @@ module.exports = {
     };
   },
 
+  updateChr: async (req, res) => {
+    try {
+      res.json(
+        await Character.findByIdAndUpdate(req.body._id, { chrName: req.body.chrName })
+      );
+    } catch (err) {
+      res.send(err);
+    };
+  },
+
   deleteChr: async (req, res) => {
     try {
       res.json(await Character.findByIdAndDelete(req.params.id));
