@@ -27,7 +27,7 @@ module.exports = {
         accountId: req.account,
         accountName: req.account.accountName
       });
-
+      // console.log(req.account.accountName)
       res.json(await newPost.save());
     } catch (error) {
       console.log("error with createPost:", error);

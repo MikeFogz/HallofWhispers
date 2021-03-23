@@ -19,7 +19,8 @@ const PostSchema = new Schema({
   },
   accountName: {
     type: String,
-    trim: true,
+    required: true,
+    
   }
 });
 

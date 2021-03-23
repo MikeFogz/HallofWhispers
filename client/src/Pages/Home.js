@@ -11,7 +11,7 @@ import axios from "axios";
 // --- For authentication, allows you to stay logged in --- //
 // import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
 import background from "../assets/images/vintage-concrete.png";
@@ -82,7 +82,7 @@ const Home = () => {
     });
     // connects every user
     socket.on("connect", () => {
-      console.log(socket.id);
+      // console.log(socket.id);
       setId(socket.id);
     });
     // connects title and shows on screen
@@ -91,13 +91,13 @@ const Home = () => {
       setWelcome(data.message);
     });
     socket.on("newUser", (data) => {
-      console.log(data);
+      // console.log(data);
     });
     socket.on("disconnect", () => {
       console.log("disconnected homie");
     });
     socket.on("message", (data) => {
-      console.log(data);
+      // console.log(data);
       setArr((arr) => [...arr, data]);
     });
   }, []);
@@ -125,6 +125,15 @@ const Home = () => {
   };
 
   const { userData } = useContext(AccountContext);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  });
 
   //--------------------------------------------
   //Activate this block of code when appropriate
@@ -188,6 +197,7 @@ const Home = () => {
               </Row>
               <Row>
                 <Card>
+                
                   <PostList>
                     {posts.map((post, index) => {
                       return (
@@ -196,7 +206,7 @@ const Home = () => {
                           key={index}
                           date={post.date}
                           accountId={post.accountId}
-                          accountName={post.accountId}
+                          accountName={post.accountName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -214,8 +224,8 @@ const Home = () => {
               <div>
                 <Card>
                   <p className="text-center">{welcome}</p>
-                  <div>
-                    {console.log(arr)}
+                  <div ref={messagesEndRef}>
+                    {/* {console.log(arr)} */}
                     {arr.map((chat, index) => (
                       <div key={index}>
                         <p>{chat.message}</p>
@@ -223,7 +233,6 @@ const Home = () => {
                           {" "}
                           {chat.displayName} sent at:{" "}
                           {moment(chat.date).format("h:mm a")}
-                         
                         </p>
                         <br />
                       </div>
