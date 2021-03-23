@@ -11,7 +11,7 @@ import AccountContext from "./Context/AccountContext";
 import axios from "axios";
 import RegisterForm from "./Components/RegisterForm/RegisterForm";
 import LoginForm from "./Components/LoginForm/LoginForm";
-
+import background from "../src/assets/images/vintage-concrete.png"
 
 function LoginRegister() {
 
@@ -82,7 +82,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <AccountContext.Provider value={{ userData, setUserData }}>
           <Nav>

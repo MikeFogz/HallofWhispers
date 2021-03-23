@@ -25,6 +25,7 @@ function CharacterInfo() {
                         <div className="col-sm-4 mb-4 form-group">
                             <label for="validationServer04">Race</label>
                             <select className="form-control" id="raceselect">
+                            <option>-Select Race-</option>
                             <option id="dwarf">Dwarf</option>
                             <option id="elf">Elf</option>
                             <option id="human">Human</option>
@@ -42,6 +43,7 @@ function CharacterInfo() {
                         <div className="col-sm-4 mb-4">
                         <label for="validationServer05">Alignment</label>
                         <select className="form-control" id="alignment">
+                        <option>-Select Alignment-</option>
                         <option id="lg">Lawful Good</option>
                         <option id="ng">Neutral Good</option>
                         <option id="cg">Chaotic Good</option>
