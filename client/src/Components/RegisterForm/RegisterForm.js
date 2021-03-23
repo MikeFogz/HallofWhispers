@@ -43,19 +43,6 @@ const RegisterForm = (props) => {
 
   return (
     <>
-      {/* <div className="page_container"> */}
-      {/* <div className="d-flex justify-content-center h-100"> */}
-
-      {/* start card container */}
-      {/* <div className="user_card"> */}
-      {/* start card logo container */}
-      {/* <div className="d-flex justify-content-center">
-              <div className="brand_logo_container">
-                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
-              </div>
-            </div> */}
-      {/* end card logo container */}
-      {/* <div className="d-flex justify-content-center form_container"> */}
 
       <form onSubmit={submit}>
         <div className="input-group mb-3">
@@ -118,13 +105,6 @@ const RegisterForm = (props) => {
         </a>
 
       </form>
-
-      {/* </div> */}
-
-      {/* </div> */}
-      {/* end card container */}
-      {/* </div> */}
-      {/* </div> */}
 
     </>
   )
