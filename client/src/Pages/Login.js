@@ -1,5 +1,5 @@
 import "./Login.css";
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 // import axios from "axios";
 // import AccountContext from "../Context/AccountContext";
 // import { useHistory } from "react-router-dom";
@@ -43,7 +43,7 @@ const Login = () => {
 
   // RegisterView();
 
-  
+
 
   //  Classname in state. 
   // if this is active then show
@@ -65,17 +65,11 @@ const Login = () => {
             {/* end card logo container */}
             <div className="d-flex justify-content-center form_container">
 
-              {/* {RegisterView() === "/login" ? 
-                (<LoginForm />)
-                :
-                (<RegisterForm />)
-            } */}
-              
-             
               <div>
-               
-                {formMode === "login" ? < LoginForm formMode={formMode} toggleForm={toggleForm} /> : <RegisterForm formMode={formMode} toggleForm={toggleForm}/>}
-               
+
+                {/* import forms for auth */}
+                {formMode === "login" ? < LoginForm formMode={formMode} toggleForm={toggleForm} /> : <RegisterForm formMode={formMode} toggleForm={toggleForm} />}
+
               </div>
             </div>
 
