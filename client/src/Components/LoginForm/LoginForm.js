@@ -16,16 +16,16 @@ const LoginForm = () => {
     }
     const submitLoginForm = async (e) => {
         e.preventDefault();
+
         try {
             const { data } = await axios.post("/api/login", form);
-
+            console.log(data);
             //Setting the global user data here
             setUserData({
                 token: data.token,
                 account: data.account
             });
 
-            console.log(data.account.charCreated);
             //Saving the token to local storage.  This token expires in 24 hours.
             localStorage.setItem("auth-token", data.token);
             if (data.account.charCreated) {
@@ -36,10 +36,10 @@ const LoginForm = () => {
             }
 
         } catch (error) {
-            console.log("there was an error", error.response);
+            alert(error.response.data.msg)
+            console.log(error.response.data.msg);
         }
     }
-
 
     useEffect(() => {
         //If user is already loggedin and the user wanted to access login
