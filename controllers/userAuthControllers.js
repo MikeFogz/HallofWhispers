@@ -13,7 +13,7 @@ module.exports = {
         return res.status(400).json({ msg: "Not all fields have been entered" });
       }
       if (passwordCheck.length < 8) {
-        return res.status(400).json({ msg: "YOu need a longer password" });
+        return res.status(400).json({ msg: "You need a longer password" });
       }
       if (password !== passwordCheck) {
         return res.status(400).json({ msg: "Password does not match password check" });
@@ -36,11 +36,11 @@ module.exports = {
         date: new Date(Date.now()),
         charCreated: false
       })
-      console.log(newAccount);
+      //console.log(newAccount);
       const savedAccount = await newAccount.save();
       res.json(savedAccount);
     } catch (err) {
-      res.status(500).json({ msg: err })
+      res.status(500).json({ msg: err.message })
     };
   },
 
@@ -83,8 +83,8 @@ module.exports = {
         }
       })
 
-    } catch (error) {
-      res.status(500).json({ msg: error });
+    } catch (err) {
+      res.status(500).json({ msg: err.message });
     }
   },
 

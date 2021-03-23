@@ -193,7 +193,7 @@ const Home = () => {
                           accountName={post.accountName}
                           message={post.message}
                           myAccount={
-                            post.accountId === userData.account?.id
+                            (!userData.pending && (post.accountId === userData.account?.id))
                               ? "true"
                               : "false"
                           }
@@ -211,13 +211,13 @@ const Home = () => {
                   <div>
                     {arr.map((chat, userData, post, index) => (
                       <div key={index}>
-                      <p >
-                        {chat.message} 
-                      </p>
-                      <p>
-                        {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
-                      </p>
-                
+                        <p >
+                          {chat.message}
+                        </p>
+                        <p>
+                          {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
+                        </p>
+
                       </div>
                     ))}
                   </div>

@@ -33,7 +33,7 @@ router.get("/characters", findAll);
 
 router.get("/characters/:id", findChr);
 
-router.post("/characters", createChr);
+router.post("/characters", auth, createChr);
 
 router.get("/characters/:id", deleteChr);
 
