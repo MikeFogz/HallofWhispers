@@ -114,7 +114,7 @@ const Home = () => {
         message: messages,
         id: id,
         displayName: userData.account.accountName,
-        date: moment(Date.now()).format("h:mm a")
+        date: moment(Date.now()).format("h:mm a"),
       },
       (data) => {
         // alert(data)
@@ -196,7 +196,7 @@ const Home = () => {
                           key={index}
                           date={post.date}
                           accountId={post.accountId}
-                          accountName={post.accountName}
+                          accountName={post.accountId}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -218,38 +218,34 @@ const Home = () => {
                     {arr.map((chat, index) => (
                       <div key={index}>
                         <p>
-                          {chat.message}  {chat.id}: Sent at: {moment(chat.date).format("h:mm a")} 
+                          {chat.message} 
                         </p>
-                        <p style={{float: "right"}}> {chat.displayName} </p>
-                      </div>
+                        <p style={{ float: "right" }} className="timestamp"> {chat.id}: Sent at:{" "}
+                          {moment(chat.date).format("h:mm a")}{chat.displayName} </p><br/>
+                      </div> 
                     ))}
                   </div>
                 </Card>
-                <Container>
-                  <div className="d-flex">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter your message here"
-                      value={messages}
-                      onChange={(e) => {
-                        setMessages(e.target.value);
-                      }}
-                    />
-                    <button
-                      className="btn btn-primary"
-                      onClick={(e) => sendMessage(e)}
-                    >
-                      send
-                    </button>
-                  </div>
-                </Container>
+                <div className="d-flex">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your message here"
+                    value={messages}
+                    onChange={(e) => {
+                      setMessages(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary"
+                    onClick={(e) => sendMessage(e)}
+                  >
+                    send
+                  </button>
+                </div>
               </div>
               <br />
               <Dice onRoll={(value) => console.log(value)} size={50} />
-              {/* <div className="container">
-                <div id="dice-roll-simulator"></div>
-              </div> */}
             </Col>
           </Row>
         </Container>
