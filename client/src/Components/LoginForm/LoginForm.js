@@ -5,7 +5,7 @@ import AccountContext from "../../Context/AccountContext";
 import { useHistory } from "react-router-dom";
 // rafc
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const [form, setForm] = useState();
     const { userData, setUserData } = useContext(AccountContext);
     const history = useHistory();
@@ -73,19 +73,19 @@ const LoginForm = () => {
 
     return (
         <>
-            <div className="page_container">
-                <div className="d-flex justify-content-center h-100">
+            {/* <div className="page_container"> */}
+                {/* <div className="d-flex justify-content-center h-100"> */}
 
                     {/* start card container */}
-                    <div className="user_card">
+                    {/* <div className="user_card"> */}
                         {/* start card logo container */}
-                        <div className="d-flex justify-content-center">
-                            <div className="brand_logo_container">
-                                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
-                            </div>
-                        </div>
+                        {/* <div className="d-flex justify-content-center"> */}
+                            {/* <div className="brand_logo_container"> */}
+                                {/* <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" /> */}
+                            {/* </div> */}
+                        {/* </div> */}
                         {/* end card logo container */}
-                        <div className="d-flex justify-content-center form_container">
+                        {/* <div className="d-flex justify-content-center form_container"> */}
 
                             {/* form start */}
                             < form onSubmit={submitLoginForm} >
@@ -121,15 +121,17 @@ const LoginForm = () => {
                                 </div>
                                 {/* button end */}
 
-
+                                <a onClick={props.toggleForm} className="d-flex justify-content-center mt-3">
+                                    {props.formMode === "login" ? "Sign up here" : "Login here"}
+                                </a>
                             </form >
                             {/* form end */}
-                        </div>
+                        {/* </div> */}
 
-                    </div>
+                    {/* </div> */}
                     {/* end card container */}
-                </div>
-            </div>
+                {/* </div> */}
+            {/* </div> */}
         </>
     )
 }
