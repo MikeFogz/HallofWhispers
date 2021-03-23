@@ -9,7 +9,7 @@ const RegisterForm = (props) => {
   const [form, setForm] = useState();
   const history = useHistory();
   const [passwordToggle, setPasswordToggle] = useState("password");
-
+  const [errorMessage, setErrorMessage] = useState("")
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,9 +24,12 @@ const RegisterForm = (props) => {
       history.push("/login");
 
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data.msg);
+      setErrorMessage(error.response.data.msg)
     }
   }
+
+
 
   const togglePassword = () => {
     if (passwordToggle === "password") {
@@ -61,6 +64,7 @@ const RegisterForm = (props) => {
                   </div>
                   <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
                 </div>
+        <label classname="d-flex justify-content-center mt-3">{errorMessage}</label>
 
                 {/* display name start */}
                 <div className="input-group mb-3">
