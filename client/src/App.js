@@ -9,42 +9,64 @@ import Login from "./Pages/Login";
 import Register from "./Pages/TestPages/Register";
 import AccountContext from "./Context/AccountContext";
 import axios from "axios";
+import RegisterForm from "./Components/RegisterForm/RegisterForm";
+import LoginForm from "./Components/LoginForm/LoginForm";
+
+
+function LoginRegister() {
+
+  const [formMode, setFormMode] = useState("login")
+
+  const toggleForm = () => {
+    if (formMode === "login") {
+      setFormMode("register")
+    } else {
+      setFormMode("login")
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={toggleForm}>
+        {formMode === "login" ? "Sign up here" : "Login here"}
+      </button>
+      {formMode === "login" ? < LoginForm /> : <RegisterForm />}
+
+    </div>
+  )
+}
+
 
 function App() {
   const [userData, setUserData] = useState({
     account: undefined,
     token: undefined,
+    pending: true,
   });
+
 
   const checkLoggedIn = async () => {
     let token = localStorage.getItem("auth-token");
-    if (token === null) {
+    if (!token) {
+      setUserData({ ...userData, pending: false });
       localStorage.setItem("auth-token", "");
     } else {
       try {
         const { data } = await axios.get("/api/accounts", {
           headers: { "x-auth-token": token },
         });
-        console.log(data);
-
-        //Setting up account data for state
-        const accountData = {
-          accountName: data.accountName,
-          id: data._id,
-          charCreated: data.charCreated,
-          loggedIn: true
-        }
-        setUserData({ token, account: accountData });
+        setUserData({ token, account: data, pending: false });
       } catch (err) {
         console.log("User must login");
       }
     }
   }
 
+  //Logout function
   const onClick = (e) => {
     e.preventDefault();
-    setUserData({ token: undefined, account: { loggedIn: false } });
-    localStorage.setItem("auth-token", "");
+    setUserData({ token: undefined, account: undefined, pending: false });
+    localStorage.removeItem("auth-token");
     //better way of doing this? 
     window.location = "/login"
   }
@@ -62,11 +84,7 @@ function App() {
             <button onClick={onClick}>Logout</button>
           </Nav>
           <Router>
-
             <Switch>
-              <Route exact path="/register" >
-                <Register />
-              </Route>
               <Route exact path="/character" >
                 <Character />
               </Route>
@@ -74,7 +92,7 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/login">
-                <Login />
+                <LoginRegister />
               </Route>
               <Route exact path="/" component={Home} />
             </Switch>
