@@ -52,7 +52,7 @@ function App() {
         const { data } = await axios.get("/api/accounts", {
           headers: { "x-auth-token": token },
         });
-        console.log(data);
+        // console.log(data);
 
         //Setting up account data for state
         const accountData = {

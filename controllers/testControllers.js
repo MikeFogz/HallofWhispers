@@ -25,6 +25,7 @@ module.exports = {
         message: req.body.message,
         date: req.body.date,
         accountId: req.account,
+        accountName: req.account.accountName
       });
 
       res.json(await newPost.save());
