@@ -97,7 +97,7 @@ const Home = () => {
       console.log("disconnected homie");
     });
     socket.on("message", (data) => {
-      // console.log(data);
+      console.log(data);
       setArr((arr) => [...arr, data]);
     });
   }, []);
@@ -215,14 +215,18 @@ const Home = () => {
                 <Card>
                   <p className="text-center">{welcome}</p>
                   <div>
+                    {console.log(arr)}
                     {arr.map((chat, index) => (
                       <div key={index}>
-                        <p>
-                          {chat.message} 
+                        <p>{chat.message}</p>
+                        <p style={{ float: "right" }} className="timestamp">
+                          {" "}
+                          {chat.displayName} sent at:{" "}
+                          {moment(chat.date).format("h:mm a")}
+                         
                         </p>
-                        <p style={{ float: "right" }} className="timestamp"> {chat.id}: Sent at:{" "}
-                          {moment(chat.date).format("h:mm a")}{chat.displayName} </p><br/>
-                      </div> 
+                        <br />
+                      </div>
                     ))}
                   </div>
                 </Card>

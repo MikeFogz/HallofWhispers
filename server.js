@@ -36,8 +36,8 @@ io.on("connection", (socket) => {
     io.emit("message", {
       message: data.message,
       id: data.id,
-      accountName: data.accountName,
-      date: Date.now()
+      displayName: data.displayName,
+      date: Date.now(),
     });
     callback("Message Send From Server");
   });
@@ -51,7 +51,7 @@ io.on("connection", (socket) => {
 
 // app.get("/", (req, res) => {
 //   res.send("hello from chat server");
-  // res.json(res.data)
+// res.json(res.data)
 // });
 // After you run it, creates index.html file inside the "Build" folder.
 // if (process.env.NODE_ENV === "production") {
