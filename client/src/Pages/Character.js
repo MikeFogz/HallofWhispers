@@ -55,7 +55,7 @@ const Character = () => {
     chrStory: formObject.Story,
     chrStr: formObject.Strength,
     chrDex: formObject.Dexterity,
-    chrCon: formObject.Constitution, 
+    chrCon: formObject.Constitution,
     chrInt: formObject.Intelligence,
     chrWis: formObject.Wisdom,
     chrCha: formObject.Charisma,
@@ -84,10 +84,28 @@ const Character = () => {
     chrSur: formObject.Survival,
   };
 
-  const createCharacter = async () => {
-    // When the Submit to Hall Records button is clicked, it creates a character with the below params.
-    API.createChr( characterData ).catch(err => console.log(err));
-    // API.findAll().then(res => console.log(res.data));
+  const createCharacter = async (e) => {
+
+    e.preventDefault();
+    let token = localStorage.getItem("auth-token");
+    try {
+      if (userData.account.charCreated) {
+        console.log("update character");
+      } else {
+        // When the Submit to Hall Records button is clicked, it creates a character with the below params.
+        //API.createChr(characterData).catch(err => console.log(err));
+        const mychr = await API.createChr(characterData);
+        // API.findAll().then(res => console.log(res.data));
+        //changing character creation in database
+        const { data } = await axios.post("/api/characterCreation", {}, {
+          headers: { "x-auth-token": token },
+        });
+        setUserData({ ...userData, account: data, character: mychr.data, pending: false });
+        history.push("/");
+      }
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -98,8 +116,8 @@ const Character = () => {
         <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
         <h1>Hall of Whisper's Almanac of Heroes</h1>
         <p>Mark your place in the records.</p>
-        <CharacterInfo onChange={handleChange}/>
-        <CharacterStats onChange={handleChange}/>
+        <CharacterInfo onChange={handleChange} />
+        <CharacterStats onChange={handleChange} />
       </div>
 
 

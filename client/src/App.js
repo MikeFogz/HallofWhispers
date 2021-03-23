@@ -42,6 +42,7 @@ function App() {
     account: undefined,
     token: undefined,
     pending: true,
+    character: undefined
   });
 
 
@@ -56,6 +57,11 @@ function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({ token, account: data, pending: false });
+        console.log(data.charCreated);
+        //TODO - set character data to userData global
+        if (data.charCreated) {
+          console.log("load character data to page");
+        }
       } catch (err) {
         console.log("User must login");
       }
