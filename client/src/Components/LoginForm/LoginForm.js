@@ -83,6 +83,7 @@ const LoginForm = (props) => {
                     <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
                 </div>
                 {/* email end */}
+                
                 {/* password start */}
                 <div className="input-group mb-2">
                     <div className="input-group-append">
