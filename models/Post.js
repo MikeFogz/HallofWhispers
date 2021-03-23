@@ -16,6 +16,10 @@ const PostSchema = new Schema({
   accountId: {
     type: String,
     required: true,
+  },
+  accountName: {
+    type: String,
+    trim: true,
   }
 });
 

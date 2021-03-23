@@ -10,7 +10,7 @@ export function PostList({ children }) {
 }
 
 
-export function PostListItem({ message, date, myAccount, displayName}) {
+export function PostListItem({ message, date, myAccount, accountId, accountName}) {
 
   const messagesEndRef = useRef(null);
 
@@ -34,7 +34,7 @@ export function PostListItem({ message, date, myAccount, displayName}) {
           <p>{message}</p>
           <div ref={messagesEndRef}>
             <div style={{float: "right"}}>
-              <p className="timestamp">Message Posted: {moment.utc(date).local().format("LLL")}</p>
+              <p className="timestamp">{accountId} {accountName}Posted: {moment.utc(date).local().format("LLL")}</p>
               {/* instead of "Message" we can put the Username there */}
             </div>
           </div>
