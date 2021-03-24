@@ -9,6 +9,7 @@
 .nav-logo {
   height: 60px;
   width: 60px;
+  margin-left: 7.5px;
 }
 
 .brand-box-model{
@@ -55,5 +56,14 @@
   .link-font {
     font-size: 18px;
   }
-  
+  .kerning-ligature {
+    font-family: "MedievalSharp", "Roboto", sans-serif;
+    font-kerning: normal;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    /* 1.2 line-height default */
+    line-height: 1.5;
+    margin-left: 8px;
     }
+  }
