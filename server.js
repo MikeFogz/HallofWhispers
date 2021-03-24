@@ -43,9 +43,9 @@ io.on("connection", (socket) => {
   });
   // runs when client disconnects
   socket.on("disconnect", () => {
-    console.log("user disconnected");
-    //io.emit informs all users
-    // io.emit("message", "User has left the chat.")
+    // console.log("user disconnected");
+    // io.emit informs all users
+    io.emit("message", "User has left the chat.")
   });
 });
 

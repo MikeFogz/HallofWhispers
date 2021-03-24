@@ -84,10 +84,10 @@ const LoginForm = (props) => {
                 {/* password end */}
 
                 {/* show password checkbox start */}
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customControlInline" onClick={togglePassword} />
-                        <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
+                <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customControlInline" onClick={togglePassword} />
+                        <label className="custom-control-label" htmlFor="customControlInline">&nbsp; Show Password</label>
                     </div>
                 </div>
                 {/* show password checkbox end */}

@@ -8,11 +8,13 @@ import Wrapper from "../Components/Wrapper/Wrapper";
 import { PostList, PostListItem } from "../Components/PostList/PostList";
 import "./Home.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+// --- For authentication, allows you to stay logged in --- //
+// import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
+import background from "../assets/images/vintage-concrete.png";
 const moment = require("moment");
 
 const Home = () => {
@@ -56,12 +58,10 @@ const Home = () => {
         // setPosts([...posts, data]);
       });
 
-
     // clears the input field after submitting
     setPostMessage("");
     // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
     // console.log(data);
-
   };
 
   // loads all the posts
@@ -131,6 +131,7 @@ const Home = () => {
 
   const { userData } = useContext(AccountContext);
   const messagesEndRef = useRef(null);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -139,35 +140,34 @@ const Home = () => {
     scrollToBottom();
   });
 
-  const history = useHistory();
+  //--------------------------------------------
+  //Activate this block of code when appropriate
+  //Function:  If the user is not logged in, will go
+  //back to the login page.
 
+  // const history = useHistory();
 
-  //If you are not loggedin - go back to the log-in page
-  useEffect(() => {
-    if (!userData.pending && !userData.account) {
-      history.push("/login");
-    }
-    if (!userData.pending && !userData.account?.charCreated) {
-      history.push("/character");
-    }
-  }, [userData.pending, userData.account, history])
+  // useEffect(() => {
+  //   if (!userData.account) {
+  //     history.push("/login");
+  //   }
+  // }, [userData.account, history])
 
   //--------------------------------------------
   return (
-    <div className="parent-container">
+    <div style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
           <Row>
             <Col size="md-6">
               <h5 style={{ textShadow: "4px 4px 8px black" }}>
-                {userData.character && userData.character[0].chrName}
+                Valiant Rundis
               </h5>
               <strong style={{ textShadow: "4px 4px 8px red" }}>
-                {`The ${userData.character && userData.character[0].chrRace}`}
+                Class Level:{" "}
               </strong>
-              <strong style={{ textShadow: "4px 4px 8px red" }}>
-                {` ${userData.character && userData.character[0].chrClass}`}
-              </strong>
+              <br />
+              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
             </Col>
           </Row>
           <Row>
@@ -214,7 +214,7 @@ const Home = () => {
                           accountName={post.accountName}
                           message={post.message}
                           myAccount={
-                            (!userData.pending && (post.accountId === userData.account?.id))
+                            post.accountId === userData.account?.id
                               ? "true"
                               : "false"
                           }

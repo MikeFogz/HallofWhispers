@@ -21,7 +21,6 @@ function CharacterStats(props) {
                     <form>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">Strength 
-
                                 <input style={{float: "right"}} onChange={handleChange} name="Strength" className="stat-list " type="number" placeholder="10" id="strength"></input>
                             </li>
                             <li className="list-group-item">Dexterity 
@@ -38,7 +37,6 @@ function CharacterStats(props) {
                             </li>
                             <li className="list-group-item">Charisma 
                                 <input style={{float: "right"}} onChange={handleChange} name="Charisma" className="stat-list " type="number" placeholder="10" id="charisma"></input>
-
                             </li>
                         </ul>
                     </form>
