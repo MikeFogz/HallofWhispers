@@ -1,4 +1,8 @@
 # HallofWhispers
+
+Hall of Whispers a collaborative project designed to allow users to connect with others and create Dungeons and Dragons style adventures with other users.
+
+
 Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora? 
 
 
