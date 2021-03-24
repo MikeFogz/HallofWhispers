@@ -26,11 +26,11 @@ const Nav = ({ children }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/home" hidden={!userData.account?.charCreated}>
-                Home
+              <a className="nav-link" aria-current="page" href="/home" hidden={!userData.account?.charCreated}>
+                Dashboard
               </a>
             </li>
             <li className="nav-item">
@@ -38,8 +38,8 @@ const Nav = ({ children }) => {
                 Character
               </a>
             </li>
-          </ul>
-          <ul className="navbar-nav mb-2 mb-lg-0">
+          {/* </ul> */}
+          {/* <ul className="navbar-nav mb-2 mb-lg-0"> */}
             <li className="nav-item login">
               <a className="nav-link" href="/login" hidden={userData.account}>
                 Login
