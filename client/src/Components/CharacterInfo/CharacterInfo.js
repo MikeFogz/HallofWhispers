@@ -34,7 +34,7 @@ function CharacterInfo(props) {
                         <div className="col-sm-4 mb-4 form-group">
                             <label for="validationServer04">Race</label>
                             <select onChange={handleChange} name="Race" className="form-control" id="raceselect">
-                            <option>Select</option>
+                            <option disabled selected>Select</option>
                             <option id="dwarf">Dwarf</option>
                             <option id="elf">Elf</option>
                             <option id="human">Human</option>
@@ -51,8 +51,8 @@ function CharacterInfo(props) {
                         </div>
                         <div className="col-sm-4 mb-4">
                         <label for="validationServer05">Alignment</label>
-                        <select onChange={handleChange} name="Alignment" className="form-control" id="alignment">
-                        <option>Select</option>
+                        <select onChange={handleChange} name="Alignment" placeholder="select" className="form-control" id="alignment">
+                        <option disabled selected>Select</option>
                         <option id="lg">Lawful Good</option>
                         <option id="ng">Neutral Good</option>
                         <option id="cg">Chaotic Good</option>
