@@ -74,3 +74,7 @@ This project would not have been possible without the help of everyone on this t
 GNU General Public License v3.0
 
 ## Links
+
+Heroku:
+
+Repo:
