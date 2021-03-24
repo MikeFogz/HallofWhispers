@@ -9,58 +9,61 @@ const characterSchema = new Schema({
   chrAlign: { type: String, trim: true, required: true },
   chrStory: { type: String },
   // TODO: Pair account ID auth to character creation.
-  // acctId: { type: Number, required: true },
+  chrAccountId: {
+    type: String,
+    required: true,
+  },
   // An array of stat objects, all must be a numeric value between 1 and 2.
-  chrStats : [{ 
-      name: { 
-          type : String, 
-          trim: true 
-        }, 
-      value : { 
-          type: Number, 
-          trim: true, 
-          minLength: 1, 
-          maxLength: 2 
-        },
-    }],
-    chrArmor : [{ 
-      name: { 
-          type : String, 
-          trim: true 
-        }, 
-      value : { 
-          type: Number, 
-          trim: true, 
-          minLength: 1, 
-          maxLength: 2 
-        },
-    }],
-    chrHealth : [{ 
-      name: { 
-          type : String, 
-          trim: true 
-        }, 
-      value : { 
-          type: Number, 
-          trim: true, 
-          minLength: 1, 
-          maxLength: 2 
-        },
-    }],
-    chrSkills : [{ 
-      name: { 
-          type : String, 
-          trim: true 
-        }, 
-      value : { 
-          type: Number, 
-          trim: true, 
-          minLength: 1, 
-          maxLength: 2 
-        },
-    }],
+  chrStats: [{
+    name: {
+      type: String,
+      trim: true
+    },
+    value: {
+      type: Number,
+      trim: true,
+      minLength: 1,
+      maxLength: 2
+    },
+  }],
+  chrArmor: [{
+    name: {
+      type: String,
+      trim: true
+    },
+    value: {
+      type: Number,
+      trim: true,
+      minLength: 1,
+      maxLength: 2
+    },
+  }],
+  chrHealth: [{
+    name: {
+      type: String,
+      trim: true
+    },
+    value: {
+      type: Number,
+      trim: true,
+      minLength: 1,
+      maxLength: 2
+    },
+  }],
+  chrSkills: [{
+    name: {
+      type: String,
+      trim: true
+    },
+    value: {
+      type: Number,
+      trim: true,
+      minLength: 1,
+      maxLength: 2
+    },
+  }],
   date: { type: Date, default: Date.now }
-  
+
 });
 
 const Character = mongoose.model("Character", characterSchema);

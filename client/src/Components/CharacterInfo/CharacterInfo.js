@@ -1,6 +1,13 @@
 import React from 'react'
 
-function CharacterInfo() {
+function CharacterInfo(props) {
+
+    const handleChange = (e) => {
+        // Whenever a form with this function changes, it will run the parent function to save state.
+        props.onChange( e.target );
+    };
+
+
     return (
         <div className="container-sm">
             <form>
@@ -8,7 +15,7 @@ function CharacterInfo() {
                 <h3>Who are you?</h3>
                     <div className="col-sm">
                         <label for="validationServer01">Name</label>
-                        <input type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
+                        <input onChange={handleChange} name="Name"  type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
                         {/* <div className="valid-feedback">
                         Looks good!
                         </div> */}
@@ -17,14 +24,15 @@ function CharacterInfo() {
                     <div className="form-row row">
                         <div className="col-sm-4 mb-4">
                             <label for="validationServer03">Class</label>
-                            <input type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
+                            <input onChange={handleChange} name="Class" type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
                             {/* <div className="invalid-feedback">
                             Please provide a Class or Subclass.
                             </div> */}
                         </div>
                         <div className="col-sm-4 mb-4 form-group">
                             <label for="validationServer04">Race</label>
-                            <select className="form-control" id="raceselect">
+                            <select onChange={handleChange} name="Race" className="form-control" id="raceselect">
+                            <option>Select</option>
                             <option id="dwarf">Dwarf</option>
                             <option id="elf">Elf</option>
                             <option id="human">Human</option>
@@ -41,7 +49,8 @@ function CharacterInfo() {
                         </div>
                         <div className="col-sm-4 mb-4">
                         <label for="validationServer05">Alignment</label>
-                        <select className="form-control" id="alignment">
+                        <select onChange={handleChange} name="Alignment" className="form-control" id="alignment">
+                        <option>Select</option>
                         <option id="lg">Lawful Good</option>
                         <option id="ng">Neutral Good</option>
                         <option id="cg">Chaotic Good</option>
@@ -59,7 +68,7 @@ function CharacterInfo() {
                     <div className="form-row row">
                         <h3>Your Story</h3>
                         <div className="input-group col-md-3 mb-3">
-                            <textarea className="form-control" aria-label="With textarea" id="characterstory"></textarea>
+                            <textarea onChange={handleChange} name="Story" className="form-control" aria-label="With textarea" id="characterstory"></textarea>
                         </div>
                     </div>
                 </div>

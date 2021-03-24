@@ -8,8 +8,7 @@ import Wrapper from "../Components/Wrapper/Wrapper";
 import { PostList, PostListItem } from "../Components/PostList/PostList";
 import "./Home.css";
 import axios from "axios";
-// --- For authentication, allows you to stay logged in --- //
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
@@ -58,10 +57,12 @@ const Home = () => {
         // setPosts([...posts, data]);
       });
 
+
     // clears the input field after submitting
     setPostMessage("");
     // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
     // console.log(data);
+
   };
 
   // loads all the posts
@@ -131,7 +132,6 @@ const Home = () => {
 
   const { userData } = useContext(AccountContext);
   const messagesEndRef = useRef(null);
-
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -140,18 +140,18 @@ const Home = () => {
     scrollToBottom();
   });
 
-  //--------------------------------------------
-  //Activate this block of code when appropriate
-  //Function:  If the user is not logged in, will go
-  //back to the login page.
+  const history = useHistory();
 
-  // const history = useHistory();
 
-  // useEffect(() => {
-  //   if (!userData.account) {
-  //     history.push("/login");
-  //   }
-  // }, [userData.account, history])
+  //If you are not loggedin - go back to the log-in page
+  useEffect(() => {
+    if (!userData.pending && !userData.account) {
+      history.push("/login");
+    }
+    if (!userData.pending && !userData.account?.charCreated) {
+      history.push("/character");
+    }
+  }, [userData.pending, userData.account, history])
 
   //--------------------------------------------
   return (
@@ -214,7 +214,7 @@ const Home = () => {
                           accountName={post.accountName}
                           message={post.message}
                           myAccount={
-                            post.accountId === userData.account?.id
+                            (!userData.pending && (post.accountId === userData.account?.id))
                               ? "true"
                               : "false"
                           }
