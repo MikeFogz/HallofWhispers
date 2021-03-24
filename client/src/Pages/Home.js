@@ -134,7 +134,7 @@ const Home = () => {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "auto", block: "end", inline: "nearest"});
-    console.log(messagesEndRef)
+    // console.log(messagesEndRef)
     
   };
 
@@ -155,7 +155,7 @@ const Home = () => {
   //   }
   // }, [userData.account, history])
 
-  console.log(userData.character?.length === 0);
+  // console.log(userData.character?.length === 0);
 
   //--------------------------------------------
   return (

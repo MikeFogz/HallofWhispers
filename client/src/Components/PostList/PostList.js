@@ -23,8 +23,14 @@ export function PostListItem({
 
   useEffect(() => {
     scrollToTop();
+
   });
 
+  // const getUserWithPosts = (accountName) => {
+  //   return Account.findOne({ accountName: accountName}).populate("posts").exec((err, posts) => {
+  //     console.log(("Poluated User " + posts));
+  //   })
+  // }
   return (
     <li
       className={`list-group-item ${
@@ -38,6 +44,7 @@ export function PostListItem({
             <div style={{ float: "right" }}>
               <p className="timestamp">
                 {accountName} Posted: {moment.utc(date).local().format("LLL")}
+                {/* {console.log(accountName)} */}
               </p>
             </div>
           </div>
