@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema({
+const ChatMessageSchema = new Schema({
   message: {
     type: String,
     trim: true,
@@ -13,17 +13,16 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  accountId: {
+  id: {
     type: String,
     required: true,
   },
-  accountName: {
+  displayName: {
     type: String,
-   
-    
+    trim: true,
   }
 });
 
-const Post = mongoose.model("Post", PostSchema);
+const ChatMessage = mongoose.model("ChatMessage", ChatMessageSchema);
 
-module.exports = Post;
+module.exports = ChatMessage;

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 //import React from 'react';
 import CharacterInfo from '../Components/CharacterInfo/CharacterInfo'
 import CharacterStats from '../Components/CharacterStats/CharacterStats';
-import axios from 'axios';
+// import axios from 'axios';
 import AccountContext from "../Context/AccountContext";
 import { useHistory } from "react-router-dom";
 import API from "../utils/API";
