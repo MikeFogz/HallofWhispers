@@ -87,7 +87,7 @@ function App() {
       <Wrapper>
         <AccountContext.Provider value={{ userData, setUserData }}>
           <Nav>
-            <button className="btn btn-dark" onClick={onClick} hidden={!userData.account}>Logout</button>
+            <button className="btn btn-dark" onClick={onClick} hidden={!userData.account}><i class="fa fa-sign-out"></i> Logout</button>
           </Nav>
           <Router>
             <Switch>

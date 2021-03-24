@@ -42,7 +42,7 @@ const Nav = ({ children }) => {
           {/* <ul className="navbar-nav mb-2 mb-lg-0"> */}
             <li className="nav-item login">
               <a className="nav-link" href="/login" hidden={userData.account}>
-                Login
+              <i class="fa fa-sign-in icon-beautify"></i> Login
               </a>
               {children}
             </li>
