@@ -10,20 +10,16 @@ export function PostList({ children }) {
 }
 
 
-export function PostListItem({ message, date, myAccount, accountId, accountName}) {
+export function PostListItem({ message, date, myAccount, accountName, accountId}) {
 
   const messagesEndRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToTop = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "center"});
   };
 
-  // newDate = moment.utc(date).local().format("LLL")
-  // console.log(newDate)
-
-
   useEffect(() => {
-    scrollToBottom();
+    scrollToTop();
   });
 
 
@@ -34,8 +30,8 @@ export function PostListItem({ message, date, myAccount, accountId, accountName}
           <p>{message}</p>
           <div ref={messagesEndRef}>
             <div style={{float: "right"}}>
-              <p className="timestamp">{accountId} {accountName}Posted: {moment.utc(date).local().format("LLL")}</p>
-              {/* instead of "Message" we can put the Username there */}
+              <p className="timestamp">{accountName} Posted: {moment.utc(date).local().format("LLL")}</p>
+
             </div>
           </div>
         </Row>

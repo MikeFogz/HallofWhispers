@@ -7,7 +7,7 @@ import "./StatCard.css";
 const StatCard = () => {
   return (
     <div>
-      <div className="card card-border"  style={{backgroundColor: "transparent",   textShadow: "4px 4px 8px black"}}>
+      <div className="card card-border"  style={{backgroundColor: "transparent",   textShadow: "4px 4px 8px grey"}}>
         <div className="card-body">
           <h5 className="card-title text-white">Power Stats</h5>
           <h6 className="card-subtitle mb-2 text-white">

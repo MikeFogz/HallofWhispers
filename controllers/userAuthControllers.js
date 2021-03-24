@@ -6,17 +6,21 @@ require("dotenv").config();
 
 module.exports = {
   register: async (req, res) => {
-    console.log("in register")
+    console.log("in register");
     try {
       const { email, password, passwordCheck, displayName } = req.body;
       if (!email || !password || !passwordCheck || !displayName) {
-        return res.status(400).json({ msg: "Not all fields have been entered" });
+        return res
+          .status(400)
+          .json({ msg: "Not all fields have been entered" });
       }
       if (passwordCheck.length < 8) {
         return res.status(400).json({ msg: "You need a longer password" });
       }
       if (password !== passwordCheck) {
-        return res.status(400).json({ msg: "Password does not match password check" });
+        return res
+          .status(400)
+          .json({ msg: "Password does not match password check" });
       }
       const existingUser = await Account.findOne({ email: email });
 
@@ -24,7 +28,7 @@ module.exports = {
         return res.status(400).json({ msg: "User already exists" });
       }
 
-      // ---- ENCRYPTION USING BCRYPT --- 
+      // ---- ENCRYPTION USING BCRYPT ---
       //recommend 10 - 20, without any definition it is 15
       const salt = await bcrypt.genSalt();
       const passwordHash = await bcrypt.hash(password, salt);
@@ -45,25 +49,27 @@ module.exports = {
   },
 
   login: async (req, res) => {
+    console.log("hello from login");
     try {
       const { email, password } = req.body;
 
       if (!email || !password) {
-        res.status(400).json({ msg: "all required field were not sent" });
+        return res
+          .status(400)
+          .json({ msg: "all required field were not sent" });
       }
 
       const myAccount = await Account.findOne({ email: email });
 
       if (!myAccount) {
-        res.status(400).json({ msg: "User doesn't exist" });
+        return res.status(400).json({ msg: "User doesn't exist" });
       }
-
 
       //---  DECRYPTION HAPPENS ---//
       //compare input password with user encrypted password
-      const isMatch = await bcrypt.compare(password, myAccount.password)
+      const isMatch = await bcrypt.compare(password, myAccount.password);
       if (!isMatch) {
-        res.status(400).json({ msg: "this was an incorrect password" })
+        return res.status(400).json({ msg: "this was an incorrect password" });
       }
 
       //--- TOKEN CREATION ---//
@@ -85,6 +91,7 @@ module.exports = {
 
     } catch (err) {
       res.status(500).json({ msg: err.message });
+
     }
   },
 
@@ -102,7 +109,6 @@ module.exports = {
   },
 
   charCreatedAccount: async (req, res) => {
-
     try {
       const updatedAccount = await Account.findByIdAndUpdate({ _id: req.account }, { charCreated: true }, (err, user) => {
         if (err) {
@@ -120,6 +126,5 @@ module.exports = {
     } catch (error) {
       res.send(error.response);
     }
-  }
-
-}
+  },
+};
