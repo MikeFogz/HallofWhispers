@@ -1,6 +1,6 @@
 # HallofWhispers
 
-Hall of Whispers a collaborative React project designed to allow users to connect with others and create Dungeons and Dragons style adventures. RESTful connections enable CRUD functionality. A persistent connect with websockets (in the form of websocket.io) allows users to communicate with one another through direct messages enabled over handshaking.
+Hall of Whispers a collaborative React project designed to allow users to connect with others and create Dungeons and Dragons style adventures. RESTful connections enable CRUD functionality. A persistent connect with websockets (in the form of websocket.io) allows users to communicate with one another through direct messages enabled via handshaking.
 
 
 Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora? 
