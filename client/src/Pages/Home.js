@@ -41,13 +41,13 @@ const Home = () => {
     axios
       .post(
         "/api/posts",
-        { message: postMessage},
+        { message: postMessage },
         { headers: { "x-auth-token": token } }
       )
       .then((res) => {
         // console.log(res);
         const data = res.data;
-        const arr = [...posts] 
+        const arr = [...posts]
         arr.unshift(data)
         setPosts(arr)
 
@@ -152,6 +152,8 @@ const Home = () => {
     }
   }, [userData.pending, userData.account, history])
 
+  console.log(userData.character?.length === 0);
+
   //--------------------------------------------
   return (
     <div className="parent-container">
@@ -160,13 +162,14 @@ const Home = () => {
           <Row>
             <Col size="md-6">
               <h5 style={{ textShadow: "4px 4px 8px black" }}>
-                Valiant Rundis
+                {userData.character?.chrName}
               </h5>
               <strong style={{ textShadow: "4px 4px 8px red" }}>
-                Class Level:{" "}
+                {`The ${userData.character?.chrRace}`}
               </strong>
-              <br />
-              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>
+                {` ${userData.character?.chrClass}`}
+              </strong>
             </Col>
           </Row>
           <Row>
@@ -201,7 +204,7 @@ const Home = () => {
               </Row>
               <Row>
                 <Card>
-                
+
                   <PostList>
                     {posts.map((post, index) => {
                       return (

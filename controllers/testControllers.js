@@ -25,11 +25,12 @@ module.exports = {
       const newPost = new Post({
         // name: req.body.name,
         message: req.body.message,
-        date: req.body.date,
+        date: date.now(),
         accountId: req.account,
         accountName: req.account.accountName
       });
       console.log(req.account.accountName)
+      console.log(req.body.date)
       res.json(await newPost.save());
     } catch (error) {
       console.log("error with createPost:", error);

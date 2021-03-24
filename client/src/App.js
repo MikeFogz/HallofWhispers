@@ -60,8 +60,14 @@ function App() {
         console.log(data.charCreated);
         //TODO - set character data to userData global
         if (data.charCreated) {
-          console.log("load character data to page");
-        }
+          try {
+            const chrData = await axios.get(`/api/characters/${data.id}`);
+            console.log(chrData.data[0])
+            setUserData({ ...userData, token, account: data, pending: false, character: chrData.data[0] });
+          } catch (error) {
+            console.log(error)
+          };
+        };
       } catch (err) {
         console.log("User must login");
       }

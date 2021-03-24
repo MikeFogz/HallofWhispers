@@ -14,7 +14,8 @@ module.exports = {
   // Finds a character in the database by their ID.
   findChr: async (req, res) => {
     try {
-      res.json(await Character.findById(req.params.id));
+      console.log(req.params.id)
+      res.json(await Character.find({ chrAccountId: req.params.id }));
     } catch (err) {
       res.send(err);
     };
@@ -29,7 +30,6 @@ module.exports = {
         chrRace: req.body.chrRace,
         chrAlign: req.body.chrAlign,
         chrStory: req.body.chrStory,
-        // TODO: Auth middleware to pair account ID.
         chrAccountId: req.account,
         // This will create an array within our Character containing stat objects.
         chrStats: [
@@ -81,50 +81,103 @@ module.exports = {
   updateChr: async (req, res) => {
     try {
       res.json(
-        await Character.findByIdAndUpdate(req.body._id, { 
+        await Character.findByIdAndUpdate(req.body._id, {
           chrName: req.body.chrName,
           chrClass: req.body.chrClass,
           chrRace: req.body.chrRace,
           chrAlign: req.body.chrAlign,
           chrStory: req.body.chrStory,
-          chrStats: [ 
-            { name: "strength", value: req.body.chrStr }, 
-            { name: "dexterity", value: req.body.chrDex }, 
-            { name: "constitution", value: req.body.chrCon }, 
-            { name: "intelligence", value: req.body.chrInt }, 
-            { name: "wisdom", value: req.body.chrWis }, 
-            { name: "charisma", value: req.body.chrCha }, 
+          chrStats: [
+            { name: "strength", value: req.body.chrStr },
+            { name: "dexterity", value: req.body.chrDex },
+            { name: "constitution", value: req.body.chrCon },
+            { name: "intelligence", value: req.body.chrInt },
+            { name: "wisdom", value: req.body.chrWis },
+            { name: "charisma", value: req.body.chrCha },
           ],
           chrArmor: [
-            { name: "armor-class", value: req.body.chrAc }, 
-            { name: "speed", value: req.body.chrSpeed }, 
-            { name: "initiative", value: req.body.chrIni }, 
-            { name: "proficiency", value: req.body.chrProf }, 
+            { name: "armor-class", value: req.body.chrAc },
+            { name: "speed", value: req.body.chrSpeed },
+            { name: "initiative", value: req.body.chrIni },
+            { name: "proficiency", value: req.body.chrProf },
           ],
           chrHealth: [
-            { name: "max-hit-points", value: req.body.chrMaxHp }, 
-            { name: "current-hit-points", value: req.body.chrCurrHp }, 
+            { name: "max-hit-points", value: req.body.chrMaxHp },
+            { name: "current-hit-points", value: req.body.chrCurrHp },
           ],
           chrSkills: [
-            { name: "acrobatics", value: req.body.chrAcr }, 
-            { name: "animal-handling", value: req.body.chrAnHa }, 
-            { name: "arcana", value: req.body.chrArc }, 
-            { name: "athletics", value: req.body.chrAth }, 
-            { name: "deception", value: req.body.chrDec }, 
-            { name: "history", value: req.body.chrHis }, 
-            { name: "insight", value: req.body.chrIns }, 
-            { name: "intimidation", value: req.body.chrIntim }, 
-            { name: "investigation", value: req.body.chrInv }, 
-            { name: "medicine", value: req.body.chrMed }, 
-            { name: "nature", value: req.body.chrNat }, 
-            { name: "perception", value: req.body.chrPerc }, 
-            { name: "persuasion", value: req.body.chrPers }, 
-            { name: "religion", value: req.body.chrRel }, 
-            { name: "sleight-of-hand", value: req.body.chrSoh }, 
-            { name: "stealth", value: req.body.chrSte }, 
-            { name: "survival", value: req.body.chrSur }, 
+            { name: "acrobatics", value: req.body.chrAcr },
+            { name: "animal-handling", value: req.body.chrAnHa },
+            { name: "arcana", value: req.body.chrArc },
+            { name: "athletics", value: req.body.chrAth },
+            { name: "deception", value: req.body.chrDec },
+            { name: "history", value: req.body.chrHis },
+            { name: "insight", value: req.body.chrIns },
+            { name: "intimidation", value: req.body.chrIntim },
+            { name: "investigation", value: req.body.chrInv },
+            { name: "medicine", value: req.body.chrMed },
+            { name: "nature", value: req.body.chrNat },
+            { name: "perception", value: req.body.chrPerc },
+            { name: "persuasion", value: req.body.chrPers },
+            { name: "religion", value: req.body.chrRel },
+            { name: "sleight-of-hand", value: req.body.chrSoh },
+            { name: "stealth", value: req.body.chrSte },
+            { name: "survival", value: req.body.chrSur },
           ],
-         }),
+        }),
+      );
+    } catch (err) {
+      res.send(err);
+    };
+  },
+
+  updateAlChr: async (req, res) => {
+    try {
+      res.json(
+        await Character.findOneAndUpdate({ chrAccountId: req.account }, {
+          chrName: req.body.chrName,
+          chrClass: req.body.chrClass,
+          chrRace: req.body.chrRace,
+          chrAlign: req.body.chrAlign,
+          chrStory: req.body.chrStory,
+          chrStats: [
+            { name: "strength", value: req.body.chrStr },
+            { name: "dexterity", value: req.body.chrDex },
+            { name: "constitution", value: req.body.chrCon },
+            { name: "intelligence", value: req.body.chrInt },
+            { name: "wisdom", value: req.body.chrWis },
+            { name: "charisma", value: req.body.chrCha },
+          ],
+          chrArmor: [
+            { name: "armor-class", value: req.body.chrAc },
+            { name: "speed", value: req.body.chrSpeed },
+            { name: "initiative", value: req.body.chrIni },
+            { name: "proficiency", value: req.body.chrProf },
+          ],
+          chrHealth: [
+            { name: "max-hit-points", value: req.body.chrMaxHp },
+            { name: "current-hit-points", value: req.body.chrCurrHp },
+          ],
+          chrSkills: [
+            { name: "acrobatics", value: req.body.chrAcr },
+            { name: "animal-handling", value: req.body.chrAnHa },
+            { name: "arcana", value: req.body.chrArc },
+            { name: "athletics", value: req.body.chrAth },
+            { name: "deception", value: req.body.chrDec },
+            { name: "history", value: req.body.chrHis },
+            { name: "insight", value: req.body.chrIns },
+            { name: "intimidation", value: req.body.chrIntim },
+            { name: "investigation", value: req.body.chrInv },
+            { name: "medicine", value: req.body.chrMed },
+            { name: "nature", value: req.body.chrNat },
+            { name: "perception", value: req.body.chrPerc },
+            { name: "persuasion", value: req.body.chrPers },
+            { name: "religion", value: req.body.chrRel },
+            { name: "sleight-of-hand", value: req.body.chrSoh },
+            { name: "stealth", value: req.body.chrSte },
+            { name: "survival", value: req.body.chrSur },
+          ],
+        }),
       );
     } catch (err) {
       res.send(err);
