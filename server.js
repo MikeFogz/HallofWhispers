@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
   //socket.emit only seen by user
   socket.emit("new", {
     from: "Admin",
-    message: "Welcome the DND App",
+    message: "Live Chat with DNDMs",
   });
   // broadcast message when a user connects to all clients but user doesn't see message
   socket.broadcast.emit("newUser", {

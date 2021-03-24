@@ -9,7 +9,9 @@ module.exports = {
   getPosts: async (req, res) => {
     // res.send({msg: "success from getPosts"})
     try {
-      const allPosts = await Post.find();
+      const allPosts = await Post.find().sort({
+        date: -1
+      });
       // console.log(allPosts);
       res.json(allPosts);
     } catch (error) {
@@ -27,7 +29,7 @@ module.exports = {
         accountId: req.account,
         accountName: req.account.accountName
       });
-      // console.log(req.account.accountName)
+      console.log(req.account.accountName)
       res.json(await newPost.save());
     } catch (error) {
       console.log("error with createPost:", error);

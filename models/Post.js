@@ -19,7 +19,7 @@ const PostSchema = new Schema({
   },
   accountName: {
     type: String,
-    required: true,
+   
     
   }
 });

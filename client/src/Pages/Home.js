@@ -39,22 +39,27 @@ const Home = () => {
     e.preventDefault();
     // get local token
     let token = localStorage.getItem("auth-token");
-    // clears the input field after submitting
-    setPostMessage("");
 
     axios
       .post(
         "/api/posts",
-        { message: postMessage },
+        { message: postMessage},
         { headers: { "x-auth-token": token } }
       )
       .then((res) => {
         // console.log(res);
         const data = res.data;
+        const arr = [...posts] 
+        arr.unshift(data)
+        setPosts(arr)
+
+
         // console.log(data);
-        setPosts([...posts, data]);
+        // setPosts([...posts, data]);
       });
 
+    // clears the input field after submitting
+    setPostMessage("");
     // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
     // console.log(data);
   };
