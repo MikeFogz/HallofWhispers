@@ -11,7 +11,7 @@ import AccountContext from "./Context/AccountContext";
 import axios from "axios";
 import RegisterForm from "./Components/RegisterForm/RegisterForm";
 import LoginForm from "./Components/LoginForm/LoginForm";
-
+import background from "../src/assets/images/vintage-concrete.png"
 
 function LoginRegister() {
 
@@ -42,6 +42,7 @@ function App() {
     account: undefined,
     token: undefined,
     pending: true,
+    character: undefined
   });
 
 
@@ -56,6 +57,11 @@ function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({ token, account: data, pending: false });
+        console.log(data.charCreated);
+        //TODO - set character data to userData global
+        if (data.charCreated) {
+          console.log("load character data to page");
+        }
       } catch (err) {
         console.log("User must login");
       }
@@ -77,7 +83,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <AccountContext.Provider value={{ userData, setUserData }}>
           <Nav>
@@ -92,7 +98,7 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/login">
-                <LoginRegister />
+                <Login />
               </Route>
               <Route exact path="/" component={Home} />
             </Switch>

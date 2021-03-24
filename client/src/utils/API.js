@@ -1,6 +1,6 @@
 import axios from "axios";
 
-  // get all posts
+// get all posts
 //   getPosts: function () {
 //     return axios.get("/api/posts");
 //   },
@@ -14,7 +14,10 @@ const findAll = () => {
 };
 
 const createChr = (characterData) => {
-    return axios.post("/api/characters", characterData);
+    let token = localStorage.getItem("auth-token");
+    return axios.post("/api/characters", characterData, {
+        headers: { "x-auth-token": token }
+    })
 };
 
 
