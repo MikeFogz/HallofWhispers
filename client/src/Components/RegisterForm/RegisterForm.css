@@ -8,16 +8,15 @@
   min-height: 100vh;
 }
 .user_card {
-  height: 400px;
+  height: auto;
   width: 350px;
   margin-top: auto;
   margin-bottom: auto;
-  background: #f39c12;
   position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 10px;
+  padding-top: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);

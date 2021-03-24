@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./CharacterStats.css"
+import AccountContext from "../../Context/AccountContext";
 
 function CharacterStats(props) {
+    const { userData } = useContext(AccountContext);
 
     const handleChange = (e) => {
         // Whenever a form with this function changes, it will run the parent function to save state.
@@ -19,6 +21,7 @@ function CharacterStats(props) {
                     <form>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">Strength 
+
                                 <input style={{float: "right"}} onChange={handleChange} name="Strength" className="stat-list " type="number" placeholder="10" id="strength"></input>
                             </li>
                             <li className="list-group-item">Dexterity 
@@ -35,6 +38,7 @@ function CharacterStats(props) {
                             </li>
                             <li className="list-group-item">Charisma 
                                 <input style={{float: "right"}} onChange={handleChange} name="Charisma" className="stat-list " type="number" placeholder="10" id="charisma"></input>
+
                             </li>
                         </ul>
                     </form>
@@ -49,6 +53,7 @@ function CharacterStats(props) {
                     <form>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">AC 
+
                             <input style={{float: "right"}} onChange={handleChange} name="ArmorClass" className="stat-list" type="number" placeholder="10" id="ac"></input>
                         </li>
                         <li className="list-group-item">Speed 
@@ -59,6 +64,7 @@ function CharacterStats(props) {
                         </li>
                         <li className="list-group-item">Proficiency 
                             <input style={{float: "right"}} onChange={handleChange} name="Proficiency" className="stat-list" type="number" placeholder="10" id="proficiency"></input>
+
                         </li>
                     </ul>
                     </form>
@@ -72,10 +78,12 @@ function CharacterStats(props) {
                     <form>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Max Hit Points
+
                             <input style={{float: "right"}} onChange={handleChange} name="MaxHitPoints" className="stat-list" type="number" placeholder="10" id="max-hp"></input>
                         </li>
                         <li className="list-group-item">Current Hit Points
                             <input style={{float: "right"}} onChange={handleChange} name="CurrentHitPoints" className="stat-list" type="number" placeholder="10" id="hp"></input>
+
                         </li>
                     </ul>
                     </form>
@@ -89,6 +97,7 @@ function CharacterStats(props) {
                     <form>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">Acrobatics
+
                             <input style={{float: "right"}} onChange={handleChange} name="Acrobatics" className="stat-list" type="number" placeholder="0" id="acrobatics"></input>
                         </li>
                         <li className="list-group-item">Animal Handling 

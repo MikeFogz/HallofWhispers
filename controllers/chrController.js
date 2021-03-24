@@ -14,7 +14,8 @@ module.exports = {
   // Finds a character in the database by their ID.
   findChr: async (req, res) => {
     try {
-      res.json(await Character.findById(req.params.id));
+      console.log(req.params.id)
+      res.json(await Character.find({ chrAccountId: req.params.id }));
     } catch (err) {
       res.send(err);
     };
@@ -29,7 +30,6 @@ module.exports = {
         chrRace: req.body.chrRace,
         chrAlign: req.body.chrAlign,
         chrStory: req.body.chrStory,
-        // TODO: Auth middleware to pair account ID.
         chrAccountId: req.account,
         // This will create an array within our Character containing stat objects.
         chrStats: [

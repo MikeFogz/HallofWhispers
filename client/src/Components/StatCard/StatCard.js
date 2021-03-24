@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import PowerStats from "../PowerStats/PowerStats";
 import Col from "../Col/Col";
 import Row from "../Row/Row";
 import "./StatCard.css";
+import AccountContext from "../../Context/AccountContext";
 
-const StatCard = () => {
+const StatCard = (prop) => {
+  const { userData } = useContext(AccountContext);
+
   return (
     <div>
       <div className="card card-border"  style={{backgroundColor: "transparent",   textShadow: "4px 4px 8px grey"}}>
@@ -15,27 +18,27 @@ const StatCard = () => {
           </h6>
           <Row className="row">
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Strength" number={10} bottomNumber={5} />
-              <PowerStats title="Dexterity" number={10} bottomNumber={5} />
+              <PowerStats title="Strength" number={userData.character && userData.character[0].chrStats[0].value} />
+              <PowerStats title="Dexterity" number={userData.character && userData.character[0].chrStats[1].value} />
             </Col>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Constitution" number={10} bottomNumber={5} />
-              <PowerStats title="Intelligence" number={10} bottomNumber={5} />
+              <PowerStats title="Constitution" number={userData.character && userData.character[0].chrStats[2].value} />
+              <PowerStats title="Intelligence" number={userData.character && userData.character[0].chrStats[3].value} />
             </Col>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Wisdom" number={10} bottomNumber={5} />
-              <PowerStats title="Charisma" number={10} bottomNumber={5} />
+              <PowerStats title="Wisdom" number={userData.character && userData.character[0].chrStats[4].value} />
+              <PowerStats title="Charisma" number={userData.character && userData.character[0].chrStats[5].value} />
             </Col>
           </Row>
           <Row>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Armor" number={10} />
+              <PowerStats title="Armor" number={userData.character && userData.character[0].chrArmor[0].value} />
             </Col>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Max HP" number={10} />
+              <PowerStats title="Max HP" number={userData.character && userData.character[0].chrHealth[0].value} />
             </Col>
             <Col size="md-4 s-4 xs-4">
-              <PowerStats title="Current HP" number={10} />
+              <PowerStats title="Current HP" number={userData.character && userData.character[0].chrHealth[1].value} />
             </Col>
           </Row>
         </div>

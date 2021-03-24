@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import AccountContext from "../../Context/AccountContext";
 
 function CharacterInfo(props) {
+    const { userData } = useContext(AccountContext);
 
     const handleChange = (e) => {
         // Whenever a form with this function changes, it will run the parent function to save state.
@@ -9,13 +11,13 @@ function CharacterInfo(props) {
 
 
     return (
-        <div className="container-sm">
+        < div className="container-sm">
             <form>
                 <div className="form-row row">
                 <h3>Who are you?</h3>
                     <div className="col-sm">
                         <label for="validationServer01">Name</label>
-                        <input onChange={handleChange} name="Name"  type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
+                        <input onChange={handleChange} name="Name" type="text" className="form-control" id="validationServer01" defaultValue={userData.character && userData.character[0].chrName} placeholder="Full Name, Title" required/>
                         {/* <div className="valid-feedback">
                         Looks good!
                         </div> */}
@@ -24,7 +26,7 @@ function CharacterInfo(props) {
                     <div className="form-row row">
                         <div className="col-sm-4 mb-4">
                             <label for="validationServer03">Class</label>
-                            <input onChange={handleChange} name="Class" type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
+                            <input onChange={handleChange} name="Class" type="text" className="form-control" id="validationServer03" defaultValue={userData.character && userData.character[0].chrClass} placeholder="Class" required/>
                             {/* <div className="invalid-feedback">
                             Please provide a Class or Subclass.
                             </div> */}
@@ -68,7 +70,7 @@ function CharacterInfo(props) {
                     <div className="form-row row">
                         <h3>Your Story</h3>
                         <div className="input-group col-md-3 mb-3">
-                            <textarea onChange={handleChange} name="Story" className="form-control" aria-label="With textarea" id="characterstory"></textarea>
+                            <textarea onChange={handleChange} name="Story" className="form-control" aria-label="With textarea" id="characterstory" defaultValue={userData.character && userData.character[0].chrStory}></textarea>
                         </div>
                     </div>
                 </div>

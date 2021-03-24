@@ -21,7 +21,7 @@
   padding-top: 18vh;
   padding-bottom: 5vh;
   height: 100%;
-  /* background: #bdc3c7; */
+  background: url(../assets/images/vintage-concrete.png);
   min-height: 100vh;
 }
 .user_card {

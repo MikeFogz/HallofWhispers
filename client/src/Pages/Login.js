@@ -12,7 +12,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "../Components/RegisterForm/RegisterForm";
 import LoginForm from "../Components/LoginForm/LoginForm";
 
-
 const Login = () => {
   const [formMode, setFormMode] = useState("login")
 
