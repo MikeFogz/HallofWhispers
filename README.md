@@ -1,4 +1,8 @@
 # HallofWhispers
+
+Hall of Whispers a collaborative React project designed to allow users to connect with others and create Dungeons and Dragons style adventures. RESTful server requests and responses enable CRUD functionality saved in a Mongo Database. Secondly, a persistent connection with websockets (in the form of websocket.io) allows users to communicate with one another through direct messages enabled via handshaking.
+
+
 Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora? 
 
 
@@ -31,6 +35,20 @@ Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora?
 5.  In `/client` directory run `npm run start` to launch the local host application and display.
 
 ## Technologies
+
+- [React](https://reactjs.org/docs/create-a-new-react-app.html) `create-react-app` executable in node.
+
+- [Node.js](https://nodejs.org/en/docs/) 
+- [NPM/NPX](https://docs.npmjs.com/)
+- ["axios": "^0.21.1"](https://www.npmjs.com/package/axios)
+- ["bcryptjs": "^2.4.3"](https://www.npmjs.com/package/bcryptjs)
+- ["concurrently": "^6.0.0"](https://www.npmjs.com/package/concurrently)
+- ["cors": "^2.8.5"](https://www.npmjs.com/package/cors)
+- ["dotenv": "^8.2.0"](https://www.npmjs.com/package/dotenv)
+- ["express": "^4.17.1"](https://expressjs.com/en/guide/routing.html)
+- ["jsonwebtoken": "^8.5.1"](https://www.npmjs.com/package/jsonwebtoken)
+- ["mongoose": "^5.12.0"](https://www.npmjs.com/package/mongoose)
+- ["socket.io": "^4.0.0"](https://socket.io/)
 
 ## Standards
 
