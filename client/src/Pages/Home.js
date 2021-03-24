@@ -161,13 +161,14 @@ const Home = () => {
           <Row>
             <Col size="md-6">
               <h5 style={{ textShadow: "4px 4px 8px black" }}>
-                Valiant Rundis
+                {userData.character && userData.character[0].chrName}
               </h5>
               <strong style={{ textShadow: "4px 4px 8px red" }}>
-                Class Level:{" "}
+                {`The ${userData.character && userData.character[0].chrRace}`}
               </strong>
-              <br />
-              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>
+                {` ${userData.character && userData.character[0].chrClass}`}
+              </strong>
             </Col>
           </Row>
           <Row>
