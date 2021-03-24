@@ -13,7 +13,6 @@ import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
-import background from "../assets/images/vintage-concrete.png";
 const moment = require("moment");
 
 const Home = () => {
@@ -155,19 +154,20 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <div className="parent-container">
       <Wrapper>
         <Container>
           <Row>
             <Col size="md-6">
               <h5 style={{ textShadow: "4px 4px 8px black" }}>
-                Valiant Rundis
+                {userData.character && userData.character[0].chrName}
               </h5>
               <strong style={{ textShadow: "4px 4px 8px red" }}>
-                Class Level:{" "}
+                {`The ${userData.character && userData.character[0].chrRace}`}
               </strong>
-              <br />
-              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
+              <strong style={{ textShadow: "4px 4px 8px red" }}>
+                {` ${userData.character && userData.character[0].chrClass}`}
+              </strong>
             </Col>
           </Row>
           <Row>

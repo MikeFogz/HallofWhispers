@@ -60,8 +60,13 @@ function App() {
         console.log(data.charCreated);
         //TODO - set character data to userData global
         if (data.charCreated) {
-          console.log("load character data to page");
-        }
+          try {
+            const chrData = await axios.get(`/api/characters/${data.id}`);
+            setUserData({ ...userData, token, account: data, pending: false, character: chrData.data });
+          } catch (error) {
+            console.log(error)
+          };
+        };
       } catch (err) {
         console.log("User must login");
       }
@@ -87,7 +92,7 @@ function App() {
       <Wrapper>
         <AccountContext.Provider value={{ userData, setUserData }}>
           <Nav>
-            <button onClick={onClick}>Logout</button>
+            <button className="btn btn-dark" onClick={onClick} hidden={!userData.account}>Logout</button>
           </Nav>
           <Router>
             <Switch>
