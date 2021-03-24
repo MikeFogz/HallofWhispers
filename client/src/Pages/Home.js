@@ -13,7 +13,6 @@ import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
-import background from "../assets/images/vintage-concrete.png";
 const moment = require("moment");
 
 const Home = () => {
@@ -155,7 +154,7 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div className="parent-container" style={{ backgroundImage: `url(${background})` }}>
+    <div className="parent-container">
       <Wrapper>
         <Container>
           <Row>

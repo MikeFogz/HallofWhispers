@@ -1,3 +1,6 @@
+.page-container {
+  background: url(../assets/images/vintage-concrete.png);
+}
 h5 {
   color: red;
 }
@@ -11,3 +14,4 @@ button {
   height: 100%;
   min-height: 100vh;
 }
+

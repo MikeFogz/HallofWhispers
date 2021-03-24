@@ -6,6 +6,7 @@ import axios from 'axios';
 import AccountContext from "../Context/AccountContext";
 import { useHistory } from "react-router-dom";
 import API from "../utils/API";
+import "../Pages/Character.css";
 
 const Character = () => {
   const { userData, setUserData } = useContext(AccountContext);
@@ -113,7 +114,7 @@ const Character = () => {
     <div>
       {/* This button is a placeholder for when create character is created */}
       {/* <button onClick={onClick}>Create Character</button> */}
-      <div class="container">
+      <div className="container">
         <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
         <h1>Hall of Whisper's Almanac of Heroes</h1>
         <p>Mark your place in the records.</p>
