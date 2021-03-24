@@ -36,8 +36,8 @@ Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora?
 
 - [Node.js](https://nodejs.org/en/docs/) 
 - [NPM/NPX](https://docs.npmjs.com/)
-- "axios": "^0.21.1",
-- "bcryptjs": "^2.4.3",
+- ["axios": "^0.21.1"](https://www.npmjs.com/package/axios)
+- ["bcryptjs": "^2.4.3"](https://www.npmjs.com/package/bcryptjs)
 - ["concurrently": "^6.0.0"](https://www.npmjs.com/package/concurrently)
 - ["cors": "^2.8.5"](https://www.npmjs.com/package/cors)
 - ["dotenv": "^8.2.0"](https://www.npmjs.com/package/dotenv)
