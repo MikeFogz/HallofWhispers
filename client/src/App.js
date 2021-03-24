@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./Components/Nav/Nav";
@@ -62,7 +62,8 @@ function App() {
         if (data.charCreated) {
           try {
             const chrData = await axios.get(`/api/characters/${data.id}`);
-            setUserData({ ...userData, token, account: data, pending: false, character: chrData.data });
+            console.log(chrData.data[0])
+            setUserData({ ...userData, token, account: data, pending: false, character: chrData.data[0] });
           } catch (error) {
             console.log(error)
           };
@@ -92,7 +93,7 @@ function App() {
       <Wrapper>
         <AccountContext.Provider value={{ userData, setUserData }}>
           <Nav>
-            <button className="btn btn-dark" onClick={onClick} hidden={!userData.account}>Logout</button>
+            <button className="btn btn-dark zero-box beautify-text" onClick={onClick} hidden={!userData.account}><i class="fa fa-sign-out"></i> LOGOUT</button>
           </Nav>
           <Router>
             <Switch>
