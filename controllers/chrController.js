@@ -30,7 +30,6 @@ module.exports = {
         chrRace: req.body.chrRace,
         chrAlign: req.body.chrAlign,
         chrStory: req.body.chrStory,
-        // TODO: Auth middleware to pair account ID.
         chrAccountId: req.account,
         // This will create an array within our Character containing stat objects.
         chrStats: [

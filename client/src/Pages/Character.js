@@ -35,7 +35,7 @@ const Character = () => {
     if (!userData.pending && !userData.account) {
       history.push("/login");
     } else {
-      
+
     };
   }, [userData.pending, userData.account, history])
 

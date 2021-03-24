@@ -8,7 +8,6 @@ const characterSchema = new Schema({
   chrRace: { type: String, trim: true, required: true },
   chrAlign: { type: String, trim: true, required: true },
   chrStory: { type: String },
-  // TODO: Pair account ID auth to character creation.
   chrAccountId: {
     type: String,
     required: true,
