@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -19,9 +18,7 @@ const PostSchema = new Schema({
   },
   accountName: {
     type: String,
-   
-    
-  }
+  },
 });
 
 const Post = mongoose.model("Post", PostSchema);
