@@ -5,7 +5,7 @@ import Nav from "./Components/Nav/Nav";
 import Wrapper from "./Components/Wrapper/Wrapper";
 import Character from "./Pages/Character";
 import Home from "./Pages/Home";
-// import Login from "./Pages/Login";
+import Login from "./Pages/Login";
 // import Register from "./Pages/TestPages/Register";
 import AccountContext from "./Context/AccountContext";
 import axios from "axios";

@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="page_container"  style={{ backgroundImage: `url(${background})` }}>
+      <div className="page_container">
         <div className="d-flex justify-content-center h-100">
 
           {/* start card container */}
