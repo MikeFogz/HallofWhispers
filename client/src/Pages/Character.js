@@ -35,7 +35,9 @@ const Character = () => {
   useEffect(() => {
     if (!userData.pending && !userData.account) {
       history.push("/login");
-    }
+    } else {
+
+    };
   }, [userData.pending, userData.account, history])
 
 
@@ -94,7 +96,6 @@ const Character = () => {
         console.log("update character");
       } else {
         // When the Submit to Hall Records button is clicked, it creates a character with the below params.
-        //API.createChr(characterData).catch(err => console.log(err));
         const mychr = await API.createChr(characterData);
         // API.findAll().then(res => console.log(res.data));
         //changing character creation in database

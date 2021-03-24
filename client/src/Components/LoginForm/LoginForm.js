@@ -29,6 +29,7 @@ const LoginForm = (props) => {
             localStorage.setItem("auth-token", data.token);
             if (data.account.charCreated) {
                 history.push("/");
+                window.location.reload();
             } else {
                 // console.log("does it go into character?")
                 history.push("/character");

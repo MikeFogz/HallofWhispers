@@ -13,6 +13,10 @@ const findAll = () => {
     return axios.get("/api/characters");
 };
 
+const findChr = (id) => {
+    return axios.get(`/api/characters/:${id}`)
+};
+
 const createChr = (characterData) => {
     let token = localStorage.getItem("auth-token");
     return axios.post("/api/characters", characterData, {
@@ -23,6 +27,7 @@ const createChr = (characterData) => {
 
 const routes = {
     findAll,
+    findChr,
     createChr,
 };
 
