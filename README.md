@@ -36,6 +36,15 @@ Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora?
 
 - [Node.js](https://nodejs.org/en/docs/) 
 - [NPM/NPX](https://docs.npmjs.com/)
+- "axios": "^0.21.1",
+- "bcryptjs": "^2.4.3",
+- ["concurrently": "^6.0.0"](https://www.npmjs.com/package/concurrently)
+- ["cors": "^2.8.5"](https://www.npmjs.com/package/cors)
+- ["dotenv": "^8.2.0"](https://www.npmjs.com/package/dotenv)
+- ["express": "^4.17.1"](https://expressjs.com/en/guide/routing.html)
+- ["jsonwebtoken": "^8.5.1"](https://www.npmjs.com/package/jsonwebtoken)
+- ["mongoose": "^5.12.0"](https://www.npmjs.com/package/mongoose)
+- ["socket.io": "^4.0.0"](https://socket.io/)
 
 ## Standards
 
