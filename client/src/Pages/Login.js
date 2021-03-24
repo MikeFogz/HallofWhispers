@@ -9,9 +9,9 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom'
 // import RegisterForm from "../Components/RegisterForm/RegisterForm"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import RegisterForm from "../Components/RegisterForm/RegisterForm";
 import LoginForm from "../Components/LoginForm/LoginForm";
+
 
 const Login = () => {
   const [formMode, setFormMode] = useState("login")
@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="page_container">
+      <div className="page_container"  style={{ backgroundImage: `url(${background})` }}>
         <div className="d-flex justify-content-center h-100">
 
           {/* start card container */}
@@ -59,7 +59,7 @@ const Login = () => {
             {/* start card logo container */}
             <div className="d-flex justify-content-center">
               <div className="brand_logo_container">
-                <img src="https://cdn.worldvectorlogo.com/logos/dragon-optical-1.svg" className="brand_logo" alt="logo" />
+                <img src="https://i.imgur.com/BGhAyqD.png" className="brand_logo" alt="HallofWhispersLogo" />
               </div>
             </div>
             {/* end card logo container */}

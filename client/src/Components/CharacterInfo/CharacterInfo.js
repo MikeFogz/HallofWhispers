@@ -1,80 +1,74 @@
 import React from 'react'
 
-function CharacterInfo() {
+function CharacterInfo(props) {
+
+    const handleChange = (e) => {
+        // Whenever a form with this function changes, it will run the parent function to save state.
+        props.onChange( e.target );
+    };
+
+
     return (
         <div className="container-sm">
             <form>
                 <div className="form-row row">
                 <h3>Who are you?</h3>
-                    <div className="col-sm-4 mb-3">
-                        <label for="validationServer01">First name</label>
-                        <input type="text" className="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required/>
-                        <div className="valid-feedback">
+                    <div className="col-sm">
+                        <label for="validationServer01">Name</label>
+                        <input onChange={handleChange} name="Name"  type="text" className="form-control" id="validationServer01" placeholder="Full Name, Title" required/>
+                        {/* <div className="valid-feedback">
                         Looks good!
-                        </div>
-                    </div>
-                    <div className="col-sm-4 mb-3">
-                        <label for="validationServer02">Last name</label>
-                        <input type="text" className="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required/>
-                        <div className="valid-feedback">
-                        Looks good!
-                        </div>
-                    </div>
-                    <div className="col-sm-4 mb-3">
-                        <label for="validationServerUsername">Username</label>
-                        <div className="input-group">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="inputGroupPrepend3">@</span>
-                        </div>
-                        <input type="text" className="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required/>
-                        <div className="invalid-feedback">
-                            Please choose a username.
-                        </div>
-                        </div>
+                        </div> */}
                     </div>
                     </div>
                     <div className="form-row row">
-                        <div className="col-sm-3 mb-3">
+                        <div className="col-sm-4 mb-4">
                             <label for="validationServer03">Class</label>
-                            <input type="text" className="form-control is-invalid" id="validationServer03" placeholder="Class" required/>
-                            <div className="invalid-feedback">
+                            <input onChange={handleChange} name="Class" type="text" className="form-control" id="validationServer03" placeholder="Class" required/>
+                            {/* <div className="invalid-feedback">
                             Please provide a Class or Subclass.
-                            </div>
+                            </div> */}
                         </div>
-                        <div className="col-sm-3 mb-3 form-group">
+                        <div className="col-sm-4 mb-4 form-group">
                             <label for="validationServer04">Race</label>
-                            <select className="form-control" id="exampleFormControlSelect1">
-                            <option>Dwarf</option>
-                            <option>Elf</option>
-                            <option>Human</option>
-                            <option>Orc</option>
-                            <option>Tiefling</option>
+                            <select onChange={handleChange} name="Race" className="form-control" id="raceselect">
+                            <option>Select</option>
+                            <option id="dwarf">Dwarf</option>
+                            <option id="elf">Elf</option>
+                            <option id="human">Human</option>
+                            <option id="half-elf">Half Elf</option>
+                            <option id="halfling">Halfling</option>
+                            <option id="half-orc">Half Orc</option>
+                            <option id="orc">Orc</option>
+                            <option id="tiefling">Tiefling</option>
+                            <option id="warforged">Warforged</option>
                             </select>
-                            <div className="invalid-feedback">
+                            {/* <div className="invalid-feedback">
                             Please select a Race.
-                            </div>
+                            </div> */}
                         </div>
-                        <div className="col-sm-3 mb-3">
+                        <div className="col-sm-4 mb-4">
                         <label for="validationServer05">Alignment</label>
-                        <select className="form-control" id="alignment">
-                        <option>Lawful Good</option>
-                        <option>Neutral Good</option>
-                        <option>Chaotic Good</option>
-                        <option>Lawful Neutral</option>
-                        <option>Neutral</option>
-                        <option>Chaotic Neutral</option>
-                        <option>Lawful Evil</option>
-                        <option>Neutral Evil</option>
-                        <option>Chaotic Evil</option>
+                        <select onChange={handleChange} name="Alignment" className="form-control" id="alignment">
+                        <option>Select</option>
+                        <option id="lg">Lawful Good</option>
+                        <option id="ng">Neutral Good</option>
+                        <option id="cg">Chaotic Good</option>
+                        <option id="ln">Lawful Neutral</option>
+                        <option id="tn">Neutral</option>
+                        <option id="cn">Chaotic Neutral</option>
+                        <option id="le">Lawful Evil</option>
+                        <option id="ne">Neutral Evil</option>
+                        <option id="ce">Chaotic Evil</option>
                         </select>
-                            <div className="invalid-feedback">
+                            {/* <div className="invalid-feedback">
                             Please select an Alignment.
-                            </div>
+                            </div> */}
                         </div>
                     <div className="form-row row">
                         <h3>Your Story</h3>
                         <div className="input-group col-md-3 mb-3">
-                            <textarea className="form-control" aria-label="With textarea"></textarea>
+                            <textarea onChange={handleChange} name="Story" className="form-control" aria-label="With textarea" id="characterstory"></textarea>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,19 @@
-.my-account{
-  background-color: green;
+.my-account {
+  background-color: rgb(173, 231, 173);
+  text-align: right;
 }
 
-.not-my-account{
-  background-color: red; 
+/* .not-my-account {
+  background-color: rgb(201, 201, 201);
+} */
+
+.message {
+  margin-top: 20px;
 }
+
+.timestamp {
+  font-size: x-small;
+  font-style: italic;
+}
+
+/* Add Right and Left justifications */

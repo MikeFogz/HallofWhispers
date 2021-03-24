@@ -24,12 +24,11 @@ const RegisterForm = (props) => {
       history.push("/login");
 
     } catch (error) {
+
       console.log(error.response.data.msg);
       setErrorMessage(error.response.data.msg)
     }
   }
-
-
 
   const togglePassword = () => {
     if (passwordToggle === "password") {

@@ -3,12 +3,13 @@
   /* display: flex;
   justify-content: center;
   align-items: center; */
-
+  opacity: .8;
+  
 }
 
-/* .card-border {
+.card-border {
   border: none;
-} */
+}
 .power-title {
   padding-top: 5px;
 }
