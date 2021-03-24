@@ -40,7 +40,6 @@ function CharacterStats(props) {
                                 </li>
                             </ul>
                         </form>
-
                     </div>
                 </div>
                 <div className="col-sm">

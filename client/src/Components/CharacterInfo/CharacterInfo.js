@@ -30,6 +30,7 @@ function CharacterInfo(props) {
                         {/* <div className="invalid-feedback">
                             Please provide a Class or Subclass.
                             </div> */}
+
                     </div>
                     <div className="col-sm-4 mb-4 form-group">
                         <label for="validationServer04">Race</label>
