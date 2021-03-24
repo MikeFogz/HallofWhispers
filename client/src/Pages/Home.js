@@ -155,7 +155,7 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <div className="parent-container" style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
           <Row>
