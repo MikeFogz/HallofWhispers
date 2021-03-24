@@ -30,12 +30,12 @@ const Nav = ({ children }) => {
           <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item">
               <a className="nav-link link-font" aria-current="page" href="/home" hidden={!userData.account?.charCreated}>
-                Dashboard
+              <i class="fa fa-comment"></i> Dashboard
               </a>
             </li>
             <li className="nav-item misclick-deny link-font">
               <a className="nav-link" href="/character" hidden={!userData.account}>
-                Character
+              <i class="fa fa-users"></i> Character
               </a>
             </li>
           {/* </ul> */}

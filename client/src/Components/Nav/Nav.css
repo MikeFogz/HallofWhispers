@@ -32,7 +32,9 @@
 }
 
 .link-font {
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: 550 !important;
+  letter-spacing: -0.02em;
 }
 
 .misclick-deny {
