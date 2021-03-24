@@ -17,12 +17,12 @@ export function PostListItem({
 }) {
   const messagesEndRef = useRef(null);
 
-  const scrollToTop = () => {
+  const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
-    scrollToTop();
+    scrollToBottom();
   });
 
   return (

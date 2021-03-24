@@ -134,6 +134,8 @@ const Home = () => {
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    console.log(messagesEndRef)
+    
   };
 
   useEffect(() => {
