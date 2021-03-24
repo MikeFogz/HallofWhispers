@@ -31,6 +31,17 @@
   font-weight: 700;
 }
 
+.link-font {
+  font-size: 16px;
+}
+
+.misclick-deny {
+  margin-left: 1em;
+  margin-right: 5em;
+}
+
+
+
 /* mobile in portrait */
 @media only screen and (max-width : 480px) {
   .nav-logo {

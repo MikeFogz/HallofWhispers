@@ -29,11 +29,11 @@ const Nav = ({ children }) => {
         <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav d-flex justify-content-end">
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="/home" hidden={!userData.account?.charCreated}>
+              <a className="nav-link link-font" aria-current="page" href="/home" hidden={!userData.account?.charCreated}>
                 Dashboard
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item misclick-deny link-font">
               <a className="nav-link" href="/character" hidden={!userData.account}>
                 Character
               </a>
