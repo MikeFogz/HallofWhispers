@@ -32,7 +32,7 @@ Hall of Whispers (HoW) What is HoW? Why is HoW? How do you HoW? Who is Gamora?
 
 ## Technologies
 
-- create-react-app executable in node [React](https://reactjs.org/docs/create-a-new-react-app.html).
+- [React](https://reactjs.org/docs/create-a-new-react-app.html) `create-react-app` executable in node.
 
 - [Node.js](https://nodejs.org/en/docs/) 
 - [NPM/NPX](https://docs.npmjs.com/)
