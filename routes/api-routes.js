@@ -7,6 +7,11 @@ const {
   getPosts,
   createPost,
 } = require("../controllers/testControllers");
+
+const {
+  getChatMessage,
+  createChatMessage,
+} = require("../controllers/chatMessageControllers");
 // Running the test function from our controller when this route is hit.
 router.get("/test", test);
 
@@ -14,10 +19,19 @@ router.get("/posts", auth, getPosts);
 
 router.post("/posts", auth, createPost);
 
-// Authentication function s
-const { register, login, getAccount, charCreatedAccount } = require("../controllers/userAuthControllers");
+router.get("/messages", auth, getChatMessage);
 
-//User authenication routes 
+router.post("/messages", auth, createChatMessage);
+
+// Authentication function s
+const {
+  register,
+  login,
+  getAccount,
+  charCreatedAccount,
+} = require("../controllers/userAuthControllers");
+
+//User authenication routes
 
 router.post("/register", register);
 
@@ -27,13 +41,15 @@ router.get("/accounts", auth, getAccount);
 
 router.post("/characterCreation", auth, charCreatedAccount);
 
-const { findAll, findChr, createChr, deleteChr } = require("../controllers/chrController");
+const { findAll, findChr, createChr, updateChr, deleteChr } = require("../controllers/chrController");
 
 router.get("/characters", findAll);
 
 router.get("/characters/:id", findChr);
 
 router.post("/characters", auth, createChr);
+
+router.patch("/characters/update", updateChr);
 
 router.get("/characters/:id", deleteChr);
 

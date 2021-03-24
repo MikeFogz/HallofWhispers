@@ -10,11 +10,11 @@ import "./Home.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
 import socketIOClient from "socket.io-client";
-import background from "../assets/images/vintage-concrete.png"
-const moment = require("moment")
+import background from "../assets/images/vintage-concrete.png";
+const moment = require("moment");
 
 const Home = () => {
   // Setting initial state for posts
@@ -38,21 +38,30 @@ const Home = () => {
     e.preventDefault();
     // get local token
     let token = localStorage.getItem("auth-token");
-    // clears the input field after submitting
-    setPostMessage("");
 
     axios
       .post(
         "/api/posts",
-        { message: postMessage },
+        { message: postMessage},
         { headers: { "x-auth-token": token } }
       )
       .then((res) => {
         // console.log(res);
         const data = res.data;
+        const arr = [...posts] 
+        arr.unshift(data)
+        setPosts(arr)
+
+
         // console.log(data);
-        setPosts([...posts, data]);
+        // setPosts([...posts, data]);
       });
+
+
+    // clears the input field after submitting
+    setPostMessage("");
+    // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
+    // console.log(data);
 
   };
 
@@ -79,7 +88,7 @@ const Home = () => {
     });
     // connects every user
     socket.on("connect", () => {
-      console.log(socket.id);
+      // console.log(socket.id);
       setId(socket.id);
     });
     // connects title and shows on screen
@@ -88,7 +97,7 @@ const Home = () => {
       setWelcome(data.message);
     });
     socket.on("newUser", (data) => {
-      console.log(data);
+      // console.log(data);
     });
     socket.on("disconnect", () => {
       console.log("disconnected homie");
@@ -110,6 +119,8 @@ const Home = () => {
       {
         message: messages,
         id: id,
+        displayName: userData.account.accountName,
+        date: moment(Date.now()).format("h:mm a"),
       },
       (data) => {
         // alert(data)
@@ -120,7 +131,17 @@ const Home = () => {
   };
 
   const { userData } = useContext(AccountContext);
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  });
+
   const history = useHistory();
+
 
   //If you are not loggedin - go back to the log-in page
   useEffect(() => {
@@ -134,7 +155,6 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-
     <div style={{ backgroundImage: `url(${background})` }}>
       <Wrapper>
         <Container>
@@ -182,6 +202,7 @@ const Home = () => {
               </Row>
               <Row>
                 <Card>
+                
                   <PostList>
                     {posts.map((post, index) => {
                       return (
@@ -208,45 +229,41 @@ const Home = () => {
               <div>
                 <Card>
                   <p className="text-center">{welcome}</p>
-                  <div>
-                    {arr.map((chat, userData, post, index) => (
+                  <div ref={messagesEndRef}>
+                    {/* {console.log(arr)} */}
+                    {arr.map((chat, index) => (
                       <div key={index}>
-                        <p >
-                          {chat.message}
+                        <p>{chat.message}</p>
+                        <p style={{ float: "right" }} className="timestamp">
+                          {" "}
+                          {chat.displayName} sent at:{" "}
+                          {moment(chat.date).format("h:mm a")}
                         </p>
-                        <p>
-                          {userData.accountName} sent at:{moment.utc(post.date).local().format("hh:mm a")}
-                        </p>
-
+                        <br />
                       </div>
                     ))}
                   </div>
                 </Card>
-                <Container>
-                  <div className="d-flex">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter your message here"
-                      value={messages}
-                      onChange={(e) => {
-                        setMessages(e.target.value);
-                      }}
-                    />
-                    <button
-                      className="btn btn-primary"
-                      onClick={(e) => sendMessage(e)}
-                    >
-                      send
-                    </button>
-                  </div>
-                </Container>
+                <div className="d-flex">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter your message here"
+                    value={messages}
+                    onChange={(e) => {
+                      setMessages(e.target.value);
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary"
+                    onClick={(e) => sendMessage(e)}
+                  >
+                    send
+                  </button>
+                </div>
               </div>
               <br />
               <Dice onRoll={(value) => console.log(value)} size={50} />
-              {/* <div className="container">
-                <div id="dice-roll-simulator"></div>
-              </div> */}
             </Col>
           </Row>
         </Container>

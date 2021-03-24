@@ -106,6 +106,7 @@ const Character = () => {
     } catch (error) {
       console.log(error)
     }
+
   };
 
   return (

@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
   //socket.emit only seen by user
   socket.emit("new", {
     from: "Admin",
-    message: "Welcome the DND App",
+    message: "Live Chat with DNDMs",
   });
   // broadcast message when a user connects to all clients but user doesn't see message
   socket.broadcast.emit("newUser", {
@@ -36,21 +36,23 @@ io.on("connection", (socket) => {
     io.emit("message", {
       message: data.message,
       id: data.id,
+      displayName: data.displayName,
+      date: Date.now(),
     });
     callback("Message Send From Server");
   });
   // runs when client disconnects
   socket.on("disconnect", () => {
-    // console.log("user disconnected");
+    console.log("user disconnected");
     //io.emit informs all users
-    io.emit("message", "User has left the chat.")
+    // io.emit("message", "User has left the chat.")
   });
 });
 
-app.get("/", (req, res) => {
-  res.send("hello from chat server");
-  // res.json(res.data)
-});
+// app.get("/", (req, res) => {
+//   res.send("hello from chat server");
+// res.json(res.data)
+// });
 // After you run it, creates index.html file inside the "Build" folder.
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));

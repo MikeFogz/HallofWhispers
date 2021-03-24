@@ -5,10 +5,11 @@ import { useHistory } from "react-router-dom";
 
 
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
   const [form, setForm] = useState();
   const history = useHistory();
   const [passwordToggle, setPasswordToggle] = useState("password");
+  const [errorMessage, setErrorMessage] = useState("")
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,10 +24,9 @@ const RegisterForm = () => {
       history.push("/login");
 
     } catch (error) {
-      console.log(error.response);
 
-      alert(error.response.data.msg);
-
+      console.log(error.response.data.msg);
+      setErrorMessage(error.response.data.msg)
     }
   }
 
@@ -42,79 +42,68 @@ const RegisterForm = () => {
 
   return (
     <>
-      <div className="page_container">
-        <div className="d-flex justify-content-center h-100">
 
-          {/* start card container */}
-          <div className="user_card">
-            {/* start card logo container */}
-            <div className="d-flex justify-content-center">
-              <div className="brand_logo_container">
-                <img src="https://i.imgur.com/BGhAyqD.png" className="brand_logo" alt="logo" />
-              </div>
-            </div>
-            {/* end card logo container */}
-            <div className="d-flex justify-content-center form_container">
-
-              <form onSubmit={submit}>
-                <div className="input-group mb-3">
-                  <div className="input-group-append">
-                    <span className="input-group-text"><i className="fas fa-user"></i></span>
-                  </div>
-                  <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
-                </div>
-
-                {/* display name start */}
-                <div className="input-group mb-3">
-                  <div className="input-group-append">
-                    <span className="input-group-text"><i className="fas fa-user"></i></span>
-                  </div>
-                  <input onChange={onChange} type="text" name="displayName" className="form-control input_user" placeholder="display name" />
-                </div>
-                {/* display name end */}
-
-                {/* password start */}
-                <div className="input-group mb-2">
-                  <div className="input-group-append">
-                    <span className="input-group-text"><i className="fas fa-key"></i></span>
-                  </div>
-                  <input onChange={onChange} type={passwordToggle} name="password" className="form-control input_pass" placeholder="password" />
-                </div>
-                {/* password end */}
-
-                {/* password check start */}
-                <div className="input-group mb-2">
-                  <div className="input-group-append">
-                    <span className="input-group-text"><i className="fas fa-key"></i></span>
-                  </div>
-                  <input onChange={onChange} type={passwordToggle} name="passwordCheck" className="form-control input_pass" placeholder="retype password" />
-                </div>
-                {/* password check end */}
-
-                {/* show password checkbox start */}
-                <div class="form-group">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customControlInline" onClick={togglePassword} />
-                    <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
-                  </div>
-                </div>
-                {/* show password checkbox end */}
-
-
-                {/* button start */}
-                <div className="d-flex justify-content-center mt-3 login_container">
-                  <button type="submit" name="button" className="btn login_btn">Register</button>
-                </div>
-                {/* button end */}
-
-              </form>
-
-            </div>
-
+      <form onSubmit={submit}>
+        <div className="input-group mb-3">
+          <div className="input-group-append">
+            <span className="input-group-text"><i className="fas fa-user"></i></span>
           </div>
-          {/* end card container */}
+          <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
         </div>
-      </div>
+        <label classname="d-flex justify-content-center mt-3">{errorMessage}</label>
+
+        {/* display name start */}
+        <div className="input-group mb-3">
+          <div className="input-group-append">
+            <span className="input-group-text"><i className="fas fa-user"></i></span>
+          </div>
+          <input onChange={onChange} type="text" name="displayName" className="form-control input_user" placeholder="display name" />
+        </div>
+        {/* display name end */}
+
+        {/* password start */}
+        <div className="input-group mb-2">
+          <div className="input-group-append">
+            <span className="input-group-text"><i className="fas fa-key"></i></span>
+          </div>
+          <input onChange={onChange} type={passwordToggle} name="password" className="form-control input_pass" placeholder="password" />
+        </div>
+        {/* password end */}
+
+        <div id="passwordHelpBlock" class="form-text">
+          Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+        </div>
+
+        {/* password check start */}
+        <div className="input-group mb-2">
+          <div className="input-group-append">
+            <span className="input-group-text"><i className="fas fa-key"></i></span>
+          </div>
+          <input onChange={onChange} type={passwordToggle} name="passwordCheck" className="form-control input_pass" placeholder="retype password" />
+        </div>
+        {/* password check end */}
+
+        {/* show password checkbox start */}
+        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customControlInline" onClick={togglePassword} />
+            <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
+          </div>
+        </div>
+        {/* show password checkbox end */}
+
+
+        {/* button start */}
+        <div className="d-flex justify-content-center mt-3 login_container">
+          <button type="submit" name="button" className="btn login_btn">Register</button>
+        </div>
+        {/* button end */}
+
+        <a onClick={props.toggleForm} className="d-flex justify-content-center mt-3">
+          {props.formMode === "login" ? "Sign up here" : "Login here"}
+        </a>
+
+      </form>
 
     </>
   )
