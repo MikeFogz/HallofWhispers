@@ -3,9 +3,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from "axios";
 import AccountContext from "../../Context/AccountContext";
 import { useHistory } from "react-router-dom";
-// rafc
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const [form, setForm] = useState();
     const { userData, setUserData } = useContext(AccountContext);
     const history = useHistory();
@@ -63,63 +62,47 @@ const LoginForm = () => {
 
     return (
         <>
-            <div className="page_container">
-                <div className="d-flex justify-content-center h-100">
-
-                    {/* start card container */}
-                    <div className="user_card">
-                        {/* start card logo container */}
-                        <div className="d-flex justify-content-center">
-                            <div className="brand_logo_container">
-                                <img src="https://i.imgur.com/BGhAyqD.png" className="brand_logo" alt="HallofWhispersLogo" />
-                            </div>
-                        </div>
-                        {/* end card logo container */}
-                        <div className="d-flex justify-content-center form_container">
-
-                            {/* form start */}
-                            < form onSubmit={submitLoginForm} >
-                                {/* email start */}
-                                <div className="input-group mb-3">
-                                    <div className="input-group-append">
-                                        <span className="input-group-text"><i className="fas fa-user"></i></span>
-                                    </div>
-                                    <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
-                                </div>
-                                {/* email end */}
-                                {/* password start */}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-append">
-                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
-                                    </div>
-                                    <input onChange={onChange} type={passwordToggle} name="password" className="form-control input_pass" placeholder="password" />
-                                </div>
-                                {/* password end */}
-
-                                {/* show password checkbox start */}
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customControlInline" onClick={togglePassword} />
-                                        <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
-                                    </div>
-                                </div>
-                                {/* show password checkbox end */}
-
-                                {/* button start */}
-                                <div className="d-flex justify-content-center mt-3 login_container">
-                                    <button type="submit" name="button" className="btn login_btn">Login</button>
-                                </div>
-                                {/* button end */}
-
-
-                            </form >
-                            {/* form end */}
-                        </div>
-
+             {/* form start */}
+            < form onSubmit={submitLoginForm} >
+                {/* email start */}
+                <div className="input-group mb-3">
+                    <div className="input-group-append">
+                        <span className="input-group-text"><i className="fas fa-user"></i></span>
                     </div>
-                    {/* end card container */}
+                    <input onChange={onChange} type="text" name="email" className="form-control input_user" placeholder="email" />
                 </div>
-            </div>
+                {/* email end */}
+                
+                {/* password start */}
+                <div className="input-group mb-2">
+                    <div className="input-group-append">
+                        <span className="input-group-text"><i className="fas fa-key"></i></span>
+                    </div>
+                    <input onChange={onChange} type={passwordToggle} name="password" className="form-control input_pass" placeholder="password" />
+                </div>
+                {/* password end */}
+
+                {/* show password checkbox start */}
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlInline" onClick={togglePassword} />
+                        <label class="custom-control-label" for="customControlInline">&nbsp; Show Password</label>
+                    </div>
+                </div>
+                {/* show password checkbox end */}
+
+                {/* button start */}
+                <div className="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" name="button" className="btn login_btn">Login</button>
+                </div>
+                {/* button end */}
+
+                <a onClick={props.toggleForm} className="d-flex justify-content-center mt-3">
+                    {props.formMode === "login" ? "Sign up here" : "Login here"}
+                </a>
+            </form >
+            {/* form end */}
+
         </>
     )
 }

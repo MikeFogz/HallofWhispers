@@ -98,7 +98,7 @@ function App() {
                 <Home />
               </Route>
               <Route exact path="/login">
-                <LoginRegister />
+                <Login />
               </Route>
               <Route exact path="/" component={Home} />
             </Switch>
