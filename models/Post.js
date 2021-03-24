@@ -17,7 +17,8 @@ const PostSchema = new Schema({
     required: true,
   },
   accountName: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Account"
   },
 });
 
