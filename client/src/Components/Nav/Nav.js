@@ -10,10 +10,10 @@ const Nav = ({ children }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light background">
-      <div className="container-fluid background">
+      {/* <div className="container-fluid background"> */}
         <img className="nav-logo" src="https://i.imgur.com/BGhAyqD.png" alt="logo"></img>
-        <a className="navbar-brand" href="/">
-          Hall of Whispers
+        <a className="navbar-brand brand-box-model kerning-ligature" href="/">
+          <span className="letter-big">H</span>all of <span className="letter-big">W</span>hispers
         </a>
         <button
           className="navbar-toggler"
@@ -48,7 +48,7 @@ const Nav = ({ children }) => {
             </li>
           </ul>
         </div>
-      </div>
+      {/* </div> */}
     </nav>
   );
 };

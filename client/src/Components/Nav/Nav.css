@@ -1,7 +1,43 @@
+@font-face {
+  font-family: "MedievalSharp";
+  src: local("../assets/fonts/MedievalSharp/MedievalSharp-Regular.ttf") format("ttf");
+}
+
 .background {
   background-color: #bdc3c7;
 }
 .nav-logo {
-  height: 64px;
-  width: 64px;
+  height: 60px;
+  width: 60px;
 }
+
+.brand-box-model{
+  padding-left: .68rem;
+  padding-bottom: 0;
+}
+
+.kerning-ligature {
+    font-family: "MedievalSharp", "Roboto", sans-serif;
+    font-kerning: normal;
+    font-weight: 600;
+    font-size: 2.1em;
+    letter-spacing: -0.02em;
+    /* 1.2 line-height default */
+    line-height: 1.5;
+}
+
+.letter-big {
+  font-size: 1.08em;
+  font-weight: 700;
+}
+
+/* mobile in portrait */
+@media only screen and (max-width : 480px) {
+  .nav-logo {
+    display: none;
+  }
+  .brand-box-model {
+    padding: 0 0 0 0;
+  }
+  
+    }
