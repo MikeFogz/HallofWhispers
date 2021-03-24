@@ -62,7 +62,8 @@ function App() {
         if (data.charCreated) {
           try {
             const chrData = await axios.get(`/api/characters/${data.id}`);
-            setUserData({ ...userData, token, account: data, pending: false, character: chrData.data });
+            console.log(chrData.data[0])
+            setUserData({ ...userData, token, account: data, pending: false, character: chrData.data[0] });
           } catch (error) {
             console.log(error)
           };
