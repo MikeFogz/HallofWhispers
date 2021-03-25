@@ -159,22 +159,21 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <div className="page-container">
       <Wrapper>
         <Container>
           <Row>
             <Col size="md-6">
-              <h5 style={{ textShadow: "4px 4px 8px black" }}>
+              <h5>
                 {userData.character?.chrName}
               </h5>
-              <strong style={{ textShadow: "4px 4px 8px red" }}>
+              <strong>
                 {`The ${userData.character?.chrRace}`}
               </strong>
-              <strong style={{ textShadow: "4px 4px 8px red" }}>
+              <strong>
                 {` ${userData.character?.chrClass}`}
               </strong>
               <br />
-              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
             </Col>
           </Row>
           <Row>

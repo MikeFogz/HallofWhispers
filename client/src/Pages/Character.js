@@ -133,7 +133,7 @@ const Character = () => {
       <div className="container">
         <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
         <h1>Hall of Whisper's Almanac of Heroes</h1>
-        <p>Mark your place in the records.</p>
+        <p>Mark your place in the records. Please fill out all fields completely.</p>
         <CharacterInfo onChange={handleChange} />
         <CharacterStats onChange={handleChange} />
       </div>

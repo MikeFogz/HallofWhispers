@@ -28,7 +28,7 @@ module.exports = {
         message: req.body.message,
         // date: req.body.date,
         accountId: req.account,
-        accountName: userName.accountName
+        accountName: req.body.accountName
       });
       // console.log(req.account.accountName)
       console.log(userName.accountName)
