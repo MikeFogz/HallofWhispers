@@ -12,13 +12,9 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  accountId: {
-    type: String,
-    required: true,
-  },
-  accountName: {
+  account: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Account"
+    ref: "Account",
   },
 });
 

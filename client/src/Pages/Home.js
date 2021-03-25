@@ -52,16 +52,9 @@ const Home = () => {
         const arr = [...posts]
         arr.unshift(data)
         setPosts(arr)
-
-
-        // console.log(data);
-        // setPosts([...posts, data]);
       });
-
     // clears the input field after submitting
     setPostMessage("");
-    // const { data } = await axios.post("/api/posts", { headers: { "x-auth-token": token }, message: postMessage });
-    // console.log(data);
   };
 
   // loads all the posts
@@ -75,7 +68,7 @@ const Home = () => {
     axios
       .get("/api/posts", { headers: { "x-auth-token": token } })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setPosts(res.data);
       });
   }
@@ -217,13 +210,14 @@ const Home = () => {
                           // style={{border: "0"}}
                           key={index}
                           date={post.date}
-                          accountId={post.accountId}
-                          accountName={post.accountName}
+                          //accountId={post.accountId}
+                          account={post.account}
                           message={post.message}
                           myAccount={
-                            post.accountId === userData.account?.id
-                              ? "true"
-                              : "false"
+                            // post.accountId === userData.account?.id
+                            //   ? "true"
+                            //   : "false"
+                            post.myAccount
                           }
                         />
                       );

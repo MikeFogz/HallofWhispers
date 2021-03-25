@@ -6,6 +6,7 @@ const {
   test,
   getPosts,
   createPost,
+  getPostWithAccount,
 } = require("../controllers/testControllers");
 
 const {
@@ -15,9 +16,11 @@ const {
 // Running the test function from our controller when this route is hit.
 router.get("/test", test);
 
-router.get("/posts", auth, getPosts);
+//router.get("/posts", auth, getPosts);
 
 router.post("/posts", auth, createPost);
+
+router.get("/posts", auth, getPostWithAccount)
 
 router.get("/messages", auth, getChatMessage);
 
