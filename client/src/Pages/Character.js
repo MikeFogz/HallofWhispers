@@ -142,6 +142,8 @@ const Character = () => {
         console.log(characterData);
 
         await axios.patch("/api/characters/update", characterData, { headers: { "x-auth-token": token } });
+        alert("Record Saved!")
+        // window.location.reload();
         // history.push("/");
       } else {
 
