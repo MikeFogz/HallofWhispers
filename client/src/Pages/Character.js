@@ -173,12 +173,12 @@ const Character = () => {
       {/* This button is a placeholder for when create character is created */}
       {/* <button onClick={onClick}>Create Character</button> */}
       <div className="container">
-        <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
-        <h1>Hall of Whisper's Almanac of Heroes</h1>
+        <h1>Almanac of Heroes</h1>
         <p>Mark your place in the records. Please fill out all fields completely.</p>
+        <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
+      </div>
         <CharacterInfo onChange={handleChange} />
         <CharacterStats onChange={handleChange} />
-      </div>
 
 
     </div>
