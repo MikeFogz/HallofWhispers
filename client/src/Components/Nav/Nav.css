@@ -7,6 +7,7 @@
 
 .background {
   background-color: #bdc3c7;
+  /* background: url("../assets/images/dark_wall.png"); */
 }
 .nav-logo {
   height: 60px;
@@ -14,8 +15,8 @@
   margin-left: 7.5px;
 }
 
-.brand-box-model{
-  padding-left: .68rem;
+.brand-box-model {
+  padding-left: 0.68rem;
   padding-bottom: 0;
 }
 
@@ -48,10 +49,8 @@ a.medieval {
   margin-right: 5em;
 }
 
-
-
 /* mobile in portrait */
-@media only screen and (max-width : 480px) {
+@media only screen and (max-width: 480px) {
   .nav-logo {
     display: none;
   }
@@ -70,5 +69,5 @@ a.medieval {
     /* 1.2 line-height default */
     line-height: 1.5;
     margin-left: 8px;
-    }
   }
+}
