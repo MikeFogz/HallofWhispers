@@ -21,30 +21,14 @@ module.exports = {
   },
   // make a post
   createPost: async (req, res) => {
-    // const userName = req.account;
     try {
       const newPost = new Post({
-        // name: req.body.name,
         message: req.body.message,
         // date: req.body.date,
-        account: req.account,
-        // accountName: userName.accountName,
+        accountId: req.account,
+        chrName: req.body.chrName
       });
-      // console.log(req.account.accountName)
-      // console.log(userName.accountName);
-      let post = await newPost.save();
-      let post2 = await post
-        .populate("account", "accountName -_id")
-        .execPopulate();
-      post2 = {
-        _id: post2._id,
-        message: post2.message,
-        account: post2.account.accountName,
-        date: post2.date,
-        myAccount: "true",
-      };
-      console.log("post", post2);
-      res.json(post2);
+      res.json(await newPost.save());
     } catch (error) {
       console.log("error with createPost:", error);
     }
