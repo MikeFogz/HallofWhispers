@@ -26,6 +26,7 @@ const Home = () => {
   const [messages, setMessages] = useState("");
   const [arr, setArr] = useState([]);
   const [id, setId] = useState("");
+  const { userData } = useContext(AccountContext);
 
   // handles the input change for posting a message to the postboard
   const handleInputChange = (e) => {
@@ -43,7 +44,7 @@ const Home = () => {
     axios
       .post(
         "/api/posts",
-        { message: postMessage },
+        { message: postMessage, chrName: userData.character.chrName },
         { headers: { "x-auth-token": token } }
       )
       .then((res) => {
@@ -118,7 +119,7 @@ const Home = () => {
       {
         message: messages,
         id: id,
-        displayName: userData.account.accountName,
+        displayName: userData.character.chrName,
         date: moment(Date.now()).format("h:mm a"),
       },
       (data) => {
@@ -129,7 +130,7 @@ const Home = () => {
     setMessages("");
   };
 
-  const { userData } = useContext(AccountContext);
+ 
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -218,7 +219,7 @@ const Home = () => {
                           key={index}
                           date={post.date}
                           accountId={post.accountId}
-                          accountName={post.accountName}
+                          chrName={post.chrName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
