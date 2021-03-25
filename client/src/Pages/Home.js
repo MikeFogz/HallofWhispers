@@ -9,7 +9,7 @@ import { PostList, PostListItem } from "../Components/PostList/PostList";
 import "./Home.css";
 import axios from "axios";
 // --- For authentication, allows you to stay logged in --- //
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AccountContext from "../Context/AccountContext";
 import React, { useState, useEffect, useContext, useRef } from "react";
 import Dice from "react-dice-roll";
@@ -26,6 +26,7 @@ const Home = () => {
   const [messages, setMessages] = useState("");
   const [arr, setArr] = useState([]);
   const [id, setId] = useState("");
+  const history = useHistory();
 
   // handles the input change for posting a message to the postboard
   const handleInputChange = (e) => {
@@ -129,18 +130,21 @@ const Home = () => {
     setMessages("");
   };
 
-  const { userData } = useContext(AccountContext);
+  const { userData, setUserData } = useContext(AccountContext);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto", block: "end", inline: "nearest"});
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto", block: "end", inline: "nearest" });
     // console.log(messagesEndRef)
-    
+
   };
 
   useEffect(() => {
     scrollToBottom();
-  });
+    if (!userData.pending && !userData.account) history.push("/login");
+    //if (!userData.account?.charCreated) history.push("/character");
+    //checkLoggedIn();
+  }, [userData.pending, userData.account, history]);
 
   //--------------------------------------------
   //Activate this block of code when appropriate
