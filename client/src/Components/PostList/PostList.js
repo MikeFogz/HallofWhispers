@@ -12,7 +12,7 @@ export function PostListItem({
   message,
   date,
   myAccount,
-  accountName,
+  chrName,
   accountId,
 }) {
   const messagesEndRef = useRef(null);
@@ -43,7 +43,7 @@ export function PostListItem({
           <div ref={messagesEndRef}>
             <div style={{ float: "right" }}>
               <p className="timestamp">
-                {accountName} Posted: {moment.utc(date).local().format("LLL")}
+                {chrName} Posted: {moment.utc(date).local().format("LLL")}
                 {/* {console.log(accountName)} */}
               </p>
             </div>
