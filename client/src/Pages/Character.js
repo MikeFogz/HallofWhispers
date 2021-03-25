@@ -6,6 +6,7 @@ import axios from 'axios';
 import AccountContext from "../Context/AccountContext";
 import { useHistory } from "react-router-dom";
 import API from "../utils/API";
+import "../Pages/Character.css";
 
 const Character = () => {
   const { userData, setUserData } = useContext(AccountContext);
@@ -49,6 +50,15 @@ const Character = () => {
     setFormObject({ ...formObject, [e.name]: e.value });
   };
 
+  function clean(obj) {
+    for (var propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj
+  }
+
   let characterData = {
     chrName: formObject.Name,
     chrClass: formObject.Class,
@@ -86,13 +96,18 @@ const Character = () => {
     chrSur: formObject.Survival,
   };
 
+
+
   const createCharacter = async (e) => {
 
     e.preventDefault();
     let token = localStorage.getItem("auth-token");
     try {
       if (userData.account.charCreated) {
-        console.log("update character");
+        // const newCharacterData = clean(characterData);
+        // console.log(document.querySelector('[name="Name"]').defaultValue);
+        await axios.patch("/api/characters/update", characterData, { headers: { "x-auth-token": token } });
+        window.location.reload();
       } else {
         // When the Submit to Hall Records button is clicked, it creates a character with the below params.
         const mychr = await API.createChr(characterData);
@@ -101,6 +116,7 @@ const Character = () => {
         const { data } = await axios.post("/api/characterCreation", {}, {
           headers: { "x-auth-token": token },
         });
+        console.log(mychr.data)
         setUserData({ ...userData, account: data, character: mychr.data, pending: false });
         history.push("/");
       }
@@ -114,7 +130,7 @@ const Character = () => {
     <div>
       {/* This button is a placeholder for when create character is created */}
       {/* <button onClick={onClick}>Create Character</button> */}
-      <div class="container">
+      <div className="container">
         <button onClick={createCharacter} className="btn btn-danger" type="submit">Submit to Hall Records</button>
         <h1>Hall of Whisper's Almanac of Heroes</h1>
         <p>Mark your place in the records.</p>
