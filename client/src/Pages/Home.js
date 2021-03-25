@@ -27,6 +27,8 @@ const Home = () => {
   const [arr, setArr] = useState([]);
   const [id, setId] = useState("");
   const history = useHistory();
+  const { userData } = useContext(AccountContext);
+
 
   // handles the input change for posting a message to the postboard
   const handleInputChange = (e) => {
@@ -44,7 +46,7 @@ const Home = () => {
     axios
       .post(
         "/api/posts",
-        { message: postMessage },
+        { message: postMessage, chrName: userData.character?.chrName },
         { headers: { "x-auth-token": token } }
       )
       .then((res) => {
@@ -119,7 +121,7 @@ const Home = () => {
       {
         message: messages,
         id: id,
-        displayName: userData.account.accountName,
+        displayName: userData.character.chrName,
         date: moment(Date.now()).format("h:mm a"),
       },
       (data) => {
@@ -130,7 +132,6 @@ const Home = () => {
     setMessages("");
   };
 
-  const { userData, setUserData } = useContext(AccountContext);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -163,22 +164,21 @@ const Home = () => {
 
   //--------------------------------------------
   return (
-    <div style={{ backgroundImage: `url(${background})` }}>
+    <div className="page-container">
       <Wrapper>
         <Container>
           <Row>
             <Col size="md-6">
-              <h5 style={{ textShadow: "4px 4px 8px black" }}>
+              <h5>
                 {userData.character?.chrName}
               </h5>
-              <strong style={{ textShadow: "4px 4px 8px red" }}>
+              <strong>
                 {`The ${userData.character?.chrRace}`}
               </strong>
-              <strong style={{ textShadow: "4px 4px 8px red" }}>
+              <strong>
                 {` ${userData.character?.chrClass}`}
               </strong>
               <br />
-              <strong style={{ textShadow: "4px 4px 8px red" }}>Race: </strong>
             </Col>
           </Row>
           <Row>
@@ -189,6 +189,7 @@ const Home = () => {
               <Row>
                 <form onSubmit={handleSubmit}>
                   <div>
+                    <h4>Adventure Postings</h4>
                     <textarea
                       onChange={handleInputChange}
                       type="text"
@@ -196,7 +197,7 @@ const Home = () => {
                       name="message"
                       value={postMessage}
                       className="form-control"
-                      placeholder="Enter your post here"
+                      placeholder="Post your adventures here!"
                       aria-label="post-message"
                       aria-describedby="button-addon2"
                       id="myInput"
@@ -213,7 +214,6 @@ const Home = () => {
               </Row>
               <Row>
                 <Card>
-
                   <PostList>
                     {posts.map((post, index) => {
                       return (
@@ -222,7 +222,7 @@ const Home = () => {
                           key={index}
                           date={post.date}
                           accountId={post.accountId}
-                          accountName={post.accountName}
+                          chrName={post.chrName}
                           message={post.message}
                           myAccount={
                             post.accountId === userData.account?.id
@@ -238,8 +238,9 @@ const Home = () => {
             </Col>
             <Col size="md-4">
               <div>
+              <h4>Whispers in the Hall</h4>
                 <Card>
-                  <p className="text-center">{welcome}</p>
+                  {/* <p className="text-center">Current Whispers in the Hall</p> */}
                   <div ref={messagesEndRef}>
                     {/* {console.log(arr)} */}
                     {arr.map((chat, index) => (
