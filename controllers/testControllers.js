@@ -21,17 +21,13 @@ module.exports = {
   },
   // make a post
   createPost: async (req, res) => {
-    const userName = req.account
     try {
       const newPost = new Post({
-        // name: req.body.name,
         message: req.body.message,
         // date: req.body.date,
         accountId: req.account,
-        accountName: userName.accountName
+        chrName: req.body.chrName
       });
-      // console.log(req.account.accountName)
-      console.log(userName.accountName)
       res.json(await newPost.save());
     } catch (error) {
       console.log("error with createPost:", error);
