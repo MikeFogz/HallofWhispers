@@ -3,8 +3,6 @@
   src: local("../../assets/fonts/AlmendraDisplay/AlmendraDisplay-Regular.ttf") format("ttf");
 }
 
-/* @import url("../../assets/fonts/MedievalSharp/MedievalSharp-Regular.woff2"); */
-
 .background {
   background-color: #bdc3c7;
 }
@@ -47,7 +45,6 @@ a.medieval {
   margin-left: 1em;
   margin-right: 5em;
 }
-
 
 
 /* mobile in portrait */
