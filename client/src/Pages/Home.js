@@ -143,26 +143,12 @@ const Home = () => {
   useEffect(() => {
     scrollToBottom();
     if (!userData.pending && !userData.account) history.push("/login");
-    //if (!userData.account?.charCreated) history.push("/character");
-    //checkLoggedIn();
+    const socket = socketIOClient("http://localhost:5000", {
+      transports: ["websocket"],
+    });
   }, [userData.pending, userData.account, history]);
 
-  //--------------------------------------------
-  //Activate this block of code when appropriate
-  //Function:  If the user is not logged in, will go
-  //back to the login page.
 
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   if (!userData.account) {
-  //     history.push("/login");
-  //   }
-  // }, [userData.account, history])
-
-  // console.log(userData.character?.length === 0);
-
-  //--------------------------------------------
   return (
     <div className="page-container">
       <Wrapper>
@@ -238,7 +224,7 @@ const Home = () => {
             </Col>
             <Col size="md-4">
               <div>
-              <h4>Whispers in the Hall</h4>
+                <h4>Whispers in the Hall</h4>
                 <Card>
                   {/* <p className="text-center">Current Whispers in the Hall</p> */}
                   <div ref={messagesEndRef}>
