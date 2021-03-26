@@ -10,9 +10,11 @@ const StatCard = (prop) => {
 
   return (
     <div>
+      <h4 className="card-title text-black">Power Stats</h4>
+
+      <div className="card-deck">
       <div className="card card-border" style={{ backgroundColor: "transparent"}}>
         <div className="card-body">
-          <h5 className="card-title text-black">Power Stats</h5>
           
           <Row className="row">
             <Col size="md-4 s-4 xs-4">
@@ -40,6 +42,7 @@ const StatCard = (prop) => {
             </Col>
           </Row>
         </div>
+      </div>
       </div>
     </div>
   );
