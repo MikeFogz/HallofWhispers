@@ -167,18 +167,20 @@ const Home = () => {
     <div className="page-container">
       <Wrapper>
         <div className="container container-container">
+          <div className="container margin-top">
           <Row>
-            <Col size="md-6">
-              <h5>
+            <Col size="md-12">
+              <h5 className="user-font">
                 {userData.character?.chrName}
               </h5>
-              <strong>
+              <div className="last">
+              <strong className="subheading">
                 {`The ${userData.character?.chrRace}`}
               </strong>
-              <strong>
+              <strong className="subheading">
                 {` ${userData.character?.chrClass}`}
               </strong>
-              <br />
+              </div>
             </Col>
           </Row>
           <Row>
@@ -238,7 +240,7 @@ const Home = () => {
             </Col>
             <Col size="md-4">
               <div>
-              <h4>Whispers in the Hall</h4>
+                <h4>Whispers in the Hall</h4>
                 <Card>
                   {/* <p className="text-center">Current Whispers in the Hall</p> */}
                   <div ref={messagesEndRef}>
@@ -278,6 +280,7 @@ const Home = () => {
               <Dice onRoll={(value) => console.log(value)} size={50} />
             </Col>
           </Row>
+          </div>
         </div>
       </Wrapper>
     </div>
