@@ -52,7 +52,7 @@ const RegisterForm = (props) => {
         <label classname="d-flex justify-content-center mt-3">{errorMessage}</label>
 
         {/* display name start */}
-        <div className="input-group mb-3">
+        <div className="input-group mb-2">
           <div className="input-group-append">
             <span className="input-group-text"><i className="fas fa-user"></i></span>
           </div>
