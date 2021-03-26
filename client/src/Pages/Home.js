@@ -189,12 +189,10 @@ const Home = () => {
               </Col>
               <Col size="md-4">
                 <Row>
+                  <h4 className="margin-between-form">Adventure Postings</h4>
                   <form onSubmit={handleSubmit}>
-                    <div>
-                      <h4>Adventure Postings</h4>
-                      <textarea onChange={handleInputChange} type="text" style={{ marginTop: "10px" }} name="message" value={postMessage} className="form-control" placeholder="Post your adventures here!" aria-label="post-message" aria-describedby="button-addon2" id="myInput"/>
+                      <textarea onChange={handleInputChange} type="text" name="message" value={postMessage} className="form-control" placeholder="Post your adventures here!" aria-label="post-message" aria-describedby="button-addon2" id="myInput"/>
                       <button className="btn btn-success" type="submit" id="button-addon2">Post</button>
-                    </div>
                   </form>
                 </Row>
                 <Row>
@@ -223,7 +221,7 @@ const Home = () => {
               </Col>
               <Col size="md-4">
                 <div>
-                  <h4>Whispers in the Hall</h4>
+                  <h4 className="margin-between-form">Whispers in the Hall</h4>
                   <Card>
                     {/* <p className="text-center">Current Whispers in the Hall</p> */}
                     <div ref={messagesEndRef}>
