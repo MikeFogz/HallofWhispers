@@ -168,118 +168,101 @@ const Home = () => {
       <Wrapper>
         <div className="container container-container">
           <div className="container margin-top">
-          <Row>
-            <Col size="md-12">
-              <h5 className="user-font">
-                {userData.character?.chrName}
-              </h5>
-              <div className="last">
-              <strong className="subheading">
-                {`The ${userData.character?.chrRace}`}
-              </strong>
-              <strong className="subheading">
-                {` ${userData.character?.chrClass}`}
-              </strong>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col size="md-4">
-              <StatCard />
-            </Col>
-            <Col size="md-4">
-              <Row>
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <h4>Adventure Postings</h4>
-                    <textarea
-                      onChange={handleInputChange}
+            <Row>
+              <Col size="md-12">
+                <h5 className="user-font">
+                  {userData.character?.chrName}
+                </h5>
+                <div className="last">
+                  <strong className="subheading">
+                    {`The ${userData.character?.chrRace}`}
+                  </strong>
+                  <strong className="subheading">
+                    {` ${userData.character?.chrClass}`}
+                  </strong>
+                </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col size="md-4">
+                <StatCard />
+              </Col>
+              <Col size="md-4">
+                <Row>
+                  <form onSubmit={handleSubmit}>
+                    <div>
+                      <h4>Adventure Postings</h4>
+                      <textarea onChange={handleInputChange} type="text" style={{ marginTop: "10px" }} name="message" value={postMessage} className="form-control" placeholder="Post your adventures here!" aria-label="post-message" aria-describedby="button-addon2" id="myInput"/>
+                      <button className="btn btn-success" type="submit" id="button-addon2">Post</button>
+                    </div>
+                  </form>
+                </Row>
+                <Row>
+                  <Card>
+                    <PostList>
+                      {posts.map((post, index) => {
+                        return (
+                          <PostListItem
+                            // style={{border: "0"}}
+                            key={index}
+                            date={post.date}
+                            accountId={post.accountId}
+                            chrName={post.chrName}
+                            message={post.message}
+                            myAccount={
+                              post.accountId === userData.account?.id
+                                ? "true"
+                                : "false"
+                            }
+                          />
+                        );
+                      })}
+                    </PostList>
+                  </Card>
+                </Row>
+              </Col>
+              <Col size="md-4">
+                <div>
+                  <h4>Whispers in the Hall</h4>
+                  <Card>
+                    {/* <p className="text-center">Current Whispers in the Hall</p> */}
+                    <div ref={messagesEndRef}>
+                      {/* {console.log(arr)} */}
+                      {arr.map((chat, index) => (
+                        <div key={index}>
+                          <p>{chat.message}</p>
+                          <p style={{ float: "right" }} className="timestamp">
+                            {" "}
+                            {chat.displayName} sent at:{" "}
+                            {moment(chat.date).format("h:mm a")}
+                          </p>
+                          <br />
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                  <div className="d-flex">
+                    <input
                       type="text"
-                      style={{ marginTop: "10px" }}
-                      name="message"
-                      value={postMessage}
                       className="form-control"
-                      placeholder="Post your adventures here!"
-                      aria-label="post-message"
-                      aria-describedby="button-addon2"
-                      id="myInput"
+                      placeholder="Enter your message here"
+                      value={messages}
+                      onChange={(e) => {
+                        setMessages(e.target.value);
+                      }}
                     />
                     <button
-                      className="btn btn-success"
-                      type="submit"
-                      id="button-addon2"
+                      className="btn btn-primary"
+                      onClick={(e) => sendMessage(e)}
                     >
-                      Post
-                    </button>
-                  </div>
-                </form>
-              </Row>
-              <Row>
-                <Card>
-                  <PostList>
-                    {posts.map((post, index) => {
-                      return (
-                        <PostListItem
-                          // style={{border: "0"}}
-                          key={index}
-                          date={post.date}
-                          accountId={post.accountId}
-                          chrName={post.chrName}
-                          message={post.message}
-                          myAccount={
-                            post.accountId === userData.account?.id
-                              ? "true"
-                              : "false"
-                          }
-                        />
-                      );
-                    })}
-                  </PostList>
-                </Card>
-              </Row>
-            </Col>
-            <Col size="md-4">
-              <div>
-                <h4>Whispers in the Hall</h4>
-                <Card>
-                  {/* <p className="text-center">Current Whispers in the Hall</p> */}
-                  <div ref={messagesEndRef}>
-                    {/* {console.log(arr)} */}
-                    {arr.map((chat, index) => (
-                      <div key={index}>
-                        <p>{chat.message}</p>
-                        <p style={{ float: "right" }} className="timestamp">
-                          {" "}
-                          {chat.displayName} sent at:{" "}
-                          {moment(chat.date).format("h:mm a")}
-                        </p>
-                        <br />
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-                <div className="d-flex">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter your message here"
-                    value={messages}
-                    onChange={(e) => {
-                      setMessages(e.target.value);
-                    }}
-                  />
-                  <button
-                    className="btn btn-primary"
-                    onClick={(e) => sendMessage(e)}
-                  >
-                    send
+                      send
                   </button>
+                  </div>
                 </div>
-              </div>
-              <br />
-              <Dice onRoll={(value) => console.log(value)} size={50} />
-            </Col>
-          </Row>
+                <br />
+                <Dice onRoll={(value) => console.log(value)} size={50} />
+              </Col>
+            </Row>
           </div>
         </div>
       </Wrapper>
